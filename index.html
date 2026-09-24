@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>B.O.B. of the Dead</title>
   
-  <!-- LIENS CDN POUR VISUALISATION IMMEDIATE. 
-       Remplacer par "vendor/..." pour le mode 100% hors-ligne définitif -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   
@@ -16,7 +14,6 @@
   
   <link rel="manifest" href="manifest.json">
   
-  <!-- Script CDN pour la visualisation. Remplacer par vendor/ pour hors-ligne -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   
@@ -49,18 +46,17 @@
     --color-card-accent: #8b5a2b;
     
     --radius-pill: 2rem;
-    --radius-card: 1.375rem; /* Rétabli comme l'original */
+    --radius-card: 1.375rem;
     --radius-section: 14px;
     --radius-btn: 0.9rem;
     
     --shadow-light: 0 4px 8px rgba(20, 10, 15, 0.14);
     --shadow-sm: 0 1px 3px rgba(20, 10, 15, 0.05), 0 3px 8px rgba(20, 10, 15, 0.06);
-    --shadow-md: 0 4px 10px rgba(20, 10, 15, 0.07), 0 10px 22px rgba(20, 10, 15, 0.09); /* Rétabli */
+    --shadow-md: 0 4px 10px rgba(20, 10, 15, 0.07), 0 10px 22px rgba(20, 10, 15, 0.09);
     --shadow-lg: 0 8px 18px rgba(20, 10, 15, 0.09), 0 18px 36px rgba(20, 10, 15, 0.14);
 
-    --font-size-title: 1.85rem; /* Rétabli */
+    --font-size-title: 1.85rem;
 
-    /* Gradients de catégories */
     --cat-1: linear-gradient(135deg, #5b8291, #7ea5b5);
     --cat-2: linear-gradient(135deg, #8b5a2b, #a67c52);
     --cat-3: linear-gradient(135deg, #3f5938, #5a7a51);
@@ -84,13 +80,12 @@
 
   .container { max-width: 100% !important; padding-bottom: 5.5rem; }
   .hidden { display: none !important; }
-  section { animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1); } /* Rétabli */
+  section { animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
 
   @keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* Typography */
-  .main-title { font-family: var(--font-title); font-size: 3.1rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.2rem; color: #2c302e; text-transform: uppercase;} /* Rétabli à 3.1rem */
-  .sub-title { font-family: var(--font-title); font-size: 1.4rem; font-weight: 500; color: #556b2f; margin-bottom: 1.5rem; letter-spacing: 0.01em; } /* Rétabli à 1.4rem */
+  .main-title { font-family: var(--font-title); font-size: 3.1rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.2rem; color: #2c302e; text-transform: uppercase;}
+  .sub-title { font-family: var(--font-title); font-size: 1.4rem; font-weight: 500; color: #556b2f; margin-bottom: 1.5rem; letter-spacing: 0.01em; }
   
   section > h2 {
     font-family: var(--font-title); font-size: var(--font-size-title); color: var(--color-text-dark);
@@ -99,7 +94,6 @@
     box-shadow: var(--shadow-sm); display: inline-block; max-width: calc(100% - 104px);
   }
 
-  /* Cards & Lists (Rétabli aux proportions d'origine) */
   .emergency-card, .card-list-item {
     background: #fff; border-radius: var(--radius-card); box-shadow: var(--shadow-md);
     padding: 1.1rem 1.5rem; margin-bottom: 1.5rem; border-top: 4px solid var(--color-card-accent);
@@ -114,12 +108,10 @@
   .icon-list li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 1rem;}
   .icon-list li i { margin-top: 0.2rem; font-size: 0.85rem; flex-shrink: 0; color: var(--color-accent); }
 
-  /* Forms & Inputs */
   .form-control-custom { width: 100%; padding: 0.75rem 1.25rem; border: 2px solid var(--color-muted-border); border-radius: var(--radius-btn); font-family: var(--font-main); font-size:1.1rem; background: #fff; color: var(--color-text-dark); transition: border-color 0.2s; margin-bottom: 0.8rem;}
   .form-control-custom:focus { border-color: var(--color-accent); outline: none; box-shadow: 0 0 0 3px var(--color-accent-bg);}
   .form-label-custom { font-size: 0.85rem; font-weight: 700; color: #705e46; margin-bottom: 0.2rem; display: block; text-transform: uppercase; letter-spacing: 0.03em;}
 
-  /* Buttons */
   .custom-btn {
     padding: 0.65rem 1rem; font-size: 1rem; font-weight: 700; border: none; border-radius: var(--radius-btn);
     cursor: pointer; width: 100%; transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; gap: 0.5rem;
@@ -134,7 +126,6 @@
   .choice-btn { width: 100%; text-align: left; padding: 1rem; margin-bottom: 0.8rem; border-radius: var(--radius-btn); background: #fff; border: 2px solid var(--color-muted-border); font-weight: 600; color: var(--color-text-dark); transition: all 0.2s; cursor: pointer; box-shadow: var(--shadow-sm);}
   .choice-btn:hover { border-color: var(--color-accent); background: var(--color-accent-bg); box-shadow: var(--shadow-md); transform: translateY(-1px);}
 
-  /* Home */
   .home-pad { padding: 1.2rem 1.1rem 0; }
   .hero-card { border: none; width: 100%; text-align: left; cursor: pointer; border-radius: var(--radius-card); padding: 1.35rem 1.2rem; margin-bottom: 0.85rem; background: linear-gradient(135deg, var(--color-accent), #3f5938); color: #fff; box-shadow: 0 14px 30px rgba(74, 93, 35, 0.28); display: flex; align-items: center; gap: 1rem; }
   .hero-card .badge-ic { width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,0.22); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
@@ -148,7 +139,6 @@
   .widget .ic { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem; margin-bottom: 0.6rem; }
   .widget b { font-size: 0.92rem; font-weight: 700; line-height: 1.25; color: var(--color-text-dark); }
 
-  /* Navigation (Menu & Back) */
   .menu-trigger { position: fixed; top: 1rem; right: calc(50% - 240px + 1rem); z-index: 1050; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(0,0,0,0.08); color: var(--color-text-dark); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; backdrop-filter: blur(5px); }
   @media (max-width: 480px) { .menu-trigger { right: 1rem; } }
   .back-btn-global { position: fixed; top: 1rem; left: calc(50% - 240px + 1rem); z-index: 1050; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(0,0,0,0.08); color: var(--color-text-dark); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; backdrop-filter: blur(5px); }
@@ -169,7 +159,6 @@
   .menu-row:hover { background: rgba(120,120,128,0.08); }
   .menu-row i { font-size: 1rem; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; color: #fff; background: var(--color-accent); border-radius: 10px;}
 
-  /* Accordion (Inventory) */
   .cat { background: #fff; border-radius: var(--radius-card); margin-bottom: 0.6rem; overflow: hidden; box-shadow: var(--shadow-sm); }
   .cat-head { width: 100%; border: none; background: none; display: flex; align-items: center; gap: 0.7rem; padding: 0.8rem 0.9rem; cursor: pointer; text-align: left; }
   .cat-head .cat-ic { width: 36px; height: 36px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; font-size: 1.05rem; }
@@ -180,12 +169,10 @@
   .cat-body { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .28s ease, opacity .2s ease, padding .28s ease; }
   .cat.open .cat-body { max-height: 3000px; opacity: 1; padding: 0 0.9rem 1rem; }
 
-  /* Search Box */
   .search-box { width: 100%; border: 2px solid var(--color-muted-border); background: #fff; border-radius: var(--radius-pill); padding: 0.75rem 1.25rem; font-size: 1.1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; transition: border-color 0.2s, box-shadow 0.2s; box-shadow: var(--shadow-sm);}
   .search-box:focus-within { border-color: var(--color-accent); box-shadow: 0 0 0 3px var(--color-accent-bg); }
   .search-box input { border: none; background: none; outline: none; width: 100%; color: var(--color-text-dark); }
 
-  /* Checkboxes Inventory */
   .kit-item { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--color-muted-border); gap: 10px;}
   .kit-item:last-child { border-bottom: none; }
   .kit-item-label { display: flex; align-items: center; gap: 10px; flex: 1; font-weight: 500; font-size: 0.95rem; cursor: pointer; line-height: 1.2;}
@@ -194,10 +181,8 @@
   .kit-item-checkbox:checked::after { content: '✓'; position: absolute; color: white; font-size: 14px; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; }
   .kit-item-qty { width: 60px; text-align: right; padding: 4px 6px; border: 1px solid var(--color-muted-border); border-radius: 0.35rem; font-weight: 600; background: #fff; color: var(--color-text-dark); }
 
-  /* Bottom Bar */
   .sos-bar { position: fixed; left: 0; right: 0; bottom: 0; margin: 0 auto; max-width: 480px; z-index: 1200; padding: 0.6rem 0.9rem calc(0.6rem + env(safe-area-inset-bottom)); background: var(--color-bg-light); border-top: 1px solid var(--color-muted-border); box-shadow: 0 -6px 16px rgba(0,0,0,0.08); }
 
-  /* Dark Mode */
   body.dark-mode { background: #151715; color: #dcd7ce; }
   body.dark-mode .emergency-card, body.dark-mode .cat, body.dark-mode .widget, body.dark-mode .choice-btn, body.dark-mode .card-list-item { background: #1e221f; border-color: #2b302c; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); }
   body.dark-mode section h2 { background: #1e221f !important; color: #dcd7ce !important; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); }
@@ -221,17 +206,26 @@
   body.dark-mode #inventory-validation-date { color: #8e8e93; }
 
   /* Map Container */
-  .map-container { width: 100%; height: 350px; background: #151715; border-radius: var(--radius-card); overflow: hidden; position: relative; border: 2px solid var(--color-muted-border); box-shadow: var(--shadow-sm); }
+  .map-container { width: 100%; height: 520px; background: #151715; border-radius: var(--radius-card); overflow: hidden; position: relative; border: 2px solid var(--color-muted-border); box-shadow: var(--shadow-sm); }
   body.dark-mode .map-container { border-color: #2b302c; }
+  .map-container svg { cursor: grab; }
+  .map-container svg:active { cursor: grabbing; }
+  .map-reset-btn {
+    position: absolute; top: 10px; right: 10px; z-index: 10;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(30, 34, 31, 0.9); border: 1.5px solid #4a5d23;
+    color: #e4e9d8; font-size: 1rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .map-reset-btn:hover { background: #4a5d23; transform: scale(1.05); }
   </style>
 </head>
 
 <body>
 
-  <!-- Top Right Menu Trigger -->
   <button class="menu-trigger" onclick="toggleMenu()"><i class="bi bi-list"></i></button>
 
-  <!-- Navigation Panel -->
   <div class="menu-backdrop" id="menu-backdrop" onclick="toggleMenu()"></div>
   <aside class="menu-panel" id="menu-panel">
     <div class="menu-header">
@@ -259,14 +253,12 @@
     </div>
   </aside>
 
-  <!-- SOS Bar -->
   <div class="sos-bar">
     <button class="custom-btn danger" onclick="navigate('fast_evac')">
       <i class="bi bi-door-open-fill"></i> <span data-i18n="btn_fast_evac">Checklist Départ Immédiat</span>
     </button>
   </div>
 
-  <!-- Contextual Back Button -->
   <button class="back-btn-global hidden" id="global-back-btn" onclick="goBack()" aria-label="Retour">
     <i class="bi bi-chevron-left"></i>
   </button>
@@ -386,50 +378,181 @@
   <section id="page-map" class="hidden container py-4">
     <h2><i class="bi bi-map-fill" style="margin-right: 8px;"></i><span data-i18n="title_map">Carte d'Évacuation</span></h2>
     <div class="emergency-card mb-3" style="padding: 0.5rem;">
+      
       <div class="map-container" id="svg-map-wrapper">
-        <!-- SVG Map vectorielle centrée sur Montréal/Parc Jarry -->
-        <svg viewBox="0 0 500 500" width="100%" height="100%">
+        <button class="map-reset-btn" onclick="resetMapZoom()" title="Réinitialiser le zoom"><i class="bi bi-arrows-angle-contract"></i></button>
+        <svg id="evac-svg" viewBox="0 0 800 800" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="background:#151715; touch-action: pinch-zoom; user-select: none;">
+
           <defs>
-            <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#2b302c" stroke-width="1"/>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2b302c" stroke-width="0.5" opacity="0.5"/>
             </pattern>
+
+            <radialGradient id="radiusGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#4a5d23" stop-opacity="0.15"/>
+              <stop offset="80%" stop-color="#4a5d23" stop-opacity="0.05"/>
+              <stop offset="100%" stop-color="#4a5d23" stop-opacity="0"/>
+            </radialGradient>
+
+            <symbol id="bridge-icon" viewBox="0 0 30 20">
+              <path d="M2,16 Q15,2 28,16" fill="none" stroke="#fff" stroke-width="2.5"/>
+              <line x1="2" y1="16" x2="2" y2="19" stroke="#fff" stroke-width="2.5"/>
+              <line x1="28" y1="16" x2="28" y2="19" stroke="#fff" stroke-width="2.5"/>
+              <line x1="15" y1="9" x2="15" y2="19" stroke="#fff" stroke-width="2.5"/>
+            </symbol>
+
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
           </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-          
-          <!-- Rivières / Fleuve -->
-          <path d="M-50,150 Q250,100 550,180" stroke="#5b8291" stroke-width="25" fill="none" opacity="0.6"/>
-          <text x="20" y="130" fill="#5b8291" font-size="14" font-weight="bold" font-family="sans-serif">Rivière des Prairies (Laval)</text>
-          
-          <path d="M-50,420 Q250,450 550,380" stroke="#5b8291" stroke-width="40" fill="none" opacity="0.5"/>
-          <text x="350" y="440" fill="#5b8291" font-size="14" font-weight="bold" font-family="sans-serif">Fleuve St-Laurent</text>
 
-          <!-- Axes Cyclables / Fuite -->
-          <path d="M250,250 L200,160 L180,120" stroke="#cc7722" stroke-width="4" stroke-dasharray="6,4" fill="none"/>
-          <text x="110" y="160" fill="#cc7722" font-size="12" font-family="sans-serif" font-weight="bold">Axe Nord Vélo</text>
+          <!-- ===== TOUT LE CONTENU ZOOMABLE ===== -->
+          <g id="zoom-layer">
 
-          <path d="M250,250 L350,400" stroke="#cc7722" stroke-width="4" stroke-dasharray="6,4" fill="none"/>
-          <text x="310" y="350" fill="#cc7722" font-size="12" font-family="sans-serif" font-weight="bold">Pont J.-Cartier</text>
+            <rect width="100%" height="100%" fill="url(#grid)"/>
 
-          <!-- Parc Jarry -->
-          <rect x="220" y="230" width="60" height="40" fill="#3f5938" opacity="0.9" rx="6"/>
-          <text x="226" y="255" fill="#e4e9d8" font-size="12" font-weight="bold" font-family="sans-serif">Parc Jarry</text>
-          <circle cx="250" cy="250" r="4" fill="#fff"/>
+            <!-- FLEUVES -->
+            <path d="M-20,600 Q400,560 820,620" stroke="#3a5f7a" stroke-width="42" fill="none" opacity="0.7"/>
+            <path d="M-20,600 Q400,560 820,620" stroke="#5b8291" stroke-width="38" fill="none" opacity="0.9"/>
+            <text x="620" y="600" fill="#a8c5d6" font-size="15" font-weight="bold" font-family="sans-serif" font-style="italic">Fleuve Saint-Laurent</text>
 
-          <!-- Métros (Fail Safes) -->
-          <circle cx="290" cy="240" r="7" fill="#a34848"/>
-          <text x="305" y="245" fill="#a34848" font-size="12" font-family="sans-serif" font-weight="bold">M. De Castelnau</text>
+            <path d="M-20,300 Q400,270 820,320" stroke="#3a5f7a" stroke-width="22" fill="none" opacity="0.7"/>
+            <path d="M-20,300 Q400,270 820,320" stroke="#5b8291" stroke-width="18" fill="none" opacity="0.9"/>
+            <text x="60" y="285" fill="#a8c5d6" font-size="13" font-weight="bold" font-family="sans-serif" font-style="italic">Rivière des Prairies</text>
 
-          <circle cx="310" cy="280" r="7" fill="#a34848"/>
-          <text x="325" y="285" fill="#a34848" font-size="12" font-family="sans-serif" font-weight="bold">M. Jean-Talon</text>
-          
-          <!-- Boussole -->
-          <circle cx="40" cy="40" r="20" fill="none" stroke="#705e46" stroke-width="2"/>
-          <path d="M40,15 L45,40 L40,65 L35,40 Z" fill="#705e46"/>
-          <path d="M40,15 L45,40 L40,40 Z" fill="#a34848"/>
-          <text x="35" y="10" fill="#705e46" font-size="12" font-weight="bold" font-family="sans-serif">N</text>
+            <!-- ÎLE DE MONTRÉAL -->
+            <path d="M120,340 Q300,310 480,330 Q620,350 700,380 Q720,450 680,530 Q500,580 300,570 Q150,540 120,480 Q110,410 120,340 Z"
+                  fill="#1e221f" stroke="#4a5d23" stroke-width="2" opacity="0.85"/>
+            <text x="380" y="460" fill="#7a8f5a" font-size="18" font-weight="bold" font-family="sans-serif" letter-spacing="2">MONTRÉAL</text>
+
+            <!-- RAYON 50 KM -->
+            <circle cx="400" cy="440" r="330" fill="url(#radiusGrad)"/>
+            <circle cx="400" cy="440" r="330" fill="none" stroke="#4a5d23" stroke-width="1.5" stroke-dasharray="8,6" opacity="0.6"/>
+            <text x="400" y="105" fill="#7a8f5a" font-size="12" font-family="sans-serif" text-anchor="middle" letter-spacing="3">RAYON 50 KM</text>
+
+            <!-- PARC JARRY -->
+            <circle cx="400" cy="440" r="30" fill="#4a5d23" opacity="0.25"/>
+            <circle cx="400" cy="440" r="14" fill="#4a5d23" stroke="#e4e9d8" stroke-width="2.5"/>
+            <circle cx="400" cy="440" r="4" fill="#fff"/>
+            <text x="400" y="490" fill="#e4e9d8" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">PARC JARRY</text>
+            <text x="400" y="505" fill="#7a8f5a" font-size="10" font-family="sans-serif" text-anchor="middle">Point de départ</text>
+
+            <!-- ===== SORTIE NORD-OUEST ===== -->
+            <!-- PRINCIPAL : Route 117 (secondaire) -->
+            <path d="M400,440 Q380,360 340,280 Q300,200 250,120" stroke="#cc7722" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <!-- ALTERNATIF : A15 (autoroute, à éviter) -->
+            <path d="M400,440 Q420,370 400,290 Q380,220 360,130" stroke="#a34848" stroke-width="3" fill="none" stroke-dasharray="8,6" stroke-linecap="round" opacity="0.6"/>
+            <use href="#bridge-icon" x="345" y="255" width="28" height="18"/>
+            <text x="260" y="240" fill="#e0b070" font-size="11" font-weight="bold" font-family="sans-serif">Pont Papineau-Leblanc</text>
+            <text x="430" y="300" fill="#a08050" font-size="9" font-family="sans-serif" font-style="italic">alt: A15 (saturée)</text>
+
+            <!-- Badge RTE 117 -->
+            <g transform="translate(310,195)">
+              <rect x="-38" y="-11" width="76" height="20" rx="4" fill="#1e221f" stroke="#cc7722" stroke-width="1.5" opacity="0.95"/>
+              <text x="0" y="3" fill="#e0b070" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">RTE 117</text>
+            </g>
+
+            <circle cx="245" cy="115" r="32" fill="#3f5938" opacity="0.35" filter="url(#glow)"/>
+            <circle cx="245" cy="115" r="20" fill="#3f5938" stroke="#7a8f5a" stroke-width="2"/>
+            <text x="245" y="118" fill="#e4e9d8" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">⬆</text>
+            <text x="245" y="75" fill="#a8c78a" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">LAURENTIDES</text>
+            <text x="245" y="90" fill="#7a8f5a" font-size="10" font-family="sans-serif" text-anchor="middle">Saint-Sauveur / Estérel</text>
+
+            <!-- ===== SORTIE OUEST ===== -->
+            <!-- PRINCIPAL : Route 342 (secondaire) -->
+            <path d="M400,440 Q280,430 180,420 Q100,415 40,410" stroke="#cc7722" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <!-- ALTERNATIF : A40 -->
+            <path d="M400,440 Q300,470 200,490 Q120,510 50,530" stroke="#a34848" stroke-width="3" fill="none" stroke-dasharray="8,6" stroke-linecap="round" opacity="0.6"/>
+            <use href="#bridge-icon" x="175" y="408" width="28" height="18"/>
+            <text x="100" y="395" fill="#e0b070" font-size="11" font-weight="bold" font-family="sans-serif">Pont Île-aux-Tourtes</text>
+            <text x="105" y="545" fill="#a08050" font-size="9" font-family="sans-serif" font-style="italic">alt: A40 (saturée)</text>
+
+            <!-- Badge RTE 342 -->
+            <g transform="translate(285,430)">
+              <rect x="-38" y="-11" width="76" height="20" rx="4" fill="#1e221f" stroke="#cc7722" stroke-width="1.5" opacity="0.95"/>
+              <text x="0" y="3" fill="#e0b070" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">RTE 342</text>
+            </g>
+
+            <circle cx="45" cy="405" r="32" fill="#3f5938" opacity="0.35" filter="url(#glow)"/>
+            <circle cx="45" cy="405" r="20" fill="#3f5938" stroke="#7a8f5a" stroke-width="2"/>
+            <text x="45" y="408" fill="#e4e9d8" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">⬅</text>
+            <text x="45" y="365" fill="#a8c78a" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">VAUDREUIL</text>
+            <text x="45" y="380" fill="#7a8f5a" font-size="10" font-family="sans-serif" text-anchor="middle">Rigaud / Hawkesbury</text>
+
+            <!-- ===== SORTIE SUD ===== -->
+            <!-- PRINCIPAL : Route 112 (secondaire) -->
+            <path d="M400,440 Q420,520 440,600 Q460,680 480,760" stroke="#cc7722" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <!-- ALTERNATIF : A10 -->
+            <path d="M400,440 Q460,510 520,590 Q580,660 620,740" stroke="#a34848" stroke-width="3" fill="none" stroke-dasharray="8,6" stroke-linecap="round" opacity="0.6"/>
+            <use href="#bridge-icon" x="432" y="590" width="28" height="18"/>
+            <text x="475" y="585" fill="#e0b070" font-size="11" font-weight="bold" font-family="sans-serif">Pont Champlain</text>
+            <text x="545" y="640" fill="#a08050" font-size="9" font-family="sans-serif" font-style="italic">alt: A10 (saturée)</text>
+
+            <!-- Badge RTE 112 -->
+            <g transform="translate(420,670)">
+              <rect x="-38" y="-11" width="76" height="20" rx="4" fill="#1e221f" stroke="#cc7722" stroke-width="1.5" opacity="0.95"/>
+              <text x="0" y="3" fill="#e0b070" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">RTE 112</text>
+            </g>
+
+            <circle cx="485" cy="765" r="32" fill="#3f5938" opacity="0.35" filter="url(#glow)"/>
+            <circle cx="485" cy="765" r="20" fill="#3f5938" stroke="#7a8f5a" stroke-width="2"/>
+            <text x="485" y="768" fill="#e4e9d8" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">⬇</text>
+            <text x="485" y="815" fill="#a8c78a" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">ESTRIE</text>
+            <text x="485" y="830" fill="#7a8f5a" font-size="10" font-family="sans-serif" text-anchor="middle">Orford / Memphrémagog</text>
+
+            <!-- ===== SORTIE NORD-EST ===== -->
+            <!-- PRINCIPAL : Route 125 (secondaire) -->
+            <path d="M400,440 Q500,400 600,370 Q700,340 780,320" stroke="#cc7722" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <!-- ALTERNATIF : A25 -->
+            <path d="M400,440 Q520,440 620,440 Q720,450 790,460" stroke="#a34848" stroke-width="3" fill="none" stroke-dasharray="8,6" stroke-linecap="round" opacity="0.6"/>
+            <use href="#bridge-icon" x="595" y="352" width="28" height="18"/>
+            <text x="600" y="340" fill="#e0b070" font-size="11" font-weight="bold" font-family="sans-serif">Pont Charles-De Gaulle</text>
+            <text x="640" y="480" fill="#a08050" font-size="9" font-family="sans-serif" font-style="italic">alt: A25 (saturée)</text>
+
+            <!-- Badge RTE 125 -->
+            <g transform="translate(520,395)">
+              <rect x="-38" y="-11" width="76" height="20" rx="4" fill="#1e221f" stroke="#cc7722" stroke-width="1.5" opacity="0.95"/>
+              <text x="0" y="3" fill="#e0b070" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">RTE 125</text>
+            </g>
+
+            <circle cx="775" cy="315" r="32" fill="#3f5938" opacity="0.35" filter="url(#glow)"/>
+            <circle cx="775" cy="315" r="20" fill="#3f5938" stroke="#7a8f5a" stroke-width="2"/>
+            <text x="775" y="318" fill="#e4e9d8" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">➡</text>
+            <text x="775" y="275" fill="#a8c78a" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">LANAUDIÈRE</text>
+            <text x="775" y="290" fill="#7a8f5a" font-size="10" font-family="sans-serif" text-anchor="middle">Rawdon / Saint-Donat</text>
+
+            <!-- BOUSSOLE -->
+            <g transform="translate(80,80)">
+              <circle cx="0" cy="0" r="28" fill="#1e221f" stroke="#705e46" stroke-width="2" opacity="0.9"/>
+              <path d="M0,-22 L7,0 L0,22 L-7,0 Z" fill="#705e46"/>
+              <path d="M0,-22 L7,0 L0,0 Z" fill="#a34848"/>
+              <text x="0" y="-36" fill="#e4e9d8" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">N</text>
+            </g>
+
+            <!-- LÉGENDE -->
+            <g transform="translate(560,60)">
+              <rect x="0" y="0" width="225" height="130" rx="10" fill="#1e221f" stroke="#4a5d23" stroke-width="1.5" opacity="0.95"/>
+              <text x="12" y="22" fill="#e4e9d8" font-size="12" font-weight="bold" font-family="sans-serif">LÉGENDE</text>
+              <line x1="12" y1="42" x2="42" y2="42" stroke="#cc7722" stroke-width="5" stroke-linecap="round"/>
+              <text x="52" y="46" fill="#c8c0b0" font-size="11" font-family="sans-serif">Route secondaire (priorité)</text>
+              <line x1="12" y1="62" x2="42" y2="62" stroke="#a34848" stroke-width="3" stroke-dasharray="6,4" stroke-linecap="round"/>
+              <text x="52" y="66" fill="#c8c0b0" font-size="11" font-family="sans-serif">Autoroute (si bloqué)</text>
+              <use href="#bridge-icon" x="12" y="76" width="24" height="16"/>
+              <text x="52" y="88" fill="#c8c0b0" font-size="11" font-family="sans-serif">Pont / point de passage</text>
+              <circle cx="24" cy="112" r="8" fill="#3f5938" stroke="#7a8f5a" stroke-width="1.5"/>
+              <text x="52" y="116" fill="#c8c0b0" font-size="11" font-family="sans-serif">Zone d'accueil</text>
+            </g>
+
+          </g>
+          <!-- ===== FIN ZOOM LAYER ===== -->
+
         </svg>
       </div>
-      <p class="text-muted mt-2 mb-0 text-center" style="font-size: 0.85rem;" data-i18n="map_desc">Schéma d'évacuation vélo (Rayon 15km).</p>
+      <p class="text-muted mt-2 mb-0 text-center" style="font-size: 0.85rem;" data-i18n="map_desc">Schéma d'évacuation vélo (Rayon 50km). <span style="opacity:0.7;">Pincez pour zoomer, glissez pour déplacer.</span></p>
     </div>
   </section>
 
@@ -508,7 +631,6 @@
   <section id="page-install" class="hidden container py-4">
     <h2><i class="bi bi-download" style="margin-right: 8px;"></i><span data-i18n="title_install">Installer l'App</span></h2>
     
-    <!-- Espace Réservé QR Code -->
     <div class="emergency-card mb-3" style="border-top-color: var(--color-minor); text-align: center;">
       <h3 data-i18n="install_qr_title">Scan QR Code</h3>
       <div style="text-align: center; background: #fff; padding: 10px; border-radius: 12px; border: 2px solid var(--color-muted-border); display: inline-block;">
@@ -533,7 +655,6 @@
   </section>
 
   <script>
-    // --- I18N (Internationalisation) ---
     let currentLang = localStorage.getItem('bob_lang') || 'fr';
 
     const DICTIONARY = {
@@ -550,7 +671,7 @@
         inv_add_custom: "Ajouter un item spécifique", cat_water: "Eau / Nourriture", cat_clothes: "Vêtements", cat_shelter: "Abris", cat_health: "Santé", cat_fire: "Feu", cat_comms: "Comms / Elec", cat_tools: "Outils", cat_docs: "CNI / Papiers", cat_fun: "Fun / Moral", btn_add: "Ajouter",
         title_technics: "Manuel de Survie", search_technics: "Rechercher une technique...", tech_steps_title: "Procédure",
         title_plan: "Plan & Comms", plan_rally_title: "Points de Ralliement", plan_rp1: "Point Secondaire (Rive-Sud / Laval)", plan_rp2: "Point de Chute Final (Cardaillac, France)", plan_radio_title: "Fréquences Radio", plan_callsign: "Indicatif Radio Amateur", plan_fam_freq: "Fréquence Famille (UHF - GMRS/FRS)", plan_em_freq: "Appel d'urgence (VHF Simplex)", plan_rep_freq: "Relais Local Principal (Montréal)", plan_hf_freq: "Réseau Survie Longue Distance (HF 20m)", btn_save_plan: "Sauvegarder le Plan",
-        title_map: "Carte d'Évacuation", map_desc: "Schéma d'évacuation vélo (Rayon 15km).",
+        title_map: "Carte d'Évacuation", map_desc: "Schéma d'évacuation vélo (Rayon 50km).",
         game_prep_test: "Test de Préparation (Évolutif)", game_prep_desc: "Évaluez vos réflexes face à des situations d'intensité croissante.", btn_start_sim: "Lancer la simulation", btn_continue: "Continuer",
         title_fast_evac: "Départ Immédiat", plan_last_min: "Les 5 dernières minutes", plan_desc: "À saisir juste avant de franchir la porte.", plan_id: "Portefeuilles & ID", plan_phone: "Téléphones & câbles chargeurs", plan_keys: "Trousseau de clés complet", plan_meds: "Médicaments prescrits en cours", plan_data: "Disques durs (SSD)",
         title_install: "Installer l'App", install_qr_title: "Scan QR Code", install_qr_wait: "[ Espace QR Code ]<br>En attente du lien", install_ios_title: "Sur iPhone (Safari)", install_ios_1: "Appuyez sur le bouton <strong>Partager</strong> en bas.", install_ios_2: "Choisissez <strong>\"Sur l'écran d'accueil\"</strong>.", install_and_title: "Sur Android (Chrome)", install_and_1: "Appuyez sur le <strong>menu à trois points</strong>.", install_and_2: "Sélectionnez <strong>\"Installer l'application\"</strong>.",
@@ -569,7 +690,7 @@
         inv_add_custom: "Add custom item", cat_water: "Water / Food", cat_clothes: "Clothes", cat_shelter: "Shelter", cat_health: "Health", cat_fire: "Fire", cat_comms: "Comms / Elec", cat_tools: "Tools", cat_docs: "ID / Docs", cat_fun: "Fun / Morale", btn_add: "Add",
         title_technics: "Survival Manual", search_technics: "Search a technique...", tech_steps_title: "Procedure",
         title_plan: "Plan & Comms", plan_rally_title: "Rally Points", plan_rp1: "Secondary Point (South Shore / Laval)", plan_rp2: "Final Bug-Out Point (Cardaillac, France)", plan_radio_title: "Radio Frequencies", plan_callsign: "Ham Radio Callsign", plan_fam_freq: "Family Frequency (UHF - GMRS/FRS)", plan_em_freq: "Emergency Call (VHF Simplex)", plan_rep_freq: "Main Local Repeater (Montreal)", plan_hf_freq: "Long Distance Survival Net (HF 20m)", btn_save_plan: "Save Plan",
-        title_map: "Evacuation Map", map_desc: "Bike evacuation schematic (15km radius).",
+        title_map: "Evacuation Map", map_desc: "Bike evacuation schematic (50km radius).",
         game_prep_test: "Preparedness Test", game_prep_desc: "Evaluate your reflexes facing situations of increasing intensity.", btn_start_sim: "Start Simulation", btn_continue: "Continue",
         title_fast_evac: "Immediate Departure", plan_last_min: "The last 5 minutes", plan_desc: "Grab right before walking out the door.", plan_id: "Wallets & ID", plan_phone: "Phones & charger cables", plan_keys: "Complete set of keys", plan_meds: "Current prescribed medications", plan_data: "Backup drives (SSD)",
         title_install: "Install App", install_qr_title: "Scan QR Code", install_qr_wait: "[ QR Code Space ]<br>Waiting for link", install_ios_title: "On iPhone (Safari)", install_ios_1: "Tap the <strong>Share</strong> button at the bottom.", install_ios_2: "Choose <strong>\"Add to Home Screen\"</strong>.", install_and_title: "On Android (Chrome)", install_and_1: "Tap the <strong>three-dot menu</strong>.", install_and_2: "Select <strong>\"Install app\"</strong>.",
@@ -597,7 +718,6 @@
       }
     });
 
-    // --- Navigation ---
     function toggleMenu() {
       document.getElementById('menu-panel').classList.toggle('open');
       document.getElementById('menu-backdrop').classList.toggle('open');
@@ -625,7 +745,6 @@
       navigate(page, false);
     });
 
-    // --- Mode Sombre ---
     function updateThemeText() {
       const isDark = document.body.classList.contains('dark-mode');
       document.getElementById('theme-icon').className = isDark ? 'bi bi-brightness-high-fill' : 'bi bi-moon-stars-fill';
@@ -638,7 +757,6 @@
       updateThemeText();
     });
 
-    // --- Plan & Comms ---
     function loadPlan() {
       const planData = JSON.parse(localStorage.getItem('bob_plan') || '{}');
       document.getElementById('plan-rp1').value = planData.rp1 || '';
@@ -659,7 +777,6 @@
       alert(currentLang === 'en' ? "✅ Plan saved." : "✅ Plan sauvegardé.");
     }
 
-    // --- Inventaire Extrêmement Précis (Basé sur vos notes) ---
     const kitCategories = [
       { id: 1, name_fr: "Eau & Nourriture", name_en: "Water & Food", icon: "bi-droplet-fill" },
       { id: 2, name_fr: "Vêtements", name_en: "Clothes", icon: "bi-layers-fill" },
@@ -673,24 +790,15 @@
     ];
 
     let inventoryTemplate = [
-      // Eau / Nourriture
       { catId: 1, name_fr: "Gourde", name_en: "Water Bottle", qty: 2 }, { catId: 1, name_fr: "Filtres (MRE)", name_en: "Water Filters", qty: 2 }, { catId: 1, name_fr: "Pastilles de purification", name_en: "Purification tablets", qty: 40 },
       { catId: 1, name_fr: "Barres céréales (ou lyophilisé)", name_en: "Energy bars / Freeze-dried", qty: 12 }, { catId: 1, name_fr: "Quart + Couverts", name_en: "Canteen cup + Utensils", qty: 1 }, { catId: 1, name_fr: "PQ / Filtre café", name_en: "TP / Coffee filters", qty: 1 },
-      // Vêtements
       { catId: 2, name_fr: "Change x2 (slip, chaussettes, T-shirt, pantalon, jacket)", name_en: "Spare clothes x2", qty: 1 }, { catId: 2, name_fr: "Gants durs / Gants froids", name_en: "Gloves (Heavy & Cold)", qty: 2 }, { catId: 2, name_fr: "Chaussures", name_en: "Shoes", qty: 1 }, { catId: 2, name_fr: "Bonnet", name_en: "Beanie", qty: 1 },
-      // Abris
       { catId: 3, name_fr: "Poncho / Sac poubelle", name_en: "Poncho / Trash bag", qty: 2 }, { catId: 3, name_fr: "Couv. de survie", name_en: "Survival blanket", qty: 2 }, { catId: 3, name_fr: "Tarp", name_en: "Tarp", qty: 1 }, { catId: 3, name_fr: "Sac à dos / Sac ziplock", name_en: "Backpack / Ziplocks", qty: 1 },
-      // Santé
       { catId: 4, name_fr: "Trousse Bobo", name_en: "Minor First Aid Kit", qty: 1 }, { catId: 4, name_fr: "Trousse Trauma (Rouge)", name_en: "Trauma Kit (Red)", qty: 1 }, { catId: 4, name_fr: "Savon / Serviette", name_en: "Soap / Towel", qty: 1 }, { catId: 4, name_fr: "Chaud (Chaufferettes)", name_en: "Hand warmers", qty: 4 }, { catId: 4, name_fr: "Bouchons d'oreille", name_en: "Earplugs", qty: 2 },
-      // Feu
       { catId: 5, name_fr: "Briquet Bic", name_en: "Bic Lighter", qty: 2 }, { catId: 5, name_fr: "Briquet Rechargeable", name_en: "Refillable Lighter", qty: 1 }, { catId: 5, name_fr: "Firesteel", name_en: "Firesteel", qty: 1 }, { catId: 5, name_fr: "Allumettes tempête", name_en: "Storm matches", qty: 1 }, { catId: 5, name_fr: "Bougie", name_en: "Candle", qty: 1 },
-      // Comms / Elec
       { catId: 6, name_fr: "Mini UV5R", name_en: "Mini UV5R", qty: 2 }, { catId: 6, name_fr: "Radtel 950 Pro (radio)", name_en: "Radtel 950 Pro", qty: 2 }, { catId: 6, name_fr: "Panneau Solaire 70W", name_en: "Solar Panel 70W", qty: 1 }, { catId: 6, name_fr: "Panneau Solaire 30W", name_en: "Solar Panel 30W", qty: 2 }, { catId: 6, name_fr: "Powerbank + Câbles", name_en: "Powerbank + Cables", qty: 2 }, { catId: 6, name_fr: "Tél / PC (Toughbook)", name_en: "Phone / PC (Toughbook)", qty: 1 }, { catId: 6, name_fr: "HackRF One", name_en: "HackRF One", qty: 1 },
-      // Outils
       { catId: 7, name_fr: "Couteau", name_en: "Knife", qty: 1 }, { catId: 7, name_fr: "Multitool", name_en: "Multitool", qty: 1 }, { catId: 7, name_fr: "Mini tournevis", name_en: "Mini screwdriver", qty: 1 }, { catId: 7, name_fr: "Carnet / Stylo", name_en: "Notebook / Pen", qty: 1 }, { catId: 7, name_fr: "Miroir", name_en: "Mirror", qty: 1 }, { catId: 7, name_fr: "Corde", name_en: "Paracord", qty: 1 }, { catId: 7, name_fr: "Sifflet", name_en: "Whistle", qty: 1 }, { catId: 7, name_fr: "Frontale", name_en: "Headlamp", qty: 1 }, { catId: 7, name_fr: "Lampe >1000 lumens", name_en: "Flashlight >1000lm", qty: 1 }, { catId: 7, name_fr: "Boussole", name_en: "Compass", qty: 1 }, { catId: 7, name_fr: "Compteur Geiger", name_en: "Geiger Counter", qty: 1 }, { catId: 7, name_fr: "Duct tape", name_en: "Duct tape", qty: 1 }, { catId: 7, name_fr: "Casque & Kit rustines vélo", name_en: "Helmet & Bike repair kit", qty: 1 },
-      // CNI
       { catId: 8, name_fr: "Papiers (CNI)", name_en: "ID Papers", qty: 1 }, { catId: 8, name_fr: "SSD (Backups)", name_en: "SSD Drive", qty: 1 }, { catId: 8, name_fr: "Argent liquide", name_en: "Cash", qty: 1 }, { catId: 8, name_fr: "Photos de famille", name_en: "Family photos", qty: 1 },
-      // Fun
       { catId: 9, name_fr: "Retrogaming (Console)", name_en: "Retrogaming Console", qty: 1 }, { catId: 9, name_fr: "Jeu de cartes", name_en: "Playing Cards", qty: 1 }
     ];
 
@@ -790,7 +898,6 @@
       renderInventory();
     }
 
-    // --- Techniques (Data extensible & Bilingue) ---
     const technicsData = [
       {
         id: 1, 
@@ -886,7 +993,6 @@
       });
     }
 
-    // --- Training Game ---
     let xp = parseInt(localStorage.getItem('bob_xp') || '0');
     const RANKS = [
       { limit: 50, name_fr: "Civil Averti", name_en: "Aware Civilian" }, { limit: 150, name_fr: "Préparateur", name_en: "Prepper" },
@@ -975,7 +1081,6 @@
       }
     }
 
-    // --- PDF Generator ---
     function generatePDF() {
       if(!window.jspdf) {
         alert(currentLang === 'en' ? "jsPDF library is missing (offline)." : "Librairie jsPDF absente (hors-ligne).");
@@ -989,7 +1094,6 @@
       doc.text("B.O.B. EMERGENCY PLAN", 10, y);
       y += 15;
 
-      // Plan Data
       const planData = JSON.parse(localStorage.getItem('bob_plan') || '{}');
       doc.setFontSize(12);
       doc.text(`Rally Point 1: ${planData.rp1 || '---'}`, 10, y); y += 7;
@@ -999,7 +1103,6 @@
       doc.text(`Family Freq: ${planData.famFreq || '---'}`, 10, y); y += 7;
       doc.text(`Repeater Freq: ${planData.repFreq || '---'}`, 10, y); y += 15;
 
-      // Missing Items (Not checked)
       doc.setFontSize(14);
       doc.text(currentLang === 'en' ? "MISSING INVENTORY ITEMS:" : "INVENTAIRE MANQUANT :", 10, y); y += 10;
       
@@ -1020,7 +1123,6 @@
       doc.save(`BOB_Emergency_Plan.pdf`);
     }
 
-    // Init
     window.addEventListener('DOMContentLoaded', () => {
       history.replaceState({ page: 'index' }, '', '#index');
       applyStaticI18n();
@@ -1032,30 +1134,115 @@
       updateXPUI();
     });
   </script>
-<script> if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); } </script>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').then((reg) => {
-      reg.update();
 
-      reg.addEventListener('updatefound', () => {
-        const newWorker = reg.installing;
-        newWorker.addEventListener('statechange', () => {
-          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            window.location.reload();
-          }
+  <!-- ===== ZOOM / PAN pour la carte SVG ===== -->
+  <script>
+  (function() {
+    const svg = document.getElementById('evac-svg');
+    if (!svg) return;
+
+    let scale = 1;
+    const minScale = 1, maxScale = 5;
+    let panX = 0, panY = 0;
+    let isPanning = false, startX = 0, startY = 0;
+    let touchDist = 0;
+
+    function applyTransform() {
+      const content = svg.querySelector('g#zoom-layer');
+      if (content) {
+        content.setAttribute('transform', `translate(${panX},${panY}) scale(${scale})`);
+      }
+    }
+
+    function resetView() {
+      scale = 1; panX = 0; panY = 0;
+      applyTransform();
+    }
+    window.resetMapZoom = resetView;
+
+    svg.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const delta = e.deltaY < 0 ? 1.15 : 0.87;
+      scale = Math.min(maxScale, Math.max(minScale, scale * delta));
+      applyTransform();
+    }, { passive: false });
+
+    svg.addEventListener('mousedown', (e) => {
+      isPanning = true;
+      startX = e.clientX - panX;
+      startY = e.clientY - panY;
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isPanning) return;
+      panX = e.clientX - startX;
+      panY = e.clientY - startY;
+      applyTransform();
+    });
+    window.addEventListener('mouseup', () => { isPanning = false; });
+
+    svg.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 2) {
+        touchDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+      } else if (e.touches.length === 1) {
+        isPanning = true;
+        startX = e.touches[0].clientX - panX;
+        startY = e.touches[0].clientY - panY;
+      }
+    }, { passive: true });
+
+    svg.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        const newDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        const delta = newDist / touchDist;
+        scale = Math.min(maxScale, Math.max(minScale, scale * delta));
+        touchDist = newDist;
+        applyTransform();
+      } else if (e.touches.length === 1 && isPanning) {
+        panX = e.touches[0].clientX - startX;
+        panY = e.touches[0].clientY - startY;
+        applyTransform();
+      }
+    }, { passive: false });
+
+    svg.addEventListener('touchend', () => {
+      isPanning = false;
+      touchDist = 0;
+    });
+
+    svg.addEventListener('dblclick', resetView);
+  })();
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').then((reg) => {
+        reg.update();
+
+        reg.addEventListener('updatefound', () => {
+          const newWorker = reg.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              window.location.reload();
+            }
+          });
         });
       });
-    });
 
-    let refreshing = false;
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (!refreshing) {
-        refreshing = true;
-        window.location.reload();
-      }
-    });
-  }
-</script>
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+    }
+  </script>
 </body>
 </html>
