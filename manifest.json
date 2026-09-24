@@ -1,0 +1,22 @@
+{
+  "name": "B.O.B. of the Dead",
+  "short_name": "B.O.B.",
+  "description": "Guide Bug-Out Bag et Plan d'évacuation d'urgence.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#151715",
+  "theme_color": "#4a5d23",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

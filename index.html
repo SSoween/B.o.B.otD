@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B.O.B. of the Dead</title>
+  
+  <!-- LIENS CDN POUR VISUALISATION IMMEDIATE. 
+       Remplacer par "vendor/..." pour le mode 100% hors-ligne définitif -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Script CDN pour la visualisation. Remplacer par vendor/ pour hors-ligne -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <style>
+  :root {
+    --font-main: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+    --font-title: -apple-system, BlinkMacSystemFont, 'Rubik', 'Segoe UI', Roboto, sans-serif;
+    
+    --color-bg-light: #f0eee9;
+    --color-text-dark: #2c302e;
+    
+    --color-accent: #4a5d23;
+    --color-accent-bg: #e4e9d8;
+    --color-accent-border: #c3cfab;
+    --color-muted-border: #dcd7ce;
+    --color-muted-bg: #e8e5df;
+    
+    --color-danger: #7b2424;       
+    --color-danger-hover: #5a1a1a;
+    --color-warning-bg: #f5ebd2;
+    --color-warning-text: #5c4a1f;
+    --color-critical: #7b2424;     
+    --color-major: #cc7722;
+    --color-minor: #4b7f52;
+    
+    --color-card-accent: #8b5a2b;
+    
+    --radius-pill: 2rem;
+    --radius-card: 1.375rem; /* Rétabli comme l'original */
+    --radius-section: 14px;
+    --radius-btn: 0.9rem;
+    
+    --shadow-light: 0 4px 8px rgba(20, 10, 15, 0.14);
+    --shadow-sm: 0 1px 3px rgba(20, 10, 15, 0.05), 0 3px 8px rgba(20, 10, 15, 0.06);
+    --shadow-md: 0 4px 10px rgba(20, 10, 15, 0.07), 0 10px 22px rgba(20, 10, 15, 0.09); /* Rétabli */
+    --shadow-lg: 0 8px 18px rgba(20, 10, 15, 0.09), 0 18px 36px rgba(20, 10, 15, 0.14);
+
+    --font-size-title: 1.85rem; /* Rétabli */
+
+    /* Gradients de catégories */
+    --cat-1: linear-gradient(135deg, #5b8291, #7ea5b5);
+    --cat-2: linear-gradient(135deg, #8b5a2b, #a67c52);
+    --cat-3: linear-gradient(135deg, #3f5938, #5a7a51);
+    --cat-4: linear-gradient(135deg, #a34848, #c45d5d);
+    --cat-5: linear-gradient(135deg, #cc7722, #e08e36);
+    --cat-6: linear-gradient(135deg, #5c6b73, #7e8d96);
+    --cat-7: linear-gradient(135deg, #705e46, #917c62);
+    --cat-8: linear-gradient(135deg, #556b2f, #748c46);
+    --cat-9: linear-gradient(135deg, #af52de, #c973f0);
+
+    --cat-1-solid: #5b8291; --cat-2-solid: #8b5a2b; --cat-3-solid: #3f5938;
+    --cat-4-solid: #a34848; --cat-5-solid: #cc7722; --cat-6-solid: #5c6b73;
+    --cat-7-solid: #705e46; --cat-8-solid: #556b2f; --cat-9-solid: #af52de;
+  }
+
+  body {
+    font-family: var(--font-main); background: var(--color-bg-light); color: var(--color-text-dark);
+    line-height: 1.5; -webkit-font-smoothing: antialiased; max-width: 480px; margin: 0 auto;
+    position: relative; min-height: 100vh; box-shadow: 0 0 60px rgba(0,0,0,0.06);
+  }
+
+  .container { max-width: 100% !important; padding-bottom: 5.5rem; }
+  .hidden { display: none !important; }
+  section { animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1); } /* Rétabli */
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Typography */
+  .main-title { font-family: var(--font-title); font-size: 3.1rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.2rem; color: #2c302e; text-transform: uppercase;} /* Rétabli à 3.1rem */
+  .sub-title { font-family: var(--font-title); font-size: 1.4rem; font-weight: 500; color: #556b2f; margin-bottom: 1.5rem; letter-spacing: 0.01em; } /* Rétabli à 1.4rem */
+  
+  section > h2 {
+    font-family: var(--font-title); font-size: var(--font-size-title); color: var(--color-text-dark);
+    border: none; padding: 0.5rem 1.2rem; margin: 0 0 1.5rem 46px; font-weight: 700;
+    border-radius: var(--radius-pill); background: var(--color-muted-bg);
+    box-shadow: var(--shadow-sm); display: inline-block; max-width: calc(100% - 104px);
+  }
+
+  /* Cards & Lists (Rétabli aux proportions d'origine) */
+  .emergency-card, .card-list-item {
+    background: #fff; border-radius: var(--radius-card); box-shadow: var(--shadow-md);
+    padding: 1.1rem 1.5rem; margin-bottom: 1.5rem; border-top: 4px solid var(--color-card-accent);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  .card-list-item { cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.5rem; margin-bottom: 1rem; }
+  .emergency-card:hover, .card-list-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  
+  .emergency-card h3 { font-size: 0.78rem; font-family: var(--font-main); color: #705e46; text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 0.7rem; font-weight: 800; }
+  
+  .icon-list { list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .icon-list li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 1rem;}
+  .icon-list li i { margin-top: 0.2rem; font-size: 0.85rem; flex-shrink: 0; color: var(--color-accent); }
+
+  /* Forms & Inputs */
+  .form-control-custom { width: 100%; padding: 0.75rem 1.25rem; border: 2px solid var(--color-muted-border); border-radius: var(--radius-btn); font-family: var(--font-main); font-size:1.1rem; background: #fff; color: var(--color-text-dark); transition: border-color 0.2s; margin-bottom: 0.8rem;}
+  .form-control-custom:focus { border-color: var(--color-accent); outline: none; box-shadow: 0 0 0 3px var(--color-accent-bg);}
+  .form-label-custom { font-size: 0.85rem; font-weight: 700; color: #705e46; margin-bottom: 0.2rem; display: block; text-transform: uppercase; letter-spacing: 0.03em;}
+
+  /* Buttons */
+  .custom-btn {
+    padding: 0.65rem 1rem; font-size: 1rem; font-weight: 700; border: none; border-radius: var(--radius-btn);
+    cursor: pointer; width: 100%; transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .custom-btn.primary { background: linear-gradient(135deg, var(--color-accent), #3f5938); color: white; }
+  .custom-btn.primary:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+  .custom-btn.primary:active { transform: scale(0.98); box-shadow: var(--shadow-sm); }
+  .custom-btn.secondary { background-color: #705e46; color: white; }
+  .custom-btn.danger { background-color: var(--color-danger); color: white; }
+  .custom-btn.danger:hover { background-color: var(--color-danger-hover); }
+  
+  .choice-btn { width: 100%; text-align: left; padding: 1rem; margin-bottom: 0.8rem; border-radius: var(--radius-btn); background: #fff; border: 2px solid var(--color-muted-border); font-weight: 600; color: var(--color-text-dark); transition: all 0.2s; cursor: pointer; box-shadow: var(--shadow-sm);}
+  .choice-btn:hover { border-color: var(--color-accent); background: var(--color-accent-bg); box-shadow: var(--shadow-md); transform: translateY(-1px);}
+
+  /* Home */
+  .home-pad { padding: 1.2rem 1.1rem 0; }
+  .hero-card { border: none; width: 100%; text-align: left; cursor: pointer; border-radius: var(--radius-card); padding: 1.35rem 1.2rem; margin-bottom: 0.85rem; background: linear-gradient(135deg, var(--color-accent), #3f5938); color: #fff; box-shadow: 0 14px 30px rgba(74, 93, 35, 0.28); display: flex; align-items: center; gap: 1rem; }
+  .hero-card .badge-ic { width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,0.22); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+  .hero-card .txt { flex: 1; }
+  .hero-card .txt b { display: block; font-size: 1.1rem; font-weight: 800; margin-bottom: 2px; }
+  .hero-card .txt span { font-size: 0.85rem; opacity: 0.92; font-weight: 500; }
+  
+  .widget-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.5rem; }
+  .widget { border-radius: var(--radius-card); padding: 1rem; background: #fff; box-shadow: var(--shadow-sm); cursor: pointer; min-height: 112px; display: flex; flex-direction: column; justify-content: space-between; transition: box-shadow 0.2s ease, transform 0.15s ease;}
+  .widget:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .widget .ic { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem; margin-bottom: 0.6rem; }
+  .widget b { font-size: 0.92rem; font-weight: 700; line-height: 1.25; color: var(--color-text-dark); }
+
+  /* Navigation (Menu & Back) */
+  .menu-trigger { position: fixed; top: 1rem; right: calc(50% - 240px + 1rem); z-index: 1050; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(0,0,0,0.08); color: var(--color-text-dark); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; backdrop-filter: blur(5px); }
+  @media (max-width: 480px) { .menu-trigger { right: 1rem; } }
+  .back-btn-global { position: fixed; top: 1rem; left: calc(50% - 240px + 1rem); z-index: 1050; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(0,0,0,0.08); color: var(--color-text-dark); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; backdrop-filter: blur(5px); }
+  @media (max-width: 480px) { .back-btn-global { left: 1rem; } }
+
+  .menu-backdrop { position: fixed; inset: 0; background: rgba(10,10,15,0.6); z-index: 1400; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .menu-backdrop.open { opacity: 1; pointer-events: auto; }
+  .menu-panel { position: fixed; top: 0; bottom: 0; right: -340px; width: min(82%, 320px); background: var(--color-bg-light); z-index: 1401; box-shadow: -8px 0 30px rgba(0,0,0,0.3); transition: right 0.28s cubic-bezier(.2,.8,.2,1); display: flex; flex-direction: column; border-radius: 18px 0 0 18px; overflow: hidden;}
+  .menu-panel.open { right: calc(50% - 240px); }
+  @media (max-width: 480px) { .menu-panel.open { right: 0; } }
+
+  .menu-header { padding: 1.1rem 1.1rem 0.7rem; border-bottom: 1px solid var(--color-muted-border); display: flex; justify-content: space-between; align-items: center; }
+  .menu-header b { font-size: 1.15rem; font-family: var(--font-title); font-weight: 800;}
+  .menu-close { background: none; border: none; font-size: 1.5rem; color: var(--color-text-dark); cursor: pointer; }
+  .menu-scroll { flex: 1; overflow-y: auto; padding: 0.3rem 1rem 1.5rem; }
+  .menu-section-label { font-size: 0.82rem; font-weight: 800; color: #705e46; text-transform: uppercase; margin: 1.1rem 0 0.5rem 0.5rem; letter-spacing: 0.05em; }
+  .menu-row { width: 100%; text-align: left; background: none; border: none; padding: 0.6rem 0.2rem; display: flex; align-items: center; gap: 0.75rem; font-weight: 600; color: var(--color-text-dark); border-radius: var(--radius-btn); cursor: pointer; transition: background 0.2s;}
+  .menu-row:hover { background: rgba(120,120,128,0.08); }
+  .menu-row i { font-size: 1rem; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; color: #fff; background: var(--color-accent); border-radius: 10px;}
+
+  /* Accordion (Inventory) */
+  .cat { background: #fff; border-radius: var(--radius-card); margin-bottom: 0.6rem; overflow: hidden; box-shadow: var(--shadow-sm); }
+  .cat-head { width: 100%; border: none; background: none; display: flex; align-items: center; gap: 0.7rem; padding: 0.8rem 0.9rem; cursor: pointer; text-align: left; }
+  .cat-head .cat-ic { width: 36px; height: 36px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; font-size: 1.05rem; }
+  .cat-title { font-weight: 700; font-size: 0.96rem; color: var(--color-text-dark); flex: 1; }
+  .cat-count { background: var(--color-muted-bg); color: #705e46; font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; }
+  .cat-chevron { color: #8e8e93; transition: transform .25s ease; flex-shrink: 0; }
+  .cat.open .cat-chevron { transform: rotate(180deg); }
+  .cat-body { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .28s ease, opacity .2s ease, padding .28s ease; }
+  .cat.open .cat-body { max-height: 3000px; opacity: 1; padding: 0 0.9rem 1rem; }
+
+  /* Search Box */
+  .search-box { width: 100%; border: 2px solid var(--color-muted-border); background: #fff; border-radius: var(--radius-pill); padding: 0.75rem 1.25rem; font-size: 1.1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; transition: border-color 0.2s, box-shadow 0.2s; box-shadow: var(--shadow-sm);}
+  .search-box:focus-within { border-color: var(--color-accent); box-shadow: 0 0 0 3px var(--color-accent-bg); }
+  .search-box input { border: none; background: none; outline: none; width: 100%; color: var(--color-text-dark); }
+
+  /* Checkboxes Inventory */
+  .kit-item { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--color-muted-border); gap: 10px;}
+  .kit-item:last-child { border-bottom: none; }
+  .kit-item-label { display: flex; align-items: center; gap: 10px; flex: 1; font-weight: 500; font-size: 0.95rem; cursor: pointer; line-height: 1.2;}
+  .kit-item-checkbox { width: 22px; height: 22px; border-radius: 5px; border: 2px solid var(--color-muted-border); appearance: none; outline: none; cursor: pointer; position: relative; flex-shrink: 0; }
+  .kit-item-checkbox:checked { background-color: var(--color-minor); border-color: var(--color-minor); }
+  .kit-item-checkbox:checked::after { content: '✓'; position: absolute; color: white; font-size: 14px; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; }
+  .kit-item-qty { width: 60px; text-align: right; padding: 4px 6px; border: 1px solid var(--color-muted-border); border-radius: 0.35rem; font-weight: 600; background: #fff; color: var(--color-text-dark); }
+
+  /* Bottom Bar */
+  .sos-bar { position: fixed; left: 0; right: 0; bottom: 0; margin: 0 auto; max-width: 480px; z-index: 1200; padding: 0.6rem 0.9rem calc(0.6rem + env(safe-area-inset-bottom)); background: var(--color-bg-light); border-top: 1px solid var(--color-muted-border); box-shadow: 0 -6px 16px rgba(0,0,0,0.08); }
+
+  /* Dark Mode */
+  body.dark-mode { background: #151715; color: #dcd7ce; }
+  body.dark-mode .emergency-card, body.dark-mode .cat, body.dark-mode .widget, body.dark-mode .choice-btn, body.dark-mode .card-list-item { background: #1e221f; border-color: #2b302c; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); }
+  body.dark-mode section h2 { background: #1e221f !important; color: #dcd7ce !important; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); }
+  body.dark-mode .main-title { color: #f0eee9; }
+  body.dark-mode .cat-title, body.dark-mode .widget b, body.dark-mode .choice-btn, body.dark-mode .emergency-card h3 { color: #dcd7ce; }
+  body.dark-mode .kit-item-checkbox { border-color: #3f5938; }
+  body.dark-mode .kit-item-qty, body.dark-mode .form-control-custom { background: #151715; border-color: #2b302c; color: #dcd7ce;}
+  body.dark-mode .sos-bar, body.dark-mode .menu-panel { background: #151715; border-color: #2b302c; }
+  body.dark-mode .menu-header, body.dark-mode .kit-item { border-color: #2b302c; }
+  body.dark-mode .search-box { background: #1e221f; border-color: #2b302c; }
+  body.dark-mode .search-box input { color: #dcd7ce; }
+  body.dark-mode .back-btn-global, body.dark-mode .menu-trigger { background: rgba(255,255,255,0.1); color: #dcd7ce; }
+  body.dark-mode .menu-close, body.dark-mode .menu-row { color: #dcd7ce; }
+  body.dark-mode .menu-row:hover { background: #1e221f; }
+  body.dark-mode .form-label-custom { color: #8e8e93; }
+  
+  .xp-panel { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--color-accent); color: white; border-radius: var(--radius-card); margin-bottom: 1.5rem; box-shadow: var(--shadow-md); }
+  .xp-level { font-family: var(--font-title); font-weight: 800; font-size: 1.2rem; }
+  
+  #inventory-validation-date { font-size: 0.85rem; color: #705e46; font-weight: 600; text-align: center; margin-bottom: 1rem; }
+  body.dark-mode #inventory-validation-date { color: #8e8e93; }
+
+  /* Map Container */
+  .map-container { width: 100%; height: 350px; background: #151715; border-radius: var(--radius-card); overflow: hidden; position: relative; border: 2px solid var(--color-muted-border); box-shadow: var(--shadow-sm); }
+  body.dark-mode .map-container { border-color: #2b302c; }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Right Menu Trigger -->
+  <button class="menu-trigger" onclick="toggleMenu()"><i class="bi bi-list"></i></button>
+
+  <!-- Navigation Panel -->
+  <div class="menu-backdrop" id="menu-backdrop" onclick="toggleMenu()"></div>
+  <aside class="menu-panel" id="menu-panel">
+    <div class="menu-header">
+      <b data-i18n="menu_title">Menu Principal</b>
+      <button class="menu-close" onclick="toggleMenu()"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="menu-scroll">
+      <div class="menu-section-label" data-i18n="menu_prep">Préparation</div>
+      <button class="menu-row" onclick="navFromMenu('index')"><i class="bi bi-house-door-fill" style="background:#5b8291"></i> <span data-i18n="menu_home">Accueil</span></button>
+      <button class="menu-row" onclick="navFromMenu('inventory')"><i class="bi bi-backpack4-fill" style="background:#8b5a2b"></i> <span data-i18n="menu_inventory">Mon Sac d'Évacuation</span></button>
+      <button class="menu-row" onclick="navFromMenu('plan')"><i class="bi bi-clipboard2-pulse-fill" style="background:#3f5938"></i> <span data-i18n="menu_plan">Plan & Comms</span></button>
+      
+      <div class="menu-section-label" data-i18n="menu_action">Action</div>
+      <button class="menu-row" onclick="navFromMenu('map')"><i class="bi bi-map-fill" style="background:#a34848"></i> <span data-i18n="menu_map">Carte d'Évacuation</span></button>
+      <button class="menu-row" onclick="navFromMenu('fast_evac')"><i class="bi bi-door-open-fill" style="background:var(--color-danger)"></i> <span data-i18n="menu_fast_evac">Départ Immédiat</span></button>
+      <button class="menu-row" onclick="navFromMenu('technics')"><i class="bi bi-tools" style="background:#cc7722"></i> <span data-i18n="menu_manual">Manuel de Survie</span></button>
+      
+      <div class="menu-section-label" data-i18n="menu_training">Entraînement</div>
+      <button class="menu-row" onclick="navFromMenu('game')"><i class="bi bi-controller" style="background:#af52de"></i> <span data-i18n="menu_game">Training Game</span></button>
+
+      <div class="menu-section-label" data-i18n="menu_settings">Préférences</div>
+      <button class="menu-row" id="darkModeToggle"><i class="bi bi-moon-stars-fill" id="theme-icon" style="background:#5c6b73"></i> <span id="theme-text" data-i18n="menu_dark_mode">Mode Nuit</span></button>
+      <button class="menu-row" id="langToggle"><i class="bi bi-translate" style="background:#705e46"></i> <span>EN / FR</span></button>
+      <button class="menu-row" onclick="navFromMenu('install')"><i class="bi bi-download" style="background:#556b2f"></i> <span data-i18n="menu_install">Installer l'App</span></button>
+    </div>
+  </aside>
+
+  <!-- SOS Bar -->
+  <div class="sos-bar">
+    <button class="custom-btn danger" onclick="navigate('fast_evac')">
+      <i class="bi bi-door-open-fill"></i> <span data-i18n="btn_fast_evac">Checklist Départ Immédiat</span>
+    </button>
+  </div>
+
+  <!-- Contextual Back Button -->
+  <button class="back-btn-global hidden" id="global-back-btn" onclick="goBack()" aria-label="Retour">
+    <i class="bi bi-chevron-left"></i>
+  </button>
+
+  <!-- ================= ACCUEIL ================= -->
+  <section id="page-index" class="home-pad">
+    <div class="main-title">B.O.B.<br>OF THE DEAD</div>
+    <div class="sub-title" data-i18n="home_subtitle">Survive the 72 Hours</div>
+
+    <button class="hero-card" onclick="navigate('inventory')">
+      <div class="badge-ic"><i class="bi bi-backpack4-fill"></i></div>
+      <div class="txt"><b data-i18n="home_bag">Mon Sac d'Évacuation</b><span data-i18n="home_bag_sub">Checklist & Quantités</span></div>
+    </button>
+
+    <div class="widget-grid">
+      <div class="widget" onclick="navigate('technics')">
+        <div class="ic" style="background: var(--cat-6-solid)"><i class="bi bi-tools"></i></div>
+        <b data-i18n="home_manual">Manuel de Survie<br><span style="font-weight:400; font-size:0.8rem; color:var(--color-text-dark); opacity:0.8" data-i18n="home_manual_sub">Techniques & Matériel</span></b>
+      </div>
+      <div class="widget" onclick="navigate('game')">
+        <div class="ic" style="background: var(--cat-9-solid)"><i class="bi bi-controller"></i></div>
+        <b data-i18n="home_game">Training Game<br><span style="font-weight:400; font-size:0.8rem; color:var(--color-text-dark); opacity:0.8" data-i18n="home_game_sub">Scénarios d'urgence</span></b>
+      </div>
+    </div>
+
+    <div class="sub-title" style="margin: 1.5rem 0 0.5rem; font-size: 1rem; color: var(--color-text-dark);" data-i18n="home_logistics">Logistique & Références</div>
+    <div class="widget-grid">
+      <div class="widget" onclick="navigate('plan')">
+        <div class="ic" style="background: var(--cat-5-solid)"><i class="bi bi-clipboard2-pulse-fill"></i></div>
+        <b data-i18n="home_plan">Plan & Comms</b>
+      </div>
+      <div class="widget" onclick="navigate('map')">
+        <div class="ic" style="background: var(--cat-3-solid)"><i class="bi bi-map-fill"></i></div>
+        <b data-i18n="home_map">Carte d'Évacuation</b>
+      </div>
+      <div class="widget" onclick="generatePDF()">
+        <div class="ic" style="background: var(--cat-7-solid)"><i class="bi bi-file-earmark-pdf-fill"></i></div>
+        <b data-i18n="home_pdf">Générer PDF</b>
+      </div>
+      <div class="widget" onclick="navigate('install')">
+        <div class="ic" style="background: var(--cat-8-solid)"><i class="bi bi-download"></i></div>
+        <b data-i18n="home_install">Installer l'App</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INVENTAIRE ================= -->
+  <section id="page-inventory" class="hidden container py-4">
+    <h2><i class="bi bi-card-checklist" style="margin-right: 8px;"></i><span data-i18n="title_inventory">Inventaire du Sac</span></h2>
+    <div id="inventory-validation-date"></div>
+    <div class="emergency-card mb-3" style="border-top-color: var(--color-muted-border)">
+      <p class="mb-0" style="font-size: 0.9rem;" data-i18n="desc_inventory">Cochez les éléments intégrés dans le sac et ajustez les quantités.</p>
+    </div>
+    
+    <div id="inventory-list"></div>
+
+    <div class="emergency-card mt-3" style="border-top-color: var(--color-muted-border)">
+      <h3 data-i18n="inv_add_custom">Ajouter un item spécifique</h3>
+      <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+        <input type="text" id="custom-item-name" class="form-control-custom" placeholder="Nom de l'item..." style="flex:2; margin-bottom:0;">
+        <select id="custom-item-cat" class="form-control-custom" style="flex:1; margin-bottom:0;">
+          <option value="1" data-i18n="cat_water">Eau / Nourriture</option>
+          <option value="2" data-i18n="cat_clothes">Vêtements</option>
+          <option value="3" data-i18n="cat_shelter">Abris</option>
+          <option value="4" data-i18n="cat_health">Santé</option>
+          <option value="5" data-i18n="cat_fire">Feu</option>
+          <option value="6" data-i18n="cat_comms">Comms / Elec</option>
+          <option value="7" data-i18n="cat_tools">Outils</option>
+          <option value="8" data-i18n="cat_docs">CNI / Papiers</option>
+          <option value="9" data-i18n="cat_fun">Fun / Moral</option>
+        </select>
+      </div>
+      <button onclick="addCustomItem()" class="custom-btn secondary" style="font-size: 0.9rem; padding: 0.5rem;"><i class="bi bi-plus-lg"></i> <span data-i18n="btn_add">Ajouter au sac</span></button>
+    </div>
+
+    <div class="mt-4">
+      <button onclick="saveInventory()" class="custom-btn primary"><i class="bi bi-save2-fill"></i> <span data-i18n="btn_save_inventory">Sauvegarder l'inventaire</span></button>
+    </div>
+  </section>
+
+  <!-- ================= PLAN D'URGENCE & COMMS ================= -->
+  <section id="page-plan" class="hidden container py-4">
+    <h2><i class="bi bi-clipboard2-pulse-fill" style="margin-right: 8px;"></i><span data-i18n="title_plan">Plan & Comms</span></h2>
+    
+    <div class="emergency-card" style="border-top-color: var(--cat-5-solid)">
+      <h3 data-i18n="plan_rally_title">Points de Ralliement</h3>
+      <label class="form-label-custom" data-i18n="plan_rp1">Point Secondaire (Rive-Sud / Laval)</label>
+      <input type="text" id="plan-rp1" class="form-control-custom" placeholder="Ex: Maison des grands-parents">
+      
+      <label class="form-label-custom" data-i18n="plan_rp2">Point de Chute Final (Cardaillac, France)</label>
+      <input type="text" id="plan-rp2" class="form-control-custom" placeholder="Adresse ou coordonnées GPS">
+    </div>
+
+    <div class="emergency-card" style="border-top-color: var(--cat-6-solid)">
+      <h3 data-i18n="plan_radio_title">Fréquences Radio</h3>
+      
+      <label class="form-label-custom" data-i18n="plan_callsign">Indicatif Radio Amateur</label>
+      <input type="text" id="plan-callsign" class="form-control-custom" value="F4LRX" placeholder="F4LRX">
+      
+      <label class="form-label-custom" data-i18n="plan_fam_freq">Fréquence Famille (UHF - GMRS/FRS)</label>
+      <input type="text" id="plan-fam-freq" class="form-control-custom" placeholder="Ex: Canal 3 (462.5875 MHz)">
+      
+      <label class="form-label-custom" data-i18n="plan_em_freq">Appel d'urgence (VHF Simplex)</label>
+      <input type="text" id="plan-em-freq" class="form-control-custom" value="146.520 MHz" readonly>
+      
+      <label class="form-label-custom" data-i18n="plan_rep_freq">Relais Local Principal (Montréal)</label>
+      <input type="text" id="plan-rep-freq" class="form-control-custom" placeholder="Ex: VE2RMP 146.700 MHz (Tone 118.8)">
+      
+      <label class="form-label-custom" data-i18n="plan_hf_freq">Réseau Survie Longue Distance (HF 20m)</label>
+      <input type="text" id="plan-hf-freq" class="form-control-custom" value="14.300 MHz (Intercontinental Net)">
+    </div>
+
+    <button onclick="savePlan()" class="custom-btn primary"><i class="bi bi-save2-fill"></i> <span data-i18n="btn_save_plan">Sauvegarder le Plan</span></button>
+  </section>
+
+  <!-- ================= CARTE SCHEMATIQUE ================= -->
+  <section id="page-map" class="hidden container py-4">
+    <h2><i class="bi bi-map-fill" style="margin-right: 8px;"></i><span data-i18n="title_map">Carte d'Évacuation</span></h2>
+    <div class="emergency-card mb-3" style="padding: 0.5rem;">
+      <div class="map-container" id="svg-map-wrapper">
+        <!-- SVG Map vectorielle centrée sur Montréal/Parc Jarry -->
+        <svg viewBox="0 0 500 500" width="100%" height="100%">
+          <defs>
+            <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#2b302c" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+          
+          <!-- Rivières / Fleuve -->
+          <path d="M-50,150 Q250,100 550,180" stroke="#5b8291" stroke-width="25" fill="none" opacity="0.6"/>
+          <text x="20" y="130" fill="#5b8291" font-size="14" font-weight="bold" font-family="sans-serif">Rivière des Prairies (Laval)</text>
+          
+          <path d="M-50,420 Q250,450 550,380" stroke="#5b8291" stroke-width="40" fill="none" opacity="0.5"/>
+          <text x="350" y="440" fill="#5b8291" font-size="14" font-weight="bold" font-family="sans-serif">Fleuve St-Laurent</text>
+
+          <!-- Axes Cyclables / Fuite -->
+          <path d="M250,250 L200,160 L180,120" stroke="#cc7722" stroke-width="4" stroke-dasharray="6,4" fill="none"/>
+          <text x="110" y="160" fill="#cc7722" font-size="12" font-family="sans-serif" font-weight="bold">Axe Nord Vélo</text>
+
+          <path d="M250,250 L350,400" stroke="#cc7722" stroke-width="4" stroke-dasharray="6,4" fill="none"/>
+          <text x="310" y="350" fill="#cc7722" font-size="12" font-family="sans-serif" font-weight="bold">Pont J.-Cartier</text>
+
+          <!-- Parc Jarry -->
+          <rect x="220" y="230" width="60" height="40" fill="#3f5938" opacity="0.9" rx="6"/>
+          <text x="226" y="255" fill="#e4e9d8" font-size="12" font-weight="bold" font-family="sans-serif">Parc Jarry</text>
+          <circle cx="250" cy="250" r="4" fill="#fff"/>
+
+          <!-- Métros (Fail Safes) -->
+          <circle cx="290" cy="240" r="7" fill="#a34848"/>
+          <text x="305" y="245" fill="#a34848" font-size="12" font-family="sans-serif" font-weight="bold">M. De Castelnau</text>
+
+          <circle cx="310" cy="280" r="7" fill="#a34848"/>
+          <text x="325" y="285" fill="#a34848" font-size="12" font-family="sans-serif" font-weight="bold">M. Jean-Talon</text>
+          
+          <!-- Boussole -->
+          <circle cx="40" cy="40" r="20" fill="none" stroke="#705e46" stroke-width="2"/>
+          <path d="M40,15 L45,40 L40,65 L35,40 Z" fill="#705e46"/>
+          <path d="M40,15 L45,40 L40,40 Z" fill="#a34848"/>
+          <text x="35" y="10" fill="#705e46" font-size="12" font-weight="bold" font-family="sans-serif">N</text>
+        </svg>
+      </div>
+      <p class="text-muted mt-2 mb-0 text-center" style="font-size: 0.85rem;" data-i18n="map_desc">Schéma d'évacuation vélo (Rayon 15km).</p>
+    </div>
+  </section>
+
+  <!-- ================= TECHNIQUES (MANUEL) ================= -->
+  <section id="page-technics" class="hidden container py-4">
+    <h2><i class="bi bi-book-half" style="margin-right: 8px;"></i><span data-i18n="title_technics">Manuel de Survie</span></h2>
+    <div class="search-box">
+      <i class="bi bi-search"></i>
+      <input id="search-technics" type="text" placeholder="Rechercher une technique..." data-i18n-placeholder="search_technics" oninput="filterTechnics()">
+    </div>
+    <div id="technics-list"></div>
+  </section>
+
+  <!-- DETAIL D'UNE TECHNIQUE -->
+  <section id="page-technic-detail" class="hidden container py-4">
+    <h2 id="tech-detail-title" style="margin-top:0;">Détail</h2>
+    <div class="emergency-card mb-3" style="border-top-color: var(--color-accent)">
+      <p id="tech-detail-intro" style="font-weight: 600; color: #705e46; margin-bottom: 1rem;"></p>
+      <h3 data-i18n="tech_steps_title">Procédure</h3>
+      <ul id="tech-detail-steps" class="icon-list"></ul>
+    </div>
+  </section>
+
+  <!-- ================= TRAINING GAME ================= -->
+  <section id="page-game" class="hidden container py-4">
+    <h2><i class="bi bi-controller" style="margin-right: 8px;"></i>Training Game</h2>
+    
+    <div class="xp-panel">
+      <div>
+        <div class="xp-level" id="user-rank">Civil Averti</div>
+        <div class="xp-points" id="user-xp">0 XP</div>
+      </div>
+      <i class="bi bi-trophy-fill" style="font-size: 1.8rem; opacity: 0.8;"></i>
+    </div>
+
+    <div id="game-intro">
+      <div class="emergency-card" style="border-top-color: var(--cat-4-solid)">
+        <h3 data-i18n="game_prep_test">Test de Préparation (Évolutif)</h3>
+        <p style="font-size: 0.9rem;" data-i18n="game_prep_desc">Évaluez vos réflexes face à des situations d'intensité croissante.</p>
+        <button class="custom-btn primary mt-3" onclick="startGame()"><i class="bi bi-play-fill"></i> <span data-i18n="btn_start_sim">Lancer la simulation</span></button>
+      </div>
+    </div>
+
+    <div id="game-quiz" class="hidden">
+      <div class="emergency-card" style="border-top-color: var(--cat-2-solid)">
+        <h3 id="quiz-question-title">Scénario</h3>
+        <p id="quiz-question-text" style="font-weight: 600; font-size: 1.05rem;"></p>
+      </div>
+      <div id="quiz-options"></div>
+    </div>
+
+    <div id="game-feedback" class="hidden emergency-card" style="border-top-color: var(--color-accent)">
+      <h3 id="feedback-title" style="font-size: 1.1rem; margin-bottom: 0.5rem;"></h3>
+      <p id="feedback-explanation" style="font-size: 0.95rem;"></p>
+      <button class="custom-btn primary mt-3" onclick="nextQuestion()" data-i18n="btn_continue">Continuer</button>
+    </div>
+  </section>
+
+  <!-- ================= DEPART IMMEDIAT ================= -->
+  <section id="page-fast_evac" class="hidden container py-4">
+    <h2><i class="bi bi-door-open-fill" style="margin-right: 8px;"></i><span data-i18n="title_fast_evac">Départ Immédiat</span></h2>
+    <div class="emergency-card" style="border-top-color: var(--color-critical)">
+      <h3 data-i18n="plan_last_min">Les 5 dernières minutes</h3>
+      <p style="font-size: 0.9rem; color: #705e46;" data-i18n="plan_desc">À saisir juste avant de franchir la porte.</p>
+      <ul class="icon-list mt-3" style="font-weight: 600;">
+        <li><label><input type="checkbox" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_id">Portefeuilles & ID</span></label></li>
+        <li><label><input type="checkbox" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_phone">Téléphones & câbles chargeurs</span></label></li>
+        <li><label><input type="checkbox" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_keys">Trousseau de clés complet</span></label></li>
+        <li><label><input type="checkbox" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_meds">Médicaments prescrits en cours</span></label></li>
+        <li><label><input type="checkbox" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_data">Disques durs (SSD)</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= INSTALL ================= -->
+  <section id="page-install" class="hidden container py-4">
+    <h2><i class="bi bi-download" style="margin-right: 8px;"></i><span data-i18n="title_install">Installer l'App</span></h2>
+    
+    <!-- Espace Réservé QR Code -->
+    <div class="emergency-card mb-3" style="border-top-color: var(--color-minor); text-align: center;">
+      <h3 data-i18n="install_qr_title">Scan QR Code</h3>
+      <div id="qr-placeholder" style="width:160px; height:160px; background:var(--color-muted-border); margin:0 auto; display:flex; align-items:center; justify-content:center; border-radius:10px; border:2px dashed var(--color-text-dark);">
+        <span style="font-size:0.85rem; font-weight:600;" data-i18n="install_qr_wait">[ Espace QR Code ]<br>En attente du lien</span>
+      </div>
+    </div>
+
+    <div class="emergency-card mb-3" style="border-top-color: var(--color-accent)">
+      <h3 data-i18n="install_ios_title">Sur iPhone (Safari)</h3>
+      <ul class="icon-list">
+        <li><i class="bi bi-1-circle-fill"></i><span data-i18n-html="install_ios_1">Appuyez sur le bouton <strong>Partager</strong> en bas.</span></li>
+        <li><i class="bi bi-2-circle-fill"></i><span data-i18n-html="install_ios_2">Choisissez <strong>"Sur l'écran d'accueil"</strong>.</span></li>
+      </ul>
+    </div>
+    <div class="emergency-card" style="border-top-color: var(--color-accent)">
+      <h3 data-i18n="install_and_title">Sur Android (Chrome)</h3>
+      <ul class="icon-list">
+        <li><i class="bi bi-1-circle-fill"></i><span data-i18n-html="install_and_1">Appuyez sur le <strong>menu à trois points</strong>.</span></li>
+        <li><i class="bi bi-2-circle-fill"></i><span data-i18n-html="install_and_2">Sélectionnez <strong>"Installer l'application"</strong>.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    // --- I18N (Internationalisation) ---
+    let currentLang = localStorage.getItem('bob_lang') || 'fr';
+
+    const DICTIONARY = {
+      fr: {
+        menu_title: "Menu Principal", menu_prep: "Préparation", menu_home: "Accueil", menu_inventory: "Mon Sac d'Évacuation", menu_plan: "Plan & Comms",
+        menu_action: "Action", menu_map: "Carte d'Évacuation", menu_fast_evac: "Départ Immédiat", menu_manual: "Manuel de Survie",
+        menu_training: "Entraînement", menu_game: "Training Game",
+        menu_settings: "Préférences", menu_dark_mode: "Mode Nuit", menu_light_mode: "Mode Jour", menu_install: "Installer l'App",
+        btn_fast_evac: "Checklist Départ Immédiat", home_subtitle: "Survive the 72 Hours",
+        home_bag: "Mon Sac d'Évacuation", home_bag_sub: "Checklist & Quantités", home_manual: "Manuel de Survie", home_manual_sub: "Techniques & Matériel",
+        home_game: "Training Game", home_game_sub: "Scénarios d'urgence", home_logistics: "Logistique & Références",
+        home_plan: "Plan & Comms", home_map: "Carte d'Évacuation", home_pdf: "Générer PDF", home_install: "Installer l'App",
+        title_inventory: "Inventaire du Sac", desc_inventory: "Cochez les éléments intégrés dans le sac et ajustez les quantités.", btn_save_inventory: "Sauvegarder l'inventaire",
+        inv_add_custom: "Ajouter un item spécifique", cat_water: "Eau / Nourriture", cat_clothes: "Vêtements", cat_shelter: "Abris", cat_health: "Santé", cat_fire: "Feu", cat_comms: "Comms / Elec", cat_tools: "Outils", cat_docs: "CNI / Papiers", cat_fun: "Fun / Moral", btn_add: "Ajouter",
+        title_technics: "Manuel de Survie", search_technics: "Rechercher une technique...", tech_steps_title: "Procédure",
+        title_plan: "Plan & Comms", plan_rally_title: "Points de Ralliement", plan_rp1: "Point Secondaire (Rive-Sud / Laval)", plan_rp2: "Point de Chute Final (Cardaillac, France)", plan_radio_title: "Fréquences Radio", plan_callsign: "Indicatif Radio Amateur", plan_fam_freq: "Fréquence Famille (UHF - GMRS/FRS)", plan_em_freq: "Appel d'urgence (VHF Simplex)", plan_rep_freq: "Relais Local Principal (Montréal)", plan_hf_freq: "Réseau Survie Longue Distance (HF 20m)", btn_save_plan: "Sauvegarder le Plan",
+        title_map: "Carte d'Évacuation", map_desc: "Schéma d'évacuation vélo (Rayon 15km).",
+        game_prep_test: "Test de Préparation (Évolutif)", game_prep_desc: "Évaluez vos réflexes face à des situations d'intensité croissante.", btn_start_sim: "Lancer la simulation", btn_continue: "Continuer",
+        title_fast_evac: "Départ Immédiat", plan_last_min: "Les 5 dernières minutes", plan_desc: "À saisir juste avant de franchir la porte.", plan_id: "Portefeuilles & ID", plan_phone: "Téléphones & câbles chargeurs", plan_keys: "Trousseau de clés complet", plan_meds: "Médicaments prescrits en cours", plan_data: "Disques durs (SSD)",
+        title_install: "Installer l'App", install_qr_title: "Scan QR Code", install_qr_wait: "[ Espace QR Code ]<br>En attente du lien", install_ios_title: "Sur iPhone (Safari)", install_ios_1: "Appuyez sur le bouton <strong>Partager</strong> en bas.", install_ios_2: "Choisissez <strong>\"Sur l'écran d'accueil\"</strong>.", install_and_title: "Sur Android (Chrome)", install_and_1: "Appuyez sur le <strong>menu à trois points</strong>.", install_and_2: "Sélectionnez <strong>\"Installer l'application\"</strong>.",
+        last_val: "Dernière validation : "
+      },
+      en: {
+        menu_title: "Main Menu", menu_prep: "Preparation", menu_home: "Home", menu_inventory: "My Bug-Out Bag", menu_plan: "Plan & Comms",
+        menu_action: "Action", menu_map: "Evacuation Map", menu_fast_evac: "Immediate Departure", menu_manual: "Survival Manual",
+        menu_training: "Training", menu_game: "Training Game",
+        menu_settings: "Settings", menu_dark_mode: "Dark Mode", menu_light_mode: "Light Mode", menu_install: "Install App",
+        btn_fast_evac: "Immediate Departure Checklist", home_subtitle: "Survive the 72 Hours",
+        home_bag: "My Bug-Out Bag", home_bag_sub: "Checklist & Quantities", home_manual: "Survival Manual", home_manual_sub: "Techniques & Gear",
+        home_game: "Training Game", home_game_sub: "Emergency Scenarios", home_logistics: "Logistics & References",
+        home_plan: "Plan & Comms", home_map: "Evacuation Map", home_pdf: "Generate PDF", home_install: "Install App",
+        title_inventory: "Bag Inventory", desc_inventory: "Check the items packed in the bag and adjust quantities.", btn_save_inventory: "Save Inventory",
+        inv_add_custom: "Add custom item", cat_water: "Water / Food", cat_clothes: "Clothes", cat_shelter: "Shelter", cat_health: "Health", cat_fire: "Fire", cat_comms: "Comms / Elec", cat_tools: "Tools", cat_docs: "ID / Docs", cat_fun: "Fun / Morale", btn_add: "Add",
+        title_technics: "Survival Manual", search_technics: "Search a technique...", tech_steps_title: "Procedure",
+        title_plan: "Plan & Comms", plan_rally_title: "Rally Points", plan_rp1: "Secondary Point (South Shore / Laval)", plan_rp2: "Final Bug-Out Point (Cardaillac, France)", plan_radio_title: "Radio Frequencies", plan_callsign: "Ham Radio Callsign", plan_fam_freq: "Family Frequency (UHF - GMRS/FRS)", plan_em_freq: "Emergency Call (VHF Simplex)", plan_rep_freq: "Main Local Repeater (Montreal)", plan_hf_freq: "Long Distance Survival Net (HF 20m)", btn_save_plan: "Save Plan",
+        title_map: "Evacuation Map", map_desc: "Bike evacuation schematic (15km radius).",
+        game_prep_test: "Preparedness Test", game_prep_desc: "Evaluate your reflexes facing situations of increasing intensity.", btn_start_sim: "Start Simulation", btn_continue: "Continue",
+        title_fast_evac: "Immediate Departure", plan_last_min: "The last 5 minutes", plan_desc: "Grab right before walking out the door.", plan_id: "Wallets & ID", plan_phone: "Phones & charger cables", plan_keys: "Complete set of keys", plan_meds: "Current prescribed medications", plan_data: "Backup drives (SSD)",
+        title_install: "Install App", install_qr_title: "Scan QR Code", install_qr_wait: "[ QR Code Space ]<br>Waiting for link", install_ios_title: "On iPhone (Safari)", install_ios_1: "Tap the <strong>Share</strong> button at the bottom.", install_ios_2: "Choose <strong>\"Add to Home Screen\"</strong>.", install_and_title: "On Android (Chrome)", install_and_1: "Tap the <strong>three-dot menu</strong>.", install_and_2: "Select <strong>\"Install app\"</strong>.",
+        last_val: "Last validated on: "
+      }
+    };
+
+    function t(key) { return DICTIONARY[currentLang][key] || DICTIONARY['fr'][key] || key; }
+
+    function applyStaticI18n() {
+      document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.getAttribute('data-i18n')); });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t(el.getAttribute('data-i18n-html')); });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder'))); });
+    }
+
+    document.getElementById('langToggle').addEventListener('click', () => {
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      localStorage.setItem('bob_lang', currentLang);
+      applyStaticI18n();
+      updateThemeText();
+      renderInventory();
+      renderTechnicsList(technicsData);
+      if(document.getElementById('page-game').classList.contains('hidden') === false && document.getElementById('game-quiz').classList.contains('hidden') === false){
+        showQuestion(); 
+      }
+    });
+
+    // --- Navigation ---
+    function toggleMenu() {
+      document.getElementById('menu-panel').classList.toggle('open');
+      document.getElementById('menu-backdrop').classList.toggle('open');
+    }
+    function navFromMenu(page) {
+      navigate(page);
+      toggleMenu();
+    }
+    function navigate(page, pushToHistory = true) {
+      document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+      const target = document.getElementById('page-' + page);
+      if (target) target.classList.remove('hidden');
+      
+      const backBtn = document.getElementById('global-back-btn');
+      if (backBtn) backBtn.classList.toggle('hidden', page === 'index');
+      
+      if (pushToHistory) {
+        history.pushState({ page: page }, '', '#' + page);
+      }
+      window.scrollTo(0, 0);
+    }
+    function goBack() { history.back(); }
+    window.addEventListener('popstate', (event) => {
+      const page = event.state ? event.state.page : 'index';
+      navigate(page, false);
+    });
+
+    // --- Mode Sombre ---
+    function updateThemeText() {
+      const isDark = document.body.classList.contains('dark-mode');
+      document.getElementById('theme-icon').className = isDark ? 'bi bi-brightness-high-fill' : 'bi bi-moon-stars-fill';
+      document.getElementById('theme-text').textContent = isDark ? t('menu_light_mode') : t('menu_dark_mode');
+    }
+
+    document.getElementById('darkModeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('bob_theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+      updateThemeText();
+    });
+
+    // --- Plan & Comms ---
+    function loadPlan() {
+      const planData = JSON.parse(localStorage.getItem('bob_plan') || '{}');
+      document.getElementById('plan-rp1').value = planData.rp1 || '';
+      document.getElementById('plan-rp2').value = planData.rp2 || '';
+      document.getElementById('plan-callsign').value = planData.callsign || 'F4LRX';
+      document.getElementById('plan-fam-freq').value = planData.famFreq || '';
+      document.getElementById('plan-rep-freq').value = planData.repFreq || '';
+    }
+    function savePlan() {
+      const planData = {
+        rp1: document.getElementById('plan-rp1').value.trim(),
+        rp2: document.getElementById('plan-rp2').value.trim(),
+        callsign: document.getElementById('plan-callsign').value.trim(),
+        famFreq: document.getElementById('plan-fam-freq').value.trim(),
+        repFreq: document.getElementById('plan-rep-freq').value.trim()
+      };
+      localStorage.setItem('bob_plan', JSON.stringify(planData));
+      alert(currentLang === 'en' ? "✅ Plan saved." : "✅ Plan sauvegardé.");
+    }
+
+    // --- Inventaire Extrêmement Précis (Basé sur vos notes) ---
+    const kitCategories = [
+      { id: 1, name_fr: "Eau & Nourriture", name_en: "Water & Food", icon: "bi-droplet-fill" },
+      { id: 2, name_fr: "Vêtements", name_en: "Clothes", icon: "bi-layers-fill" },
+      { id: 3, name_fr: "Abris", name_en: "Shelter", icon: "bi-house-heart-fill" },
+      { id: 4, name_fr: "Santé", name_en: "Health", icon: "bi-bandaid-fill" },
+      { id: 5, name_fr: "Feu", name_en: "Fire", icon: "bi-fire" },
+      { id: 6, name_fr: "Comms & Élec", name_en: "Comms & Elec", icon: "bi-broadcast" },
+      { id: 7, name_fr: "Outils", name_en: "Tools", icon: "bi-tools" },
+      { id: 8, name_fr: "Papiers & Docs", name_en: "ID & Docs", icon: "bi-folder-fill" },
+      { id: 9, name_fr: "Fun & Moral", name_en: "Fun & Morale", icon: "bi-controller" }
+    ];
+
+    let inventoryTemplate = [
+      // Eau / Nourriture
+      { catId: 1, name_fr: "Gourde", name_en: "Water Bottle", qty: 2 }, { catId: 1, name_fr: "Filtres (MRE)", name_en: "Water Filters", qty: 2 }, { catId: 1, name_fr: "Pastilles de purification", name_en: "Purification tablets", qty: 40 },
+      { catId: 1, name_fr: "Barres céréales (ou lyophilisé)", name_en: "Energy bars / Freeze-dried", qty: 12 }, { catId: 1, name_fr: "Quart + Couverts", name_en: "Canteen cup + Utensils", qty: 1 }, { catId: 1, name_fr: "PQ / Filtre café", name_en: "TP / Coffee filters", qty: 1 },
+      // Vêtements
+      { catId: 2, name_fr: "Change x2 (slip, chaussettes, T-shirt, pantalon, jacket)", name_en: "Spare clothes x2", qty: 1 }, { catId: 2, name_fr: "Gants durs / Gants froids", name_en: "Gloves (Heavy & Cold)", qty: 2 }, { catId: 2, name_fr: "Chaussures", name_en: "Shoes", qty: 1 }, { catId: 2, name_fr: "Bonnet", name_en: "Beanie", qty: 1 },
+      // Abris
+      { catId: 3, name_fr: "Poncho / Sac poubelle", name_en: "Poncho / Trash bag", qty: 2 }, { catId: 3, name_fr: "Couv. de survie", name_en: "Survival blanket", qty: 2 }, { catId: 3, name_fr: "Tarp", name_en: "Tarp", qty: 1 }, { catId: 3, name_fr: "Sac à dos / Sac ziplock", name_en: "Backpack / Ziplocks", qty: 1 },
+      // Santé
+      { catId: 4, name_fr: "Trousse Bobo", name_en: "Minor First Aid Kit", qty: 1 }, { catId: 4, name_fr: "Trousse Trauma (Rouge)", name_en: "Trauma Kit (Red)", qty: 1 }, { catId: 4, name_fr: "Savon / Serviette", name_en: "Soap / Towel", qty: 1 }, { catId: 4, name_fr: "Chaud (Chaufferettes)", name_en: "Hand warmers", qty: 4 }, { catId: 4, name_fr: "Bouchons d'oreille", name_en: "Earplugs", qty: 2 },
+      // Feu
+      { catId: 5, name_fr: "Briquet Bic", name_en: "Bic Lighter", qty: 2 }, { catId: 5, name_fr: "Briquet Rechargeable", name_en: "Refillable Lighter", qty: 1 }, { catId: 5, name_fr: "Firesteel", name_en: "Firesteel", qty: 1 }, { catId: 5, name_fr: "Allumettes tempête", name_en: "Storm matches", qty: 1 }, { catId: 5, name_fr: "Bougie", name_en: "Candle", qty: 1 },
+      // Comms / Elec
+      { catId: 6, name_fr: "Mini UV5R", name_en: "Mini UV5R", qty: 2 }, { catId: 6, name_fr: "Radtel 950 Pro (radio)", name_en: "Radtel 950 Pro", qty: 2 }, { catId: 6, name_fr: "Panneau Solaire 70W", name_en: "Solar Panel 70W", qty: 1 }, { catId: 6, name_fr: "Panneau Solaire 30W", name_en: "Solar Panel 30W", qty: 2 }, { catId: 6, name_fr: "Powerbank + Câbles", name_en: "Powerbank + Cables", qty: 2 }, { catId: 6, name_fr: "Tél / PC (Toughbook)", name_en: "Phone / PC (Toughbook)", qty: 1 }, { catId: 6, name_fr: "HackRF One", name_en: "HackRF One", qty: 1 },
+      // Outils
+      { catId: 7, name_fr: "Couteau", name_en: "Knife", qty: 1 }, { catId: 7, name_fr: "Multitool", name_en: "Multitool", qty: 1 }, { catId: 7, name_fr: "Mini tournevis", name_en: "Mini screwdriver", qty: 1 }, { catId: 7, name_fr: "Carnet / Stylo", name_en: "Notebook / Pen", qty: 1 }, { catId: 7, name_fr: "Miroir", name_en: "Mirror", qty: 1 }, { catId: 7, name_fr: "Corde", name_en: "Paracord", qty: 1 }, { catId: 7, name_fr: "Sifflet", name_en: "Whistle", qty: 1 }, { catId: 7, name_fr: "Frontale", name_en: "Headlamp", qty: 1 }, { catId: 7, name_fr: "Lampe >1000 lumens", name_en: "Flashlight >1000lm", qty: 1 }, { catId: 7, name_fr: "Boussole", name_en: "Compass", qty: 1 }, { catId: 7, name_fr: "Compteur Geiger", name_en: "Geiger Counter", qty: 1 }, { catId: 7, name_fr: "Duct tape", name_en: "Duct tape", qty: 1 }, { catId: 7, name_fr: "Casque & Kit rustines vélo", name_en: "Helmet & Bike repair kit", qty: 1 },
+      // CNI
+      { catId: 8, name_fr: "Papiers (CNI)", name_en: "ID Papers", qty: 1 }, { catId: 8, name_fr: "SSD (Backups)", name_en: "SSD Drive", qty: 1 }, { catId: 8, name_fr: "Argent liquide", name_en: "Cash", qty: 1 }, { catId: 8, name_fr: "Photos de famille", name_en: "Family photos", qty: 1 },
+      // Fun
+      { catId: 9, name_fr: "Retrogaming (Console)", name_en: "Retrogaming Console", qty: 1 }, { catId: 9, name_fr: "Jeu de cartes", name_en: "Playing Cards", qty: 1 }
+    ];
+
+    function renderInventory() {
+      const customItems = JSON.parse(localStorage.getItem('bob_custom_items') || '[]');
+      const fullInventory = [...inventoryTemplate, ...customItems];
+      const savedData = JSON.parse(localStorage.getItem('bob_inventory') || '{}');
+      const container = document.getElementById('inventory-list');
+      container.innerHTML = '';
+
+      kitCategories.forEach((cat, idx) => {
+        const items = fullInventory.filter(i => parseInt(i.catId) === parseInt(cat.id));
+        if (items.length === 0) return;
+
+        let packedCount = items.filter(item => {
+          const itemName = currentLang === 'en' ? item.name_en : item.name_fr;
+          return savedData[itemName]?.checked;
+        }).length;
+
+        const catDiv = document.createElement('div');
+        catDiv.className = 'cat' + (idx === 0 ? ' open' : '');
+        catDiv.style.borderTop = `3px solid var(--cat-${cat.id}-solid)`;
+
+        const head = document.createElement('button');
+        head.className = 'cat-head';
+        head.onclick = () => catDiv.classList.toggle('open');
+        const catName = currentLang === 'en' ? cat.name_en : cat.name_fr;
+        head.innerHTML = `
+          <span class="cat-ic" style="background: var(--cat-${cat.id})"><i class="bi ${cat.icon}"></i></span>
+          <span class="cat-title">${catName}</span>
+          <span class="cat-count" id="badge-cat-${cat.id}">${packedCount}/${items.length}</span>
+          <i class="bi bi-chevron-down cat-chevron"></i>
+        `;
+        catDiv.appendChild(head);
+
+        const body = document.createElement('div');
+        body.className = 'cat-body';
+        items.forEach(item => {
+          const itemName = currentLang === 'en' ? item.name_en : item.name_fr;
+          const isChecked = savedData[itemName]?.checked || false;
+          const qty = savedData[itemName]?.qty ?? item.qty;
+          const idStr = itemName.replace(/[^a-zA-Z0-9]/g, '_');
+          
+          const row = document.createElement('div');
+          row.className = 'kit-item';
+          row.innerHTML = `
+            <label class="kit-item-label" for="chk-${idStr}">
+              <input type="checkbox" id="chk-${idStr}" class="kit-item-checkbox" data-name="${itemName}" data-cat="${cat.id}" ${isChecked ? 'checked' : ''} onchange="updateBadge(${cat.id})">
+              ${itemName}
+            </label>
+            <input type="number" min="0" class="kit-item-qty" id="qty-${idStr}" value="${qty}">
+          `;
+          body.appendChild(row);
+        });
+        catDiv.appendChild(body); container.appendChild(catDiv);
+      });
+
+      const dateSaved = localStorage.getItem('bob_inventory_date');
+      const dateEl = document.getElementById('inventory-validation-date');
+      if(dateSaved) {
+        const d = new Date(dateSaved);
+        dateEl.innerHTML = `<i class="bi bi-calendar-check-fill" style="color:var(--color-minor);"></i> ${t('last_val')} ${d.toLocaleDateString()} ${d.toLocaleTimeString()}`;
+      } else {
+        dateEl.innerHTML = '';
+      }
+    }
+
+    function updateBadge(catId) {
+      const checkboxes = document.querySelectorAll(`input[data-cat="${catId}"]`);
+      let packed = Array.from(checkboxes).filter(chk => chk.checked).length;
+      document.getElementById(`badge-cat-${catId}`).textContent = `${packed}/${checkboxes.length}`;
+    }
+
+    function saveInventory() {
+      const data = {};
+      document.querySelectorAll('.kit-item-checkbox').forEach(chk => {
+        const itemName = chk.dataset.name;
+        const idStr = itemName.replace(/[^a-zA-Z0-9]/g, '_');
+        data[itemName] = { checked: chk.checked, qty: parseInt(document.getElementById(`qty-${idStr}`).value) || 0 };
+      });
+      localStorage.setItem('bob_inventory', JSON.stringify(data));
+      localStorage.setItem('bob_inventory_date', new Date().toISOString());
+      renderInventory(); 
+      alert(currentLang === 'en' ? "✅ Inventory saved." : "✅ Inventaire sauvegardé.");
+    }
+
+    function addCustomItem() {
+      const name = document.getElementById('custom-item-name').value.trim();
+      const catId = document.getElementById('custom-item-cat').value;
+      if(!name) return;
+      
+      const customItems = JSON.parse(localStorage.getItem('bob_custom_items') || '[]');
+      customItems.push({ catId: catId, name_fr: name, name_en: name, qty: 1 });
+      localStorage.setItem('bob_custom_items', JSON.stringify(customItems));
+      
+      document.getElementById('custom-item-name').value = '';
+      renderInventory();
+    }
+
+    // --- Techniques (Data extensible & Bilingue) ---
+    const technicsData = [
+      {
+        id: 1, 
+        name_fr: "Allumer un feu (Ferrocérium)", name_en: "Start a fire (Firesteel)",
+        intro_fr: "Le firesteel fonctionne même mouillé, mais requiert la bonne technique.", intro_en: "Firesteels work even when wet, but require proper technique.",
+        steps_fr: [
+          "Grattez la fine couche de protection noire sur la tige neuve avec le dos de votre couteau.",
+          "Préparez un nid d'amadou très sec.",
+          "Placez la tige au cœur de l'amadou.",
+          "Tirez fermement la tige en arrière tout en maintenant le grattoir fixe à 45°."
+        ],
+        steps_en: [
+          "Scrape off the black protective coating on a new rod.",
+          "Prepare a nest of very dry tinder.",
+          "Place the rod right into the tinder nest.",
+          "Pull the rod firmly backward while keeping the striker fixed at a 45° angle."
+        ]
+      },
+      {
+        id: 2, 
+        name_fr: "Monter un Tarp (A-Frame)", name_en: "Pitch a Tarp (A-Frame)",
+        intro_fr: "La configuration en 'A' offre la meilleure protection.", intro_en: "The A-Frame configuration offers the best protection.",
+        steps_fr: [
+          "Tendez une corde (Ridge line) solidement entre deux arbres.",
+          "Placez le Tarp par-dessus la corde en la centrant.",
+          "Fixez les deux œillets centraux à la corde (nœud de prusik).",
+          "Ancrez les 4 coins au sol avec des sardines à 45°."
+        ],
+        steps_en: [
+          "Tie a ridge line securely between two trees.",
+          "Drape the Tarp evenly over the line.",
+          "Attach the two center grommets to the line using a prusik knot.",
+          "Anchor the 4 corners to the ground with stakes at a 45° angle."
+        ]
+      },
+      {
+        id: 3, 
+        name_fr: "Déployer le HackRF One", name_en: "Deploy HackRF One",
+        intro_fr: "Le SDR ultime pour écouter ou transmettre sur une large bande.", intro_en: "The ultimate SDR to listen or transmit on a wide band.",
+        steps_fr: [
+          "Connectez l'antenne télescopique appropriée selon la fréquence cible (longue pour VHF, courte pour UHF).",
+          "Branchez le HackRF au Toughbook via USB.",
+          "Lancez SDR# ou GQRX.",
+          "Ajustez le gain LNA et VGA pour éviter la saturation du signal local."
+        ],
+        steps_en: [
+          "Connect the appropriate telescopic antenna (long for VHF, short for UHF).",
+          "Connect the HackRF to the Toughbook via USB.",
+          "Launch SDR# or GQRX.",
+          "Adjust LNA and VGA gain to prevent local signal saturation."
+        ]
+      }
+    ];
+
+    function renderTechnicsList(data) {
+      const container = document.getElementById('technics-list');
+      container.innerHTML = '';
+      if(data.length === 0) {
+        container.innerHTML = '<p class="text-muted text-center mt-3">Rien trouvé / None found.</p>';
+        return;
+      }
+      data.forEach(tech => {
+        const name = currentLang === 'en' ? tech.name_en : tech.name_fr;
+        const item = document.createElement('div');
+        item.className = 'card-list-item';
+        item.innerHTML = `<strong>${name}</strong> <i class="bi bi-chevron-right" style="color:#6c757d"></i>`;
+        item.onclick = () => openTechnicDetail(tech);
+        container.appendChild(item);
+      });
+    }
+
+    function filterTechnics() {
+      const q = document.getElementById('search-technics').value.toLowerCase();
+      const filtered = technicsData.filter(t => {
+        const name = currentLang === 'en' ? t.name_en : t.name_fr;
+        const intro = currentLang === 'en' ? t.intro_en : t.intro_fr;
+        return name.toLowerCase().includes(q) || intro.toLowerCase().includes(q);
+      });
+      renderTechnicsList(filtered);
+    }
+
+    function openTechnicDetail(tech) {
+      navigate('technic-detail');
+      document.getElementById('tech-detail-title').textContent = currentLang === 'en' ? tech.name_en : tech.name_fr;
+      document.getElementById('tech-detail-intro').textContent = currentLang === 'en' ? tech.intro_en : tech.intro_fr;
+      const stepsUl = document.getElementById('tech-detail-steps');
+      stepsUl.innerHTML = '';
+      const steps = currentLang === 'en' ? tech.steps_en : tech.steps_fr;
+      steps.forEach(step => {
+        const li = document.createElement('li');
+        li.innerHTML = `<i class="bi bi-check-circle-fill"></i> ${step}`;
+        stepsUl.appendChild(li);
+      });
+    }
+
+    // --- Training Game ---
+    let xp = parseInt(localStorage.getItem('bob_xp') || '0');
+    const RANKS = [
+      { limit: 50, name_fr: "Civil Averti", name_en: "Aware Civilian" }, { limit: 150, name_fr: "Préparateur", name_en: "Prepper" },
+      { limit: 300, name_fr: "Évacué Stratégique", name_en: "Strategic Evacuee" }, { limit: 600, name_fr: "Survivant", name_en: "Survivor" }, { limit: 9999, name_fr: "Héros de Romero", name_en: "Romero's Hero" }
+    ];
+
+    const quizQuestions = [
+      {
+        q_fr: "Niveau 1 - Coupure (4h). La nuit tombe, plus de courant. Que sortez-vous en premier ?",
+        q_en: "Level 1 - Power Outage (4h). Night falls, no power. What do you grab first?",
+        options_fr: ["Le réchaud", "Une lampe frontale par personne", "La radio HF", "La tente"],
+        options_en: ["The stove", "One headlamp per person", "HF radio", "The tent"],
+        ans: 1, 
+        exp_fr: "Pour une urgence mineure de courte durée, la priorité est de sécuriser les déplacements. Les frontales libèrent les mains.",
+        exp_en: "For a short emergency, priority is safe movement. Headlamps free your hands."
+      },
+      {
+        q_fr: "Niveau 2 - Hiver (Jour 2). Plus de chauffage. Meilleure stratégie ?",
+        q_en: "Level 2 - Winter (Day 2). No heating. Best strategy?",
+        options_fr: ["S'habiller en coton", "Monter la tente dans une petite pièce", "Boire de l'alcool", "Feu dans le salon"],
+        options_en: ["Wear cotton", "Pitch the tent in a small room", "Drink alcohol", "Campfire in living room"],
+        ans: 1, 
+        exp_fr: "Créer un micro-climat. Monter une tente dans une petite pièce permet de capturer la chaleur corporelle.",
+        exp_en: "Create a microclimate. Pitching a tent inside captures body heat."
+      }
+    ];
+
+    let currentQ = 0;
+
+    function updateXPUI() {
+      document.getElementById('user-xp').textContent = `${xp} XP`;
+      let currentRank = RANKS[0];
+      for (let r of RANKS) { if (xp >= r.limit) currentRank = RANKS[RANKS.indexOf(r) + 1] || RANKS[RANKS.length - 1]; }
+      document.getElementById('user-rank').textContent = currentLang === 'en' ? currentRank.name_en : currentRank.name_fr;
+      localStorage.setItem('bob_xp', xp);
+    }
+
+    function startGame() {
+      currentQ = 0;
+      document.getElementById('game-intro').classList.add('hidden');
+      document.getElementById('game-feedback').classList.add('hidden');
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const qData = quizQuestions[currentQ];
+      document.getElementById('quiz-question-title').textContent = currentLang === 'en' ? `Scenario ${currentQ + 1} / ${quizQuestions.length}` : `Étape ${currentQ + 1} / ${quizQuestions.length}`;
+      document.getElementById('quiz-question-text').textContent = currentLang === 'en' ? qData.q_en : qData.q_fr;
+      
+      const optsContainer = document.getElementById('quiz-options');
+      optsContainer.innerHTML = '';
+      const options = currentLang === 'en' ? qData.options_en : qData.options_fr;
+      options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'choice-btn'; btn.textContent = opt;
+        btn.onclick = () => handleAnswer(idx);
+        optsContainer.appendChild(btn);
+      });
+      document.getElementById('game-quiz').classList.remove('hidden');
+    }
+
+    function handleAnswer(idx) {
+      const qData = quizQuestions[currentQ];
+      const isCorrect = (idx === qData.ans);
+      document.getElementById('game-quiz').classList.add('hidden');
+      
+      const feedbackTitle = document.getElementById('feedback-title');
+      if (isCorrect) {
+        xp += 50; updateXPUI();
+        feedbackTitle.innerHTML = currentLang === 'en' ? `<span style="color:var(--color-minor)"><i class="bi bi-check-circle-fill"></i> Correct Reflex (+50 XP)</span>` : `<span style="color:var(--color-minor)"><i class="bi bi-check-circle-fill"></i> Réflexe validé (+50 XP)</span>`;
+      } else {
+        feedbackTitle.innerHTML = currentLang === 'en' ? `<span style="color:var(--color-danger)"><i class="bi bi-x-circle-fill"></i> Wrong Choice</span>` : `<span style="color:var(--color-danger)"><i class="bi bi-x-circle-fill"></i> Mauvais choix</span>`;
+      }
+      
+      document.getElementById('feedback-explanation').textContent = currentLang === 'en' ? qData.exp_en : qData.exp_fr;
+      document.getElementById('game-feedback').classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+      currentQ++;
+      document.getElementById('game-feedback').classList.add('hidden');
+      if (currentQ < quizQuestions.length) showQuestion();
+      else {
+        document.getElementById('game-intro').classList.remove('hidden');
+        document.getElementById('game-intro').querySelector('p').textContent = currentLang === 'en' ? "Training complete." : "Entraînement terminé.";
+      }
+    }
+
+    // --- PDF Generator ---
+    function generatePDF() {
+      if(!window.jspdf) {
+        alert(currentLang === 'en' ? "jsPDF library is missing (offline)." : "Librairie jsPDF absente (hors-ligne).");
+        return;
+      }
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      let y = 10;
+      
+      doc.setFontSize(18);
+      doc.text("B.O.B. EMERGENCY PLAN", 10, y);
+      y += 15;
+
+      // Plan Data
+      const planData = JSON.parse(localStorage.getItem('bob_plan') || '{}');
+      doc.setFontSize(12);
+      doc.text(`Rally Point 1: ${planData.rp1 || '---'}`, 10, y); y += 7;
+      doc.text(`Final Point: ${planData.rp2 || '---'}`, 10, y); y += 12;
+      
+      doc.text(`Callsign: ${planData.callsign || 'F4LRX'}`, 10, y); y += 7;
+      doc.text(`Family Freq: ${planData.famFreq || '---'}`, 10, y); y += 7;
+      doc.text(`Repeater Freq: ${planData.repFreq || '---'}`, 10, y); y += 15;
+
+      // Missing Items (Not checked)
+      doc.setFontSize(14);
+      doc.text(currentLang === 'en' ? "MISSING INVENTORY ITEMS:" : "INVENTAIRE MANQUANT :", 10, y); y += 10;
+      
+      const customItems = JSON.parse(localStorage.getItem('bob_custom_items') || '[]');
+      const fullInventory = [...inventoryTemplate, ...customItems];
+      const savedData = JSON.parse(localStorage.getItem('bob_inventory') || '{}');
+      
+      doc.setFontSize(10);
+      fullInventory.forEach(item => {
+        const itemName = currentLang === 'en' ? item.name_en : item.name_fr;
+        if (!savedData[itemName]?.checked) {
+          if (y > 280) { doc.addPage(); y = 10; }
+          doc.text(`- [ ] ${itemName}`, 10, y);
+          y += 6;
+        }
+      });
+
+      doc.save(`BOB_Emergency_Plan.pdf`);
+    }
+
+    // Init
+    window.addEventListener('DOMContentLoaded', () => {
+      history.replaceState({ page: 'index' }, '', '#index');
+      applyStaticI18n();
+      if (localStorage.getItem('bob_theme') === 'dark') document.body.classList.add('dark-mode');
+      updateThemeText();
+      renderInventory();
+      renderTechnicsList(technicsData);
+      loadPlan();
+      updateXPUI();
+    });
+  </script>
+<script> if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); } </script>
+</body>
+</html>
