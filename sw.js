@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bob-dead-cache-v1';
+const CACHE_NAME = 'bob-dead-cache-v1.1';
 const urlsToCache = [
   './',
   './index.html',
@@ -11,7 +11,8 @@ const urlsToCache = [
   './vendor/fonts/bootstrap-icons.woff2',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './icons/apple-touch-icon.png'
+  './icons/apple-touch-icon.png',
+  './icons/qr-install.png'
 ];
 
 // Installation : mise en cache initiale
