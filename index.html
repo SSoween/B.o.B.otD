@@ -5,17 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>B.O.B. of the Dead</title>
   
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons.css" rel="stylesheet">
   
   <link rel="manifest" href="manifest.json">
   
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="vendor/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jspdf.umd.min.js"></script>
   
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -158,6 +154,7 @@
   .menu-row { width: 100%; text-align: left; background: none; border: none; padding: 0.6rem 0.2rem; display: flex; align-items: center; gap: 0.75rem; font-weight: 600; color: var(--color-text-dark); border-radius: var(--radius-btn); cursor: pointer; transition: background 0.2s;}
   .menu-row:hover { background: rgba(120,120,128,0.08); }
   .menu-row i { font-size: 1rem; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; color: #fff; background: var(--color-accent); border-radius: 10px;}
+  .menu-row.external-link i { background: #5b8291; }
 
   .cat { background: #fff; border-radius: var(--radius-card); margin-bottom: 0.6rem; overflow: hidden; box-shadow: var(--shadow-sm); }
   .cat-head { width: 100%; border: none; background: none; display: flex; align-items: center; gap: 0.7rem; padding: 0.8rem 0.9rem; cursor: pointer; text-align: left; }
@@ -244,6 +241,12 @@
     transition: background 0.2s, transform 0.15s;
   }
   .map-reset-btn:hover { background: #4a5d23; transform: scale(1.05); }
+
+  /* Nuclear specific */
+  .nuclear-banner { background: linear-gradient(135deg, #7b2424, #5a1a1a); color: #fff; padding: 1rem 1.25rem; border-radius: var(--radius-card); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1rem; box-shadow: var(--shadow-md); }
+  .nuclear-banner i { font-size: 2rem; opacity: 0.9; }
+  .nuclear-banner b { display: block; font-size: 1.05rem; font-weight: 800; margin-bottom: 3px; }
+  .nuclear-banner span { font-size: 0.85rem; opacity: 0.9; }
   </style>
 </head>
 
@@ -268,6 +271,9 @@
       <button class="menu-row" onclick="navFromMenu('fast_evac')"><i class="bi bi-door-open-fill" style="background:var(--color-danger)"></i> <span data-i18n="menu_fast_evac">Départ Immédiat</span></button>
       <button class="menu-row" onclick="navFromMenu('technics')"><i class="bi bi-tools" style="background:#cc7722"></i> <span data-i18n="menu_manual">Manuel de Survie</span></button>
       
+      <div class="menu-section-label" data-i18n="menu_extreme">Situations Extrêmes</div>
+      <button class="menu-row" onclick="navFromMenu('nuclear')"><i class="bi bi-radiation" style="background:#7b2424"></i> <span data-i18n="menu_nuclear">Accident Nucléaire</span></button>
+
       <div class="menu-section-label" data-i18n="menu_training">Entraînement</div>
       <button class="menu-row" onclick="navFromMenu('game')"><i class="bi bi-controller" style="background:#af52de"></i> <span data-i18n="menu_game">Training Game</span></button>
 
@@ -275,6 +281,11 @@
       <button class="menu-row" id="darkModeToggle"><i class="bi bi-moon-stars-fill" id="theme-icon" style="background:#5c6b73"></i> <span id="theme-text" data-i18n="menu_dark_mode">Mode Nuit</span></button>
       <button class="menu-row" id="langToggle"><i class="bi bi-translate" style="background:#705e46"></i> <span>EN / FR</span></button>
       <button class="menu-row" onclick="navFromMenu('install')"><i class="bi bi-download" style="background:#556b2f"></i> <span data-i18n="menu_install">Installer l'App</span></button>
+
+      <div class="menu-section-label" data-i18n="menu_related">Apps Associées</div>
+      <a href="https://ssoween.github.io/firstaiders/" target="_blank" rel="noopener" class="menu-row external-link" style="text-decoration:none;">
+        <i class="bi bi-heart-pulse-fill"></i> <span data-i18n="menu_firstaiders">FirstAiders (Secourisme)</span>
+      </a>
     </div>
   </aside>
 
@@ -457,7 +468,6 @@
             <text x="400" y="490" fill="#e4e9d8" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">PARC JARRY</text>
             <text x="400" y="505" fill="#7a8f5a" font-size="10" font-family="sans-serif" text-anchor="middle">Point de départ</text>
 
-            <!-- NORD-OUEST -->
             <path d="M400,440 Q380,360 340,280 Q300,200 250,120" stroke="#cc7722" stroke-width="6" fill="none" stroke-linecap="round"/>
             <path d="M400,440 Q420,370 400,290 Q380,220 360,130" stroke="#a34848" stroke-width="3" fill="none" stroke-dasharray="8,6" stroke-linecap="round" opacity="0.6"/>
             <use href="#bridge-icon" x="345" y="255" width="28" height="18"/>
@@ -473,7 +483,6 @@
             <text x="245" y="75" fill="#a8c78a" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">LAURENTIDES</text>
             <text x="245" y="90" fill="#7a8f5a" font-size="10" font-family="sans-serif" text-anchor="middle">Saint-Sauveur / Estérel</text>
 
-            <!-- OUEST -->
             <path d="M400,440 Q280,430 180,420 Q100,415 40,410" stroke="#cc7722" stroke-width="6" fill="none" stroke-linecap="round"/>
             <path d="M400,440 Q300,470 200,490 Q120,510 50,530" stroke="#a34848" stroke-width="3" fill="none" stroke-dasharray="8,6" stroke-linecap="round" opacity="0.6"/>
             <use href="#bridge-icon" x="175" y="408" width="28" height="18"/>
@@ -489,7 +498,6 @@
             <text x="45" y="365" fill="#a8c78a" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">VAUDREUIL</text>
             <text x="45" y="380" fill="#7a8f5a" font-size="10" font-family="sans-serif" text-anchor="middle">Rigaud / Hawkesbury</text>
 
-            <!-- SUD -->
             <path d="M400,440 Q420,520 440,600 Q460,680 480,760" stroke="#cc7722" stroke-width="6" fill="none" stroke-linecap="round"/>
             <path d="M400,440 Q460,510 520,590 Q580,660 620,740" stroke="#a34848" stroke-width="3" fill="none" stroke-dasharray="8,6" stroke-linecap="round" opacity="0.6"/>
             <use href="#bridge-icon" x="432" y="590" width="28" height="18"/>
@@ -505,7 +513,6 @@
             <text x="485" y="815" fill="#a8c78a" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">ESTRIE</text>
             <text x="485" y="830" fill="#7a8f5a" font-size="10" font-family="sans-serif" text-anchor="middle">Orford / Memphrémagog</text>
 
-            <!-- NORD-EST -->
             <path d="M400,440 Q500,400 600,370 Q700,340 780,320" stroke="#cc7722" stroke-width="6" fill="none" stroke-linecap="round"/>
             <path d="M400,440 Q520,440 620,440 Q720,450 790,460" stroke="#a34848" stroke-width="3" fill="none" stroke-dasharray="8,6" stroke-linecap="round" opacity="0.6"/>
             <use href="#bridge-icon" x="595" y="352" width="28" height="18"/>
@@ -546,6 +553,113 @@
       </div>
       <p class="text-muted mt-2 mb-0 text-center" style="font-size: 0.85rem;" data-i18n="map_desc">Schéma d'évacuation vélo (Rayon 50km). <span style="opacity:0.7;">Pincez pour zoomer, glissez pour déplacer.</span></p>
     </div>
+  </section>
+
+  <!-- ================= ACCIDENT NUCLÉAIRE ================= -->
+  <section id="page-nuclear" class="hidden container py-4">
+    <h2><i class="bi bi-radiation" style="margin-right: 8px;"></i><span data-i18n="title_nuclear">Accident Nucléaire</span></h2>
+
+    <div class="nuclear-banner">
+      <i class="bi bi-shield-fill-exclamation"></i>
+      <div>
+        <b data-i18n="nuclear_banner_title">Rentrez. Restez. Écoutez.</b>
+        <span data-i18n="nuclear_banner_sub">Les 3 règles d'or en cas de retombées</span>
+      </div>
+    </div>
+
+    <!-- LA RÈGLE DES 7 -->
+    <div class="emergency-card" style="border-top-color: var(--color-danger)">
+      <h3 data-i18n="nuclear_rule7_title">La Règle des 7 (Règle 7/10)</h3>
+      <p style="font-size: 0.9rem; margin-bottom: 1rem;" data-i18n="nuclear_rule7_intro">
+        La radioactivité des retombées chute très rapidement. Tous les 7 heures, elle diminue de 90%.
+      </p>
+      
+      <div style="background: var(--color-muted-bg); border-radius: var(--radius-section); padding: 1rem; margin-bottom: 1rem;">
+        <table style="width: 100%; font-size: 0.85rem; border-collapse: collapse;">
+          <tr style="border-bottom: 1px solid var(--color-muted-border);">
+            <td style="padding: 6px 0; font-weight: 700;" data-i18n="nuclear_t_1h">1 heure après</td>
+            <td style="padding: 6px 0; text-align: right; font-weight: 700; color: var(--color-danger);">100%</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-muted-border);">
+            <td style="padding: 6px 0; font-weight: 700;" data-i18n="nuclear_t_7h">7 heures après</td>
+            <td style="padding: 6px 0; text-align: right; font-weight: 700; color: var(--color-major);">10%</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-muted-border);">
+            <td style="padding: 6px 0; font-weight: 700;" data-i18n="nuclear_t_49h">49 heures (2 jours)</td>
+            <td style="padding: 6px 0; text-align: right; font-weight: 700; color: var(--color-minor);">1%</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; font-weight: 700;" data-i18n="nuclear_t_343h">343 heures (2 semaines)</td>
+            <td style="padding: 6px 0; text-align: right; font-weight: 700; color: var(--color-minor);">0,1%</td>
+          </tr>
+        </table>
+      </div>
+
+      <ul class="icon-list">
+        <li><i class="bi bi-1-circle-fill"></i><span data-i18n="nuclear_rule7_1">Après 7h, le danger a déjà chuté de 90%</li>
+        <li><i class="bi bi-2-circle-fill"></i><span data-i18n="nuclear_rule7_2">Après 49h, il ne reste que 1% du danger initial</li>
+        <li><i class="bi bi-3-circle-fill"></i><span data-i18n="nuclear_rule7_3">Rester 48h à l'abri est le meilleur investissement pour votre survie</li>
+      </ul>
+    </div>
+
+    <!-- RENTREZ -->
+    <div class="emergency-card" style="border-top-color: var(--color-danger)">
+      <h3 data-i18n="nuclear_getinside_title">1. RENTREZ (Get Inside)</h3>
+      <ul class="icon-list">
+        <li><i class="bi bi-house-door-fill"></i><span data-i18n="nuclear_getinside_1">Rejoignez immédiatement un bâtiment en dur (béton, brique)</li>
+        <li><i class="bi bi-2-circle-fill"></i><span data-i18n="nuclear_getinside_2">Le sous-sol ou une pièce centrale sans fenêtre est idéal</li>
+        <li><i class="bi bi-3-circle-fill"></i><span data-i18n="nuclear_getinside_3">Fermez portes et fenêtres, coupez ventilation et climatisation</li>
+        <li><i class="bi bi-4-circle-fill"></i><span data-i18n="nuclear_getinside_4">NE RESTEZ PAS dans une voiture (protection quasi nulle)</li>
+        <li><i class="bi bi-5-circle-fill"></i><span data-i18n="nuclear_getinside_5">Ne sortez PAS chercher les enfants à l'école : ils sont pris en charge sur place</li>
+      </ul>
+    </div>
+
+    <!-- RESTEZ -->
+    <div class="emergency-card" style="border-top-color: var(--color-major)">
+      <h3 data-i18n="nuclear_stayinside_title">2. RESTEZ (Stay Inside)</h3>
+      <ul class="icon-list">
+        <li><i class="bi bi-clock-fill"></i><span data-i18n="nuclear_stayinside_1">Restez confiné au minimum 24h, idéalement 48h</li>
+        <li><i class="bi bi-2-circle-fill"></i><span data-i18n="nuclear_stayinside_2">Le pic de danger est dans les premières 24 heures</li>
+        <li><i class="bi bi-3-circle-fill"></i><span data-i18n="nuclear_stayinside_3">Si vous étiez dehors : retirez vos vêtements, mettez-les dans un sac fermé</li>
+        <li><i class="bi bi-4-circle-fill"></i><span data-i18n="nuclear_stayinside_4">Lavez-vous à l'eau et au savon (cheveux inclus, tête en arrière)</li>
+        <li><i class="bi bi-5-circle-fill"></i><span data-i18n="nuclear_stayinside_5">Ne consommez PAS de produits frais locaux (lait, légumes, eau du robinet)</li>
+        <li><i class="bi bi-6-circle-fill"></i><span data-i18n="nuclear_stayinside_6">Utilisez l'eau en bouteille et les conserves scellées</li>
+      </ul>
+    </div>
+
+    <!-- ÉCOUTEZ -->
+    <div class="emergency-card" style="border-top-color: var(--color-minor)">
+      <h3 data-i18n="nuclear_tuned_title">3. ÉCOUTEZ (Stay Tuned)</h3>
+      <ul class="icon-list">
+        <li><i class="bi bi-broadcast-pin"></i><span data-i18n="nuclear_tuned_1">Allumez une radio à piles (ou radio FM/AM du téléphone avec écouteurs)</li>
+        <li><i class="bi bi-2-circle-fill"></i><span data-i18n="nuclear_tuned_2">Écoutez les consignes officielles : évacuation ou maintien du confinement</li>
+        <li><i class="bi bi-3-circle-fill"></i><span data-i18n="nuclear_tuned_3">N'appelez PAS pour ne pas saturer les réseaux (utilisez SMS)</li>
+        <li><i class="bi bi-4-circle-fill"></i><span data-i18n="nuclear_tuned_4">Fréquences d'urgence : 146.520 MHz (VHF), 446.000 MHz (PMR446)</li>
+      </ul>
+    </div>
+
+    <!-- IODE -->
+    <div class="emergency-card" style="border-top-color: var(--color-card-accent)">
+      <h3 data-i18n="nuclear_iodine_title">Iode stable : uniquement sur ordre</h3>
+      <ul class="icon-list">
+        <li><i class="bi bi-exclamation-triangle-fill"></i><span data-i18n="nuclear_iodine_1">NE PRENEZ PAS d'iode de vous-même</li>
+        <li><i class="bi bi-2-circle-fill"></i><span data-i18n="nuclear_iodine_2">Attendez l'instruction des autorités (préfet, radio, sirènes)</li>
+        <li><i class="bi bi-3-circle-fill"></i><span data-i18n="nuclear_iodine_3">L'iode protège UNIQUEMENT la thyroïde contre l'iode radioactif</li>
+        <li><i class="bi bi-4-circle-fill"></i><span data-i18n="nuclear_iodine_4">Doit être pris avant exposition ou dans les 8h suivant la contamination</li>
+      </ul>
+    </div>
+
+    <!-- COMPTEUR GEIGER -->
+    <div class="emergency-card" style="border-top-color: var(--cat-6-solid)">
+      <h3 data-i18n="nuclear_geiger_title">Avec un compteur Geiger</h3>
+      <ul class="icon-list">
+        <li><i class="bi bi-1-circle-fill"></i><span data-i18n="nuclear_geiger_1">Mesurez en intérieur, au sous-sol, loin des murs extérieurs</li>
+        <li><i class="bi bi-2-circle-fill"></i><span data-i18n="nuclear_geiger_2">Notez la valeur toutes les heures pour suivre la décroissance</li>
+        <li><i class="bi bi-3-circle-fill"></i><span data-i18n="nuclear_geiger_3">Si le taux chute de 90% (7h) puis 99% (49h), la règle des 7 est vérifiée</li>
+        <li><i class="bi bi-4-circle-fill"></i><span data-i18n="nuclear_geiger_4">NE SORTEZ que lorsque les autorités le confirment, pas seulement sur vos mesures</li>
+      </ul>
+    </div>
+
   </section>
 
   <!-- ================= TECHNIQUES (MANUEL) ================= -->
@@ -670,8 +784,10 @@
       fr: {
         menu_title: "Menu Principal", menu_prep: "Préparation", menu_home: "Accueil", menu_inventory: "Mon Sac d'Évacuation", menu_plan: "Plan & Comms",
         menu_action: "Action", menu_map: "Carte d'Évacuation", menu_fast_evac: "Départ Immédiat", menu_manual: "Manuel de Survie",
+        menu_extreme: "Situations Extrêmes", menu_nuclear: "Accident Nucléaire",
         menu_training: "Entraînement", menu_game: "Training Game",
         menu_settings: "Préférences", menu_dark_mode: "Mode Nuit", menu_light_mode: "Mode Jour", menu_install: "Installer l'App",
+        menu_related: "Apps Associées", menu_firstaiders: "FirstAiders (Secourisme)",
         btn_fast_evac: "Checklist Départ Immédiat", home_subtitle: "Survive the 72 Hours",
         home_bag: "Mon Sac d'Évacuation", home_bag_sub: "Checklist & Quantités", home_manual: "Manuel de Survie", home_manual_sub: "Techniques & Matériel",
         home_game: "Training Game", home_game_sub: "Scénarios d'urgence", home_logistics: "Logistique & Références",
@@ -681,6 +797,15 @@
         title_technics: "Manuel de Survie", search_technics: "Rechercher une technique...", tech_steps_title: "Procédure",
         title_plan: "Plan & Comms", plan_rally_title: "Points de Ralliement", plan_rp1: "Point Secondaire (Rive-Sud / Laval)", plan_rp2: "Point de Chute Final (Cardaillac, France)", plan_radio_title: "Fréquences Radio", plan_callsign: "Indicatif Radio Amateur", plan_fam_freq: "Fréquence Famille (UHF - GMRS/FRS)", plan_em_freq: "Appel d'urgence (VHF Simplex)", plan_rep_freq: "Relais Local Principal (Montréal)", plan_hf_freq: "Réseau Survie Longue Distance (HF 20m)", btn_save_plan: "Sauvegarder le Plan",
         title_map: "Carte d'Évacuation", map_desc: "Schéma d'évacuation vélo (Rayon 50km).",
+        title_nuclear: "Accident Nucléaire", nuclear_banner_title: "Rentrez. Restez. Écoutez.", nuclear_banner_sub: "Les 3 règles d'or en cas de retombées",
+        nuclear_rule7_title: "La Règle des 7 (Règle 7/10)", nuclear_rule7_intro: "La radioactivité des retombées chute très rapidement. Tous les 7 heures, elle diminue de 90%.",
+        nuclear_t_1h: "1 heure après", nuclear_t_7h: "7 heures après", nuclear_t_49h: "49 heures (2 jours)", nuclear_t_343h: "343 heures (2 semaines)",
+        nuclear_rule7_1: "Après 7h, le danger a déjà chuté de 90%", nuclear_rule7_2: "Après 49h, il ne reste que 1% du danger initial", nuclear_rule7_3: "Rester 48h à l'abri est le meilleur investissement pour votre survie",
+        nuclear_getinside_title: "1. RENTREZ (Get Inside)", nuclear_getinside_1: "Rejoignez immédiatement un bâtiment en dur (béton, brique)", nuclear_getinside_2: "Le sous-sol ou une pièce centrale sans fenêtre est idéal", nuclear_getinside_3: "Fermez portes et fenêtres, coupez ventilation et climatisation", nuclear_getinside_4: "NE RESTEZ PAS dans une voiture (protection quasi nulle)", nuclear_getinside_5: "Ne sortez PAS chercher les enfants à l'école : ils sont pris en charge sur place",
+        nuclear_stayinside_title: "2. RESTEZ (Stay Inside)", nuclear_stayinside_1: "Restez confiné au minimum 24h, idéalement 48h", nuclear_stayinside_2: "Le pic de danger est dans les premières 24 heures", nuclear_stayinside_3: "Si vous étiez dehors : retirez vos vêtements, mettez-les dans un sac fermé", nuclear_stayinside_4: "Lavez-vous à l'eau et au savon (cheveux inclus, tête en arrière)", nuclear_stayinside_5: "Ne consommez PAS de produits frais locaux (lait, légumes, eau du robinet)", nuclear_stayinside_6: "Utilisez l'eau en bouteille et les conserves scellées",
+        nuclear_tuned_title: "3. ÉCOUTEZ (Stay Tuned)", nuclear_tuned_1: "Allumez une radio à piles (ou radio FM/AM du téléphone avec écouteurs)", nuclear_tuned_2: "Écoutez les consignes officielles : évacuation ou maintien du confinement", nuclear_tuned_3: "N'appelez PAS pour ne pas saturer les réseaux (utilisez SMS)", nuclear_tuned_4: "Fréquences d'urgence : 146.520 MHz (VHF), 446.000 MHz (PMR446)",
+        nuclear_iodine_title: "Iode stable : uniquement sur ordre", nuclear_iodine_1: "NE PRENEZ PAS d'iode de vous-même", nuclear_iodine_2: "Attendez l'instruction des autorités (préfet, radio, sirènes)", nuclear_iodine_3: "L'iode protège UNIQUEMENT la thyroïde contre l'iode radioactif", nuclear_iodine_4: "Doit être pris avant exposition ou dans les 8h suivant la contamination",
+        nuclear_geiger_title: "Avec un compteur Geiger", nuclear_geiger_1: "Mesurez en intérieur, au sous-sol, loin des murs extérieurs", nuclear_geiger_2: "Notez la valeur toutes les heures pour suivre la décroissance", nuclear_geiger_3: "Si le taux chute de 90% (7h) puis 99% (49h), la règle des 7 est vérifiée", nuclear_geiger_4: "NE SORTEZ que lorsque les autorités le confirment, pas seulement sur vos mesures",
         game_prep_test: "Test de Préparation (Évolutif)", game_prep_desc: "Évaluez vos réflexes face à des situations d'intensité croissante.", btn_start_sim: "Lancer la simulation", btn_continue: "Continuer",
         title_fast_evac: "Départ Immédiat", plan_last_min: "Les 5 dernières minutes", plan_desc: "À saisir juste avant de franchir la porte.", plan_id: "Portefeuilles & ID", plan_phone: "Téléphones & câbles chargeurs", plan_keys: "Trousseau de clés complet", plan_meds: "Médicaments prescrits en cours", plan_data: "Disques durs (SSD)",
         title_install: "Installer l'App", install_qr_title: "Scan QR Code", install_qr_wait: "[ Espace QR Code ]<br>En attente du lien", install_ios_title: "Sur iPhone (Safari)", install_ios_1: "Appuyez sur le bouton <strong>Partager</strong> en bas.", install_ios_2: "Choisissez <strong>\"Sur l'écran d'accueil\"</strong>.", install_and_title: "Sur Android (Chrome)", install_and_1: "Appuyez sur le <strong>menu à trois points</strong>.", install_and_2: "Sélectionnez <strong>\"Installer l'application\"</strong>.",
@@ -692,8 +817,10 @@
       en: {
         menu_title: "Main Menu", menu_prep: "Preparation", menu_home: "Home", menu_inventory: "My Bug-Out Bag", menu_plan: "Plan & Comms",
         menu_action: "Action", menu_map: "Evacuation Map", menu_fast_evac: "Immediate Departure", menu_manual: "Survival Manual",
+        menu_extreme: "Extreme Situations", menu_nuclear: "Nuclear Accident",
         menu_training: "Training", menu_game: "Training Game",
         menu_settings: "Settings", menu_dark_mode: "Dark Mode", menu_light_mode: "Light Mode", menu_install: "Install App",
+        menu_related: "Related Apps", menu_firstaiders: "FirstAiders (First Aid)",
         btn_fast_evac: "Immediate Departure Checklist", home_subtitle: "Survive the 72 Hours",
         home_bag: "My Bug-Out Bag", home_bag_sub: "Checklist & Quantities", home_manual: "Survival Manual", home_manual_sub: "Techniques & Gear",
         home_game: "Training Game", home_game_sub: "Emergency Scenarios", home_logistics: "Logistics & References",
@@ -703,6 +830,15 @@
         title_technics: "Survival Manual", search_technics: "Search a technique...", tech_steps_title: "Procedure",
         title_plan: "Plan & Comms", plan_rally_title: "Rally Points", plan_rp1: "Secondary Point (South Shore / Laval)", plan_rp2: "Final Bug-Out Point (Cardaillac, France)", plan_radio_title: "Radio Frequencies", plan_callsign: "Ham Radio Callsign", plan_fam_freq: "Family Frequency (UHF - GMRS/FRS)", plan_em_freq: "Emergency Call (VHF Simplex)", plan_rep_freq: "Main Local Repeater (Montreal)", plan_hf_freq: "Long Distance Survival Net (HF 20m)", btn_save_plan: "Save Plan",
         title_map: "Evacuation Map", map_desc: "Bike evacuation schematic (50km radius).",
+        title_nuclear: "Nuclear Accident", nuclear_banner_title: "Get Inside. Stay Inside. Stay Tuned.", nuclear_banner_sub: "The 3 golden rules for fallout",
+        nuclear_rule7_title: "The Rule of 7 (7/10 Rule)", nuclear_rule7_intro: "Fallout radioactivity drops very quickly. Every 7 hours, it decreases by 90%.",
+        nuclear_t_1h: "1 hour after", nuclear_t_7h: "7 hours after", nuclear_t_49h: "49 hours (2 days)", nuclear_t_343h: "343 hours (2 weeks)",
+        nuclear_rule7_1: "After 7h, danger has already dropped 90%", nuclear_rule7_2: "After 49h, only 1% of initial danger remains", nuclear_rule7_3: "Staying 48h sheltered is the best investment for your survival",
+        nuclear_getinside_title: "1. GET INSIDE", nuclear_getinside_1: "Immediately enter a solid building (concrete, brick)", nuclear_getinside_2: "Basement or central room without windows is ideal", nuclear_getinside_3: "Close doors and windows, turn off ventilation and AC", nuclear_getinside_4: "Do NOT stay in a car (almost no protection)", nuclear_getinside_5: "Do NOT go get children at school: they are taken care of on site",
+        nuclear_stayinside_title: "2. STAY INSIDE", nuclear_stayinside_1: "Stay confined for at least 24h, ideally 48h", nuclear_stayinside_2: "Peak danger is in the first 24 hours", nuclear_stayinside_3: "If you were outside: remove clothes, put them in a closed bag", nuclear_stayinside_4: "Wash with soap and water (including hair, head back)", nuclear_stayinside_5: "Do NOT consume local fresh products (milk, vegetables, tap water)", nuclear_stayinside_6: "Use bottled water and sealed canned goods",
+        nuclear_tuned_title: "3. STAY TUNED", nuclear_tuned_1: "Turn on a battery radio (or phone FM/AM radio with headphones)", nuclear_tuned_2: "Listen to official instructions: evacuation or continued confinement", nuclear_tuned_3: "Do NOT call to avoid overloading networks (use SMS)", nuclear_tuned_4: "Emergency frequencies: 146.520 MHz (VHF), 446.000 MHz (PMR446)",
+        nuclear_iodine_title: "Stable iodine: only on order", nuclear_iodine_1: "Do NOT take iodine on your own", nuclear_iodine_2: "Wait for authorities' instruction (prefect, radio, sirens)", nuclear_iodine_3: "Iodine protects ONLY the thyroid against radioactive iodine", nuclear_iodine_4: "Must be taken before exposure or within 8h of contamination",
+        nuclear_geiger_title: "With a Geiger counter", nuclear_geiger_1: "Measure indoors, in the basement, away from outer walls", nuclear_geiger_2: "Record the value hourly to track decay", nuclear_geiger_3: "If rate drops 90% (7h) then 99% (49h), the rule of 7 is verified", nuclear_geiger_4: "ONLY go out when authorities confirm, not just based on your measurements",
         game_prep_test: "Preparedness Test", game_prep_desc: "Evaluate your reflexes facing situations of increasing intensity.", btn_start_sim: "Start Simulation", btn_continue: "Continue",
         title_fast_evac: "Immediate Departure", plan_last_min: "The last 5 minutes", plan_desc: "Grab right before walking out the door.", plan_id: "Wallets & ID", plan_phone: "Phones & charger cables", plan_keys: "Complete set of keys", plan_meds: "Current prescribed medications", plan_data: "Backup drives (SSD)",
         title_install: "Install App", install_qr_title: "Scan QR Code", install_qr_wait: "[ QR Code Space ]<br>Waiting for link", install_ios_title: "On iPhone (Safari)", install_ios_1: "Tap the <strong>Share</strong> button at the bottom.", install_ios_2: "Choose <strong>\"Add to Home Screen\"</strong>.", install_and_title: "On Android (Chrome)", install_and_1: "Tap the <strong>three-dot menu</strong>.", install_and_2: "Select <strong>\"Install app\"</strong>.",
@@ -919,7 +1055,6 @@
     /* ================== TECHNIQUES ================== */
 
     const technicsData = [
-      // 1. FIREsteel
       {
         id: 1, catId: 5, essential: true,
         name_fr: "Allumer un feu (Ferrocérium)", name_en: "Start a fire (Firesteel)",
@@ -945,7 +1080,6 @@
           <text x="300" y="195" fill="#e08e36" font-size="13" font-weight="bold" font-family="sans-serif">Étincelles</text>
         </svg>`
       },
-      // 2. Tarp A-Frame
       {
         id: 2, catId: 3, essential: true,
         name_fr: "Monter un Tarp (A-Frame)", name_en: "Pitch a Tarp (A-Frame)",
@@ -974,7 +1108,6 @@
           <text x="240" y="105" fill="#e0b070" font-size="12" font-weight="bold" font-family="sans-serif" text-anchor="middle">Nœud Prusik</text>
         </svg>`
       },
-      // 3. HackRF
       {
         id: 3, catId: 6, essential: false,
         name_fr: "Déployer le HackRF One", name_en: "Deploy HackRF One",
@@ -1000,417 +1133,6 @@
           <path d="M310 185 L325 165 L340 195 L355 160 L370 195 L385 170 L400 190" stroke="#cc7722" stroke-width="2.5" fill="none"/>
           <text x="360" y="260" fill="#e0b070" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">Toughbook (SDR#)</text>
         </svg>`
-      },
-      // 4. Purifier eau
-      {
-        id: 4, catId: 1, essential: true,
-        name_fr: "Purifier l'eau par ébullition", name_en: "Purify water by boiling",
-        intro_fr: "La méthode la plus fiable. Détruit virus, bactéries et parasites (mais pas les produits chimiques).",
-        intro_en: "The most reliable method. Kills viruses, bacteria and parasites (but not chemicals).",
-        steps_fr: ["Filtrez grossièrement l'eau (tissu, sable).","Portez à ébullition franche (grosses bulles).","Maintenez 1 min à basse altitude, 3 min au-delà de 2000 m.","Laissez refroidir à couvert.","Transvasez dans un récipient propre."],
-        steps_en: ["Roughly filter the water (cloth, sand).","Bring to a rolling boil (large bubbles).","Keep boiling 1 min at low altitude, 3 min above 2000 m.","Let cool covered.","Pour into a clean container."],
-        svg: `<svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" style="background:#151715;border-radius:12px;">
-          <text x="240" y="28" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">ÉBULLITION — 1 MIN À 100°C</text>
-          <path d="M180 235 Q195 195 210 210 Q220 185 230 205 Q245 180 255 215 Q270 195 280 235 Z" fill="#cc7722" opacity="0.85"/>
-          <path d="M200 235 Q212 210 222 225 Q232 205 242 225 Q252 210 262 235 Z" fill="#e08e36"/>
-          <text x="230" y="265" fill="#e08e36" font-size="12" font-weight="bold" font-family="sans-serif" text-anchor="middle">Feu</text>
-          <path d="M155 130 L325 130 L312 235 L168 235 Z" fill="#5c6b73" stroke="#c8c0b0" stroke-width="2.5"/>
-          <rect x="148" y="122" width="184" height="14" rx="4" fill="#3a3f42"/>
-          <path d="M165 148 L315 148 L308 228 L172 228 Z" fill="#5b8291" opacity="0.7"/>
-          <circle cx="205" cy="185" r="6" fill="#a8c5d6" opacity="0.9"/><circle cx="240" cy="175" r="7" fill="#a8c5d6" opacity="0.9"/>
-          <circle cx="275" cy="195" r="5" fill="#a8c5d6" opacity="0.9"/><circle cx="225" cy="210" r="5" fill="#a8c5d6" opacity="0.9"/>
-          <path d="M210 105 Q218 80 210 55" stroke="#c8c0b0" stroke-width="2.5" fill="none" opacity="0.5"/>
-          <path d="M240 100 Q248 70 240 40" stroke="#c8c0b0" stroke-width="2.5" fill="none" opacity="0.5"/>
-          <path d="M270 105 Q278 80 270 55" stroke="#c8c0b0" stroke-width="2.5" fill="none" opacity="0.5"/>
-          <text x="380" y="160" fill="#a8c78a" font-size="14" font-weight="bold" font-family="sans-serif">1 minute</text>
-          <text x="380" y="182" fill="#a8c78a" font-size="14" font-weight="bold" font-family="sans-serif">à 100°C</text>
-          <text x="380" y="215" fill="#7a8f5a" font-size="11" font-family="sans-serif">(3 min au-delà</text>
-          <text x="380" y="230" fill="#7a8f5a" font-size="11" font-family="sans-serif">de 2000 m)</text>
-        </svg>`
-      },
-      // 5. Hémorragie
-      {
-        id: 5, catId: 4, essential: true,
-        name_fr: "Arrêter une hémorragie", name_en: "Stop a bleeding",
-        intro_fr: "Une hémorragie artérielle peut tuer en 3 minutes. La compression directe est la priorité absolue.",
-        intro_en: "Arterial bleeding can kill in 3 minutes. Direct compression is the absolute priority.",
-        steps_fr: ["Protégez-vous (gants).","Appuyez FORT et directement sur la plaie avec la paume.","Maintenez sans relâcher 10 min minimum.","Si le sang traverse, ajoutez une compresse SANS retirer la première.","Si échec sur un membre : garrot 5-7 cm au-dessus.","Notez l'heure et ne retirez JAMAIS le garrot."],
-        steps_en: ["Protect yourself (gloves).","Press HARD and directly on the wound with the palm.","Maintain without releasing for at least 10 min.","If blood soaks through, add a compress WITHOUT removing the first.","If it fails on a limb: tourniquet 5-7 cm above.","Note the time and NEVER remove the tourniquet."],
-        svg: `<svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" style="background:#151715;border-radius:12px;">
-          <text x="240" y="28" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">COMPRESSION DIRECTE</text>
-          <path d="M60 130 L420 130 L420 185 L60 185 Z" fill="#e8c9a0" stroke="#a67c52" stroke-width="2"/>
-          <path d="M220 135 L250 180" stroke="#a34848" stroke-width="8" stroke-linecap="round"/>
-          <path d="M228 135 L242 180" stroke="#7b2424" stroke-width="4" stroke-linecap="round"/>
-          <rect x="190" y="115" width="90" height="80" rx="6" fill="#fff" stroke="#a34848" stroke-width="2.5" opacity="0.95"/>
-          <text x="235" y="162" fill="#a34848" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">Compresse</text>
-          <path d="M180 80 Q235 65 290 80 L290 115 L180 115 Z" fill="#e8c9a0" stroke="#a67c52" stroke-width="2"/>
-          <text x="235" y="60" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">Compression directe</text>
-          <rect x="100" y="118" width="16" height="80" rx="4" fill="#7b2424"/>
-          <text x="80" y="105" fill="#a34848" font-size="12" font-weight="bold" font-family="sans-serif" text-anchor="middle">Garrot</text>
-          <text x="80" y="120" fill="#a34848" font-size="11" font-family="sans-serif" text-anchor="middle">(si échec)</text>
-          <line x1="120" y1="100" x2="200" y2="100" stroke="#e0b070" stroke-width="2" stroke-dasharray="4,3"/>
-          <text x="160" y="85" fill="#e0b070" font-size="12" font-family="sans-serif" text-anchor="middle">5-7 cm</text>
-        </svg>`
-      },
-      // 6. Nœud de chaise
-      {
-        id: 6, catId: 7, essential: true,
-        name_fr: "Faire un nœud de chaise", name_en: "Tie a bowline knot",
-        intro_fr: "Le nœud de chaise crée une boucle fixe qui ne se serre pas et se défait facilement.",
-        intro_en: "The bowline creates a fixed loop that doesn't tighten and unties easily.",
-        steps_fr: ["Formez une petite boucle dans le courant, à 30 cm du bout.","Passez le dormant dans la boucle par en dessous.","Faites le tour du courant par l'arrière.","Repassez le dormant dans la boucle par en dessus.","Serrez en tirant simultanément."],
-        steps_en: ["Form a small loop in the standing part, 30 cm from the end.","Pass the working end through the loop from underneath.","Go around the standing part from behind.","Pass the working end back through the loop from above.","Tighten by pulling simultaneously."],
-        svg: `<svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" style="background:#151715;border-radius:12px;">
-          <text x="240" y="28" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">NŒUD DE CHAISE</text>
-          <path d="M240 50 L240 100" stroke="#c8c0b0" stroke-width="8" stroke-linecap="round"/>
-          <text x="270" y="70" fill="#a8c78a" font-size="13" font-weight="bold" font-family="sans-serif">Courant</text>
-          <ellipse cx="240" cy="140" rx="45" ry="28" fill="none" stroke="#c8c0b0" stroke-width="8"/>
-          <ellipse cx="240" cy="215" rx="58" ry="38" fill="none" stroke="#cc7722" stroke-width="8"/>
-          <text x="320" y="225" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif">Boucle fixe</text>
-          <path d="M200 160 Q165 185 175 215" stroke="#c8c0b0" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <text x="120" y="200" fill="#a8c78a" font-size="13" font-weight="bold" font-family="sans-serif">Dormant</text>
-        </svg>`
-      },
-      // 7. RCP
-      {
-        id: 7, catId: 4, essential: true,
-        name_fr: "Réanimation Cardio-Pulmonaire (RCP)", name_en: "CPR",
-        intro_fr: "En cas d'arrêt cardiaque, chaque minute sans RCP réduit les chances de survie de 10%.",
-        intro_en: "In case of cardiac arrest, each minute without CPR reduces survival by 10%.",
-        steps_fr: ["Vérifiez conscience et respiration (10 sec max).","Appelez à l'aide et demandez un défibrillateur.","Talon d'une main au centre de la poitrine, l'autre par-dessus.","Compressez fort : 5-6 cm, 100-120/min.","Laissez la poitrine remonter entre chaque compression.","Continuez jusqu'à l'arrivée des secours."],
-        steps_en: ["Check consciousness and breathing (10 sec max).","Call for help and request a defibrillator.","Heel of one hand at center of chest, the other on top.","Compress hard: 5-6 cm, 100-120/min.","Let the chest fully recoil between compressions.","Continue until help arrives."],
-        svg: `<svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" style="background:#151715;border-radius:12px;">
-          <text x="240" y="28" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">RCP — 100 À 120/MIN</text>
-          <ellipse cx="240" cy="150" rx="85" ry="110" fill="#e8c9a0" stroke="#a67c52" stroke-width="2"/>
-          <circle cx="240" cy="150" r="18" fill="#a34848" opacity="0.3"/>
-          <circle cx="240" cy="150" r="8" fill="#a34848"/>
-          <text x="240" y="100" fill="#a34848" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">Centre de la poitrine</text>
-          <ellipse cx="240" cy="150" rx="30" ry="22" fill="#e8c9a0" stroke="#a67c52" stroke-width="2"/>
-          <ellipse cx="240" cy="142" rx="30" ry="22" fill="#e8c9a0" stroke="#a67c52" stroke-width="2"/>
-          <path d="M240 90 L240 120" stroke="#a34848" stroke-width="4" marker-end="url(#arrowRed7)"/>
-          <path d="M240 210 L240 180" stroke="#a34848" stroke-width="4" marker-end="url(#arrowRed7)"/>
-          <defs><marker id="arrowRed7" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#a34848"/></marker></defs>
-          <text x="370" y="130" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif">5-6 cm</text>
-          <text x="370" y="155" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif">100-120/min</text>
-          <text x="240" y="265" fill="#7a8f5a" font-size="12" font-family="sans-serif" text-anchor="middle">Laisser la poitrine remonter entre chaque compression</text>
-        </svg>`
-      },
-      // 8. UV5R
-      {
-        id: 8, catId: 6, essential: true,
-        name_fr: "Utiliser une radio UV5R (bases)", name_en: "Use a UV5R radio (basics)",
-        intro_fr: "La Baofeng UV5R est la radio de survie la plus répandue. Simple, robuste, quelques réglages de base.",
-        intro_en: "The Baofeng UV5R is the most common survival radio. Simple, rugged, a few basic settings.",
-        steps_fr: ["Chargez complètement la batterie.","Vissez l'antenne correctement (sinon vous grillez l'émetteur).","Allumez avec le bouton rotatif.","Passez en mode VFO (bouton orange).","Tapez la fréquence (ex: 146.520) puis validez.","Pour émettre : PTT latéral, parlez à 5 cm du micro.","Verrouillez le clavier (# maintenu)."],
-        steps_en: ["Fully charge the battery.","Screw the antenna correctly (otherwise you'll fry the transmitter).","Turn on with the rotary knob.","Switch to VFO mode (orange button).","Type the frequency (e.g. 146.520) and validate.","To transmit: side PTT, speak 5 cm from the mic.","Lock the keypad (hold #)."],
-        svg: `<svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" style="background:#151715;border-radius:12px;">
-          <text x="240" y="28" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">BAOFENG UV5R</text>
-          <rect x="150" y="90" width="180" height="150" rx="12" fill="#1e221f" stroke="#5c6b73" stroke-width="3"/>
-          <rect x="215" y="45" width="14" height="50" rx="4" fill="#2b302c" stroke="#7a8f5a" stroke-width="2"/>
-          <text x="245" y="60" fill="#a8c78a" font-size="13" font-weight="bold" font-family="sans-serif">Antenne</text>
-          <circle cx="195" cy="105" r="9" fill="#3a3f42" stroke="#c8c0b0" stroke-width="2"/>
-          <text x="160" y="90" fill="#a8c78a" font-size="11" font-family="sans-serif">ON/OFF</text>
-          <rect x="230" y="100" width="80" height="35" rx="4" fill="#2b302c" stroke="#7a8f5a" stroke-width="1.5"/>
-          <text x="270" y="124" fill="#e08e36" font-size="15" font-weight="bold" font-family="monospace" text-anchor="middle">146.520</text>
-          <rect x="175" y="150" width="130" height="80" rx="6" fill="#2b302c" stroke="#3a3f42"/>
-          <text x="240" y="180" fill="#c8c0b0" font-size="14" font-family="monospace" text-anchor="middle">1 2 3</text>
-          <text x="240" y="200" fill="#c8c0b0" font-size="14" font-family="monospace" text-anchor="middle">4 5 6</text>
-          <text x="240" y="220" fill="#c8c0b0" font-size="14" font-family="monospace" text-anchor="middle">7 8 9</text>
-          <rect x="135" y="130" width="15" height="55" rx="4" fill="#a34848"/>
-          <text x="110" y="160" fill="#e0b070" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">PTT</text>
-          <circle cx="320" cy="115" r="5" fill="#4b7f52"/>
-          <text x="340" y="120" fill="#a8c78a" font-size="12" font-family="sans-serif">LED</text>
-        </svg>`
-      },
-      // ==================== 25 NOUVELLES ====================
-      // EAU (catId 1)
-      {
-        id: 9, catId: 1, essential: true,
-        name_fr: "Trouver de l'eau en ville", name_en: "Find water in the city",
-        intro_fr: "En situation d'urgence urbaine, l'eau courante peut être coupée. Voici les sources à connaître.",
-        intro_en: "In an urban emergency, running water may be cut off. Here are the sources to know.",
-        steps_fr: ["Chauffe-eau domestique : ouvrez le robinet du bas (40-200 L d'eau potable).","Réservoir de chasse d'eau (SANS produit nettoyant dans le réservoir).","Tuyaux intérieurs : ouvrez le robinet le plus haut pour laisser entrer l'air, puis récupérez au plus bas.","Fontaines publiques et bornes-fontaines (clé spéciale).","Récupérez l'eau de pluie (à filtrer et purifier)."],
-        steps_en: ["Domestic water heater: open the bottom tap (40-200 L of drinkable water).","Toilet tank (WITHOUT cleaning product in the tank).","Interior pipes: open the highest tap to let air in, then collect at the lowest point.","Public fountains and hydrants (special key).","Collect rainwater (to filter and purify)."],
-        svg: null
-      },
-      {
-        id: 10, catId: 1, essential: false,
-        name_fr: "Filtrer l'eau avec un filtre MRE", name_en: "Filter water with an MRE filter",
-        intro_fr: "Les filtres à membrane (type Sawyer, Lifestraw) retiennent bactéries et parasites jusqu'à 0,1 micron.",
-        intro_en: "Membrane filters (Sawyer, Lifestraw type) retain bacteria and parasites down to 0.1 micron.",
-        steps_fr: ["Remplissez un récipient d'eau brute (rivière, lac, pluie).","Plongez l'extrémité d'entrée du filtre dans l'eau.","Aspirez ou pressez pour faire passer l'eau à travers la membrane.","Récupérez l'eau filtrée dans un récipient propre.","Après usage, rincez à l'eau propre et laissez sécher.","Ne laissez JAMAIS geler un filtre à membrane."],
-        steps_en: ["Fill a container with raw water (river, lake, rain).","Immerse the filter inlet in the water.","Suck or squeeze to pass water through the membrane.","Collect filtered water in a clean container.","After use, rinse with clean water and let dry.","NEVER let a membrane filter freeze."],
-        svg: null
-      },
-      {
-        id: 11, catId: 1, essential: false,
-        name_fr: "Pêche de survie (ligne simple)", name_en: "Survival fishing (simple line)",
-        intro_fr: "Avec un hameçon, un fil et un appât, on peut pêcher sans matériel sophistiqué.",
-        intro_en: "With a hook, line and bait, you can fish without sophisticated gear.",
-        steps_fr: ["Coupez 5-10 m de fil résistant (paracord effiloché, fil de pêche).","Attachez un hameçon (ou un clou tordu, une épingle).","Ajoutez un petit objet brillant comme leurre.","Fixez un bouchon improvisé (morceau de liège, bois).","Lancez dans une zone calme, près des rochers ou végétation.","Soyez patient : ne tirez pas trop tôt."],
-        steps_en: ["Cut 5-10 m of strong line (frayed paracord, fishing line).","Attach a hook (or bent nail, pin).","Add a small shiny object as lure.","Attach an improvised float (cork, wood).","Cast in a calm area, near rocks or vegetation.","Be patient: don't pull too early."],
-        svg: null
-      },
-      // VÊTEMENTS (catId 2)
-      {
-        id: 12, catId: 2, essential: true,
-        name_fr: "Système 3-couches (vêtements)", name_en: "3-layer clothing system",
-        intro_fr: "Le principe des 3 couches permet de rester au sec et au chaud en toutes conditions.",
-        intro_en: "The 3-layer principle keeps you dry and warm in all conditions.",
-        steps_fr: ["Couche 1 (base) : matière respirante (mérinos, synthétique). ÉVITEZ le coton.","Couche 2 (isolation) : polaire, duvet ou laine.","Couche 3 (protection) : coupe-vent / imperméable.","Adaptez : retirez une couche AVANT de transpirer.","Le coton mouillé ne sèche pas et refroidit → danger d'hypothermie."],
-        steps_en: ["Layer 1 (base): breathable material (merino, synthetic). AVOID cotton.","Layer 2 (insulation): fleece, down or wool.","Layer 3 (protection): windbreaker / waterproof.","Adjust: remove a layer BEFORE sweating.","Wet cotton doesn't dry and cools → hypothermia risk."],
-        svg: `<svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" style="background:#151715;border-radius:12px;">
-          <text x="240" y="28" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">SYSTÈME 3-COUCHES</text>
-          <path d="M120 60 Q110 90 105 150 L135 150 L135 240 L175 240 L175 150 L205 150 Q215 90 205 60 Z" fill="#5b8291" stroke="#a8c5d6" stroke-width="2"/>
-          <text x="160" y="260" fill="#a8c5d6" font-size="12" font-weight="bold" font-family="sans-serif" text-anchor="middle">Base respirante</text>
-          <path d="M220 60 Q210 90 205 150 L235 150 L235 240 L275 240 L275 150 L305 150 Q315 90 305 60 Z" fill="#8b5a2b" stroke="#e0b070" stroke-width="2"/>
-          <text x="260" y="260" fill="#e0b070" font-size="12" font-weight="bold" font-family="sans-serif" text-anchor="middle">Isolation (polaire)</text>
-          <path d="M320 60 Q310 90 305 150 L335 150 L335 240 L375 240 L375 150 L405 150 Q415 90 405 60 Z" fill="#3f5938" stroke="#a8c78a" stroke-width="2"/>
-          <text x="360" y="260" fill="#a8c78a" font-size="12" font-weight="bold" font-family="sans-serif" text-anchor="middle">Coupe-vent</text>
-        </svg>`
-      },
-      {
-        id: 13, catId: 2, essential: false,
-        name_fr: "Isoler les extrémités", name_en: "Insulate extremities",
-        intro_fr: "La majorité de la chaleur corporelle se perd par la tête, les mains et les pieds.",
-        intro_en: "Most body heat is lost through the head, hands and feet.",
-        steps_fr: ["Bonnet couvrant les oreilles (30% de la chaleur perdue par la tête).","Gants doublés (évitez les gants en laine mouillée).","Chaussettes en mérinos ou synthétique (JAMAIS coton).","Chaussures imperméables mais respirantes.","Enroulez un foulard ou buff autour du cou."],
-        steps_en: ["Beanie covering the ears (30% of heat lost through head).","Lined gloves (avoid wet wool gloves).","Merino or synthetic socks (NEVER cotton).","Waterproof but breathable shoes.","Wrap a scarf or buff around the neck."],
-        svg: null
-      },
-      // ABRIS (catId 3)
-      {
-        id: 14, catId: 3, essential: true,
-        name_fr: "Monter un abri Lean-To", name_en: "Build a Lean-To shelter",
-        intro_fr: "L'abri Lean-To est un abri simple à 1 pente, rapide à monter avec un tarp ou des branches.",
-        intro_en: "The Lean-To is a simple 1-slope shelter, quick to set up with a tarp or branches.",
-        steps_fr: ["Choisissez un arbre ou un rocher comme support principal.","Tendez une corde inclinée entre l'arbre et le sol.","Disposez des branches ou le tarp le long de cette pente.","Couvrez de feuilles, branches de sapin, ou neige.","Orientez l'ouverture À L'OPPOSÉ du vent dominant.","Ajoutez une couche isolante au sol (branches, feuilles)."],
-        steps_en: ["Choose a tree or rock as main support.","Stretch a slanted line between the tree and the ground.","Lay branches or the tarp along this slope.","Cover with leaves, fir branches, or snow.","Face the opening OPPOSITE to the dominant wind.","Add an insulating layer on the ground."],
-        svg: `<svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" style="background:#151715;border-radius:12px;">
-          <text x="240" y="28" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">ABRI LEAN-TO</text>
-          <line x1="20" y1="235" x2="460" y2="235" stroke="#3f5938" stroke-width="4"/>
-          <rect x="60" y="50" width="16" height="185" fill="#5c4a3a"/>
-          <ellipse cx="68" cy="45" rx="35" ry="22" fill="#3f5938"/>
-          <line x1="76" y1="90" x2="380" y2="235" stroke="#c8c0b0" stroke-width="3"/>
-          <path d="M76 90 L380 235 L400 235 L96 90 Z" fill="#3f5938" opacity="0.6" stroke="#7a8f5a" stroke-width="2"/>
-          <text x="240" y="180" fill="#e4e9d8" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">Toit incliné</text>
-          <path d="M400 200 L460 200" stroke="#a8c78a" stroke-width="3" marker-end="url(#arrowWind)"/>
-          <defs><marker id="arrowWind" markerWidth="10" markerHeight="10" refX="7" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#a8c78a"/></marker></defs>
-          <text x="430" y="195" fill="#a8c78a" font-size="11" font-family="sans-serif">Vent</text>
-          <text x="60" y="265" fill="#7a8f5a" font-size="12" font-family="sans-serif">Ouverture opposée au vent</text>
-        </svg>`
-      },
-      {
-        id: 15, catId: 3, essential: false,
-        name_fr: "Construire un Debris Hut", name_en: "Build a Debris Hut",
-        intro_fr: "L'abri le plus chaud pour une nuit froide sans matériel. Long à construire mais très efficace.",
-        intro_en: "The warmest shelter for a cold night without gear. Long to build but very effective.",
-        steps_fr: ["Trouvez une crête ou un monticule naturel.","Construisez un cadre en A avec des branches.","Couvrez généreusement de feuilles mortes, fougères, branches de sapin (30-50 cm d'épaisseur).","Laissez une ouverture étroite pour entrer.","Bouchez l'ouverture avec un sac ou des branches.","L'isolation au sol est aussi importante que le toit."],
-        steps_en: ["Find a ridge or natural mound.","Build an A-frame with branches.","Cover generously with dead leaves, ferns, fir branches (30-50 cm thick).","Leave a narrow entrance.","Plug the entrance with a bag or branches.","Ground insulation is as important as the roof."],
-        svg: null
-      },
-      {
-        id: 16, catId: 3, essential: false,
-        name_fr: "Abri d'urgence en ville", name_en: "Urban emergency shelter",
-        intro_fr: "En ville, on peut utiliser les structures existantes pour s'abriter rapidement.",
-        intro_en: "In the city, you can use existing structures to shelter quickly.",
-        steps_fr: ["Cages d'escalier d'immeubles (béton, isolées).","Parkings souterrains (attention à la ventilation).","Tunnels piétonniers / métro (si accessible).","Sous les ponts (côté opposé au vent).","Évitez les zones inondables (sous-sols).","Repérez les issues de secours AVANT de vous installer."],
-        steps_en: ["Building stairwells (concrete, insulated).","Underground parking (watch ventilation).","Pedestrian tunnels / subway (if accessible).","Under bridges (opposite side to wind).","Avoid flood zones (basements).","Locate emergency exits BEFORE settling in."],
-        svg: null
-      },
-      // SANTÉ (catId 4)
-      {
-        id: 17, catId: 4, essential: true,
-        name_fr: "Position Latérale de Sécurité (PLS)", name_en: "Recovery Position (PLS)",
-        intro_fr: "Pour une personne inconsciente qui respire : la PLS évite l'étouffement par la langue ou les vomissements.",
-        intro_en: "For an unconscious person who is breathing: PLS prevents choking on tongue or vomit.",
-        steps_fr: ["Vérifiez que la personne respire (10 sec).","Allongez-la sur le dos, bras le long du corps.","Pliez le bras le plus proche à 90°, main vers le haut.","Pliez la jambe opposée, pied au sol.","Faites rouler la personne sur le côté en tirant sur le genou.","Ouvrez la bouche vers le sol. Surveillez la respiration en continu."],
-        steps_en: ["Check that the person is breathing (10 sec).","Lay them on their back, arms along the body.","Bend the nearest arm at 90°, hand up.","Bend the opposite leg, foot on the ground.","Roll the person onto their side by pulling the knee.","Open the mouth towards the ground. Monitor breathing continuously."],
-        svg: null
-      },
-      {
-        id: 18, catId: 4, essential: true,
-        name_fr: "Traiter une hypothermie", name_en: "Treat hypothermia",
-        intro_fr: "L'hypothermie survient dès que la température corporelle descend sous 35°C. Urgence vitale.",
-        intro_en: "Hypothermia occurs when body temperature drops below 35°C. Life-threatening emergency.",
-        steps_fr: ["Sortez la personne du froid et du vent.","Retirez les vêtements mouillés (coupez si nécessaire).","Enveloppez dans des couvertures sèches, sac de couchage, couverture de survie.","Réchauffez le CENTRE en priorité (torse, aisselles, aine).","Donnez des boissons chaudes sucrées SI consciente.","NE PAS frictionner, NE PAS donner d'alcool.","Évitez les mouvements brusques (risque d'arrêt cardiaque)."],
-        steps_en: ["Move the person out of cold and wind.","Remove wet clothes (cut if necessary).","Wrap in dry blankets, sleeping bag, survival blanket.","Warm the CORE first (chest, armpits, groin).","Give hot sweet drinks IF conscious.","Do NOT rub, do NOT give alcohol.","Avoid sudden movements (risk of cardiac arrest)."],
-        svg: null
-      },
-      {
-        id: 19, catId: 4, essential: false,
-        name_fr: "Traiter une brûlure", name_en: "Treat a burn",
-        intro_fr: "La règle d'or : refroidir immédiatement à l'eau tempérée pendant 15-20 minutes.",
-        intro_en: "Golden rule: cool immediately with lukewarm water for 15-20 minutes.",
-        steps_fr: ["Refroidissez à l'eau tempérée (15-20°C) pendant 15-20 min.","NE PAS utiliser de glace ni d'eau glacée.","Retirez bijoux et vêtements NON collés.","Ne percez JAMAIS les cloques.","Couvrez d'un pansement stérile non adhérent.","Consultez si la brûlure dépasse la paume de la main, ou touche visage/mains/articulations."],
-        steps_en: ["Cool with lukewarm water (15-20°C) for 15-20 min.","Do NOT use ice or ice water.","Remove jewelry and NON-stuck clothing.","NEVER pop blisters.","Cover with a sterile non-adherent dressing.","Seek care if burn is larger than palm, or touches face/hands/joints."],
-        svg: null
-      },
-      {
-        id: 20, catId: 4, essential: false,
-        name_fr: "Fracture : immobiliser un membre", name_en: "Fracture: immobilize a limb",
-        intro_fr: "Une fracture non immobilisée peut causer des lésions définitives. Immobilisez avant de déplacer.",
-        intro_en: "An unimmobilized fracture can cause permanent damage. Immobilize before moving.",
-        steps_fr: ["Ne tentez PAS de réaligner l'os.","Immobilisez dans la position trouvée.","Utilisez une attelle (bâton, carton) couvrant les articulations au-dessus et en dessous.","Attachez SANS serrer (circulation !).","Vérifiez régulièrement les doigts (chaleur, couleur, sensibilité).","Glace indirecte (dans un tissu) pour réduire la douleur."],
-        steps_en: ["Do NOT try to realign the bone.","Immobilize in the position found.","Use a splint (stick, cardboard) covering joints above and below.","Tie WITHOUT tightening (circulation!).","Regularly check fingers (warmth, color, sensitivity).","Indirect ice (in cloth) to reduce pain."],
-        svg: null
-      },
-      // FEU (catId 5)
-      {
-        id: 21, catId: 5, essential: true,
-        name_fr: "Feu en pyramide", name_en: "Pyramid fire",
-        intro_fr: "Structure de feu la plus polyvalente : chaleur, cuisson, signal. Facile à entretenir.",
-        intro_en: "The most versatile fire structure: heat, cooking, signal. Easy to maintain.",
-        steps_fr: ["Préparez un lit de petit bois sec au centre.","Disposez les grosses bûches en pyramide autour.","Allumez le petit bois au centre.","Ajoutez progressivement des branches plus grosses.","Laissez un espace entre les bûches pour l'oxygène.","En fin de combustion, les braises sont parfaites pour la cuisson."],
-        steps_en: ["Prepare a bed of small dry wood in the center.","Arrange large logs in a pyramid around it.","Light the small wood in the center.","Gradually add larger branches.","Leave space between logs for oxygen.","At the end, embers are perfect for cooking."],
-        svg: `<svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" style="background:#151715;border-radius:12px;">
-          <text x="240" y="28" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">FEU EN PYRAMIDE</text>
-          <line x1="40" y1="240" x2="440" y2="240" stroke="#3f5938" stroke-width="4"/>
-          <rect x="130" y="200" width="220" height="14" rx="3" fill="#5c4a3a" transform="rotate(-15 240 207)"/>
-          <rect x="130" y="200" width="220" height="14" rx="3" fill="#5c4a3a" transform="rotate(15 240 207)"/>
-          <rect x="150" y="170" width="180" height="14" rx="3" fill="#5c4a3a" transform="rotate(-20 240 177)"/>
-          <rect x="150" y="170" width="180" height="14" rx="3" fill="#5c4a3a" transform="rotate(20 240 177)"/>
-          <rect x="170" y="140" width="140" height="14" rx="3" fill="#5c4a3a" transform="rotate(-25 240 147)"/>
-          <rect x="170" y="140" width="140" height="14" rx="3" fill="#5c4a3a" transform="rotate(25 240 147)"/>
-          <path d="M220 220 Q230 195 240 205 Q250 185 260 210 Q255 195 250 220 Z" fill="#cc7722"/>
-          <path d="M232 220 Q238 205 245 215 Q252 200 258 220 Z" fill="#e08e36"/>
-          <text x="240" y="265" fill="#e08e36" font-size="12" font-weight="bold" font-family="sans-serif" text-anchor="middle">Allumage au centre</text>
-        </svg>`
-      },
-      {
-        id: 22, catId: 5, essential: false,
-        name_fr: "Feu en étoile", name_en: "Star fire",
-        intro_fr: "Le feu en étoile consomme peu de bois et dure longtemps. Idéal pour l'économie de ressources.",
-        intro_en: "The star fire uses little wood and lasts long. Ideal for resource economy.",
-        steps_fr: ["Allumez un petit feu central.","Disposez 5-6 bûches en étoile autour, pointes vers le centre.","Poussez les bûches au fur et à mesure qu'elles brûlent.","Économie de bois : 1 bûche peut durer 30-60 min.","Parfait pour cuisiner ou se réchauffer longtemps.","Ne nécessite pas de grosses bûches."],
-        steps_en: ["Light a small central fire.","Arrange 5-6 logs in a star shape, tips toward the center.","Push the logs as they burn.","Wood economy: 1 log can last 30-60 min.","Perfect for cooking or warming up for a long time.","Doesn't require large logs."],
-        svg: null
-      },
-      {
-        id: 23, catId: 5, essential: false,
-        name_fr: "Allumettes tempête (technique)", name_en: "Storm matches (technique)",
-        intro_fr: "Les allumettes tempête brûlent sous la pluie et le vent. Encore faut-il bien les utiliser.",
-        intro_en: "Storm matches burn in rain and wind. You still need to use them correctly.",
-        steps_fr: ["Protégez la tête de l'allumette de l'humidité (boîte fermée).","Grattez le frottoir latéralement, pas vers le bas.","Protégez la flamme naissante avec vos mains en coupe.","Approchez l'amadou par le dessus (la flamme monte).","Si la flamme s'éteint, ne soufflez pas : protégez et attendez.","Une allumette tempête brûle 10-15 secondes."],
-        steps_en: ["Protect the match head from moisture (closed box).","Strike the striker laterally, not downward.","Protect the young flame with cupped hands.","Bring the tinder from above (flame rises).","If the flame dies, don't blow: protect and wait.","A storm match burns 10-15 seconds."],
-        svg: null
-      },
-      // COMMS (catId 6)
-      {
-        id: 24, catId: 6, essential: true,
-        name_fr: "Fréquences d'urgence à connaître", name_en: "Emergency frequencies to know",
-        intro_fr: "En situation d'urgence, certaines fréquences sont internationalement reconnues.",
-        intro_en: "In an emergency, certain frequencies are internationally recognized.",
-        steps_fr: ["146.520 MHz : appel d'urgence VHF simplex (Amérique du Nord).","446.000 MHz : PMR446 canal 8 (Europe).","462.675 MHz : canal 20 GMRS avec code CTCSS 141.3 (USA).","14.300 MHz : réseau HF maritime et survie.","121.500 MHz : fréquence aéronautique de détresse.","156.800 MHz : canal 16 VHF marine (SOS)."],
-        steps_en: ["146.520 MHz: VHF simplex emergency call (North America).","446.000 MHz: PMR446 channel 8 (Europe).","462.675 MHz: GMRS channel 20 with CTCSS 141.3 (USA).","14.300 MHz: HF maritime and survival net.","121.500 MHz: aeronautical distress frequency.","156.800 MHz: VHF marine channel 16 (SOS)."],
-        svg: null
-      },
-      {
-        id: 25, catId: 6, essential: true,
-        name_fr: "Recharger sans secteur", name_en: "Recharge without grid",
-        intro_fr: "Plus de courant ? Voici les solutions par ordre d'efficacité.",
-        intro_en: "No more power? Here are the solutions in order of efficiency.",
-        steps_fr: ["Panneau solaire pliable (30-70W) : recharge en 3-6h selon ensoleillement.","Powerbank préchargée : 2-3 recharges de téléphone.","Dynamo à manivelle : lent mais toujours dispo.","Batterie de voiture (12V) + convertisseur : solution de secours.","Recharge au travail / chez des amis tant que le réseau tient.","Économisez : mode avion, luminosité mini, désactivez le GPS."],
-        steps_en: ["Foldable solar panel (30-70W): recharges in 3-6h depending on sun.","Pre-charged powerbank: 2-3 phone recharges.","Hand crank dynamo: slow but always available.","Car battery (12V) + inverter: backup solution.","Recharge at work / friends while the grid holds.","Save: airplane mode, min brightness, disable GPS."],
-        svg: null
-      },
-      {
-        id: 26, catId: 6, essential: true,
-        name_fr: "Morse : envoyer SOS", name_en: "Morse: send SOS",
-        intro_fr: "Le code SOS (... --- ...) est universel. Utile avec une lampe, un sifflet, ou une radio.",
-        intro_en: "The SOS code (... --- ...) is universal. Useful with a lamp, whistle, or radio.",
-        steps_fr: ["SOS = 3 courts, 3 longs, 3 courts (... --- ...).","Court = 1 temps, Long = 3 temps, Espace = 3 temps.","Avec une lampe : faites des flashs.","Avec un sifflet : coups courts et longs.","Répétez le cycle toutes les 30 secondes.","Écoutez la réponse : on vous répondra en morse ou par radio."],
-        steps_en: ["SOS = 3 short, 3 long, 3 short (... --- ...).","Short = 1 time unit, Long = 3 units, Space = 3 units.","With a lamp: flash.","With a whistle: short and long blasts.","Repeat the cycle every 30 seconds.","Listen for response: they'll answer in morse or radio."],
-        svg: null
-      },
-      // OUTILS (catId 7)
-      {
-        id: 27, catId: 7, essential: true,
-        name_fr: "Nœud de Prusik", name_en: "Prusik knot",
-        intro_fr: "Le Prusik est un nœud autobloquant qui coulisse sur une corde et se bloque sous charge.",
-        intro_en: "The Prusik is a self-locking knot that slides on a rope and locks under load.",
-        steps_fr: ["Prenez une cordelette fine (6-8 mm).","Faites 3-4 tours autour de la corde principale.","Passez la boucle dans elle-même pour finir.","Le Prusik coulisse librement sans charge.","Sous charge, il se bloque instantanément.","Utilisez pour remonter une pente, sécuriser un Tarp, etc."],
-        steps_en: ["Take a thin cord (6-8 mm).","Make 3-4 wraps around the main rope.","Pass the loop through itself to finish.","The Prusik slides freely without load.","Under load, it locks instantly.","Use to climb a slope, secure a Tarp, etc."],
-        svg: null
-      },
-      {
-        id: 28, catId: 7, essential: false,
-        name_fr: "Affûter un couteau", name_en: "Sharpen a knife",
-        intro_fr: "Un couteau émoussé est dangereux (il glisse) et inefficace. Affûtez régulièrement.",
-        intro_en: "A dull knife is dangerous (it slips) and ineffective. Sharpen regularly.",
-        steps_fr: ["Trouvez une pierre à aiguiser (naturelle ou céramique).","Mouillez la pierre (lubrification).","Angle 15-20° entre la lame et la pierre.","Passez la lame en tirant, du talon vers la pointe.","Répétez 10-15 fois par face, en alternant.","Terminez avec un cuir ou un jean pour polir le fil.","Test : coupe une feuille de papier sans effort."],
-        steps_en: ["Find a sharpening stone (natural or ceramic).","Wet the stone (lubrication).","15-20° angle between blade and stone.","Pull the blade from heel to tip.","Repeat 10-15 times per side, alternating.","Finish with leather or jeans to polish the edge.","Test: cuts a sheet of paper effortlessly."],
-        svg: null
-      },
-      {
-        id: 29, catId: 7, essential: true,
-        name_fr: "S'orienter sans GPS", name_en: "Navigate without GPS",
-        intro_fr: "Avec une boussole et une carte, on peut s'orienter précisément même sans électronique.",
-        intro_en: "With a compass and a map, you can navigate precisely even without electronics.",
-        steps_fr: ["Posez la carte à plat, boussole dessus.","Alignez le nord de la carte avec l'aiguille (nord magnétique).","Identifiez 2-3 points de repère autour (montagne, clocher).","Tracez des azimuts depuis chaque repère.","L'intersection des lignes = votre position.","En marche, suivez un cap constant (boussole)."],
-        steps_en: ["Lay the map flat, compass on top.","Align map north with the needle (magnetic north).","Identify 2-3 landmarks around (mountain, church).","Draw azimuths from each landmark.","Intersection of lines = your position.","While moving, follow a constant heading (compass)."],
-        svg: `<svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" style="background:#151715;border-radius:12px;">
-          <text x="240" y="28" fill="#e0b070" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">ORIENTATION BOUSSOLE + CARTE</text>
-          <rect x="60" y="60" width="180" height="180" fill="#1e221f" stroke="#705e46" stroke-width="2"/>
-          <text x="150" y="155" fill="#7a8f5a" font-size="12" font-family="sans-serif" text-anchor="middle">Carte</text>
-          <line x1="80" y1="80" x2="220" y2="220" stroke="#5b8291" stroke-width="2" opacity="0.5"/>
-          <circle cx="150" cy="150" r="6" fill="#a34848"/>
-          <text x="150" y="175" fill="#a34848" font-size="11" font-family="sans-serif" text-anchor="middle">Position</text>
-          <circle cx="320" cy="140" r="40" fill="#1e221f" stroke="#705e46" stroke-width="2"/>
-          <path d="M320,110 L327,140 L320,170 L313,140 Z" fill="#705e46"/>
-          <path d="M320,110 L327,140 L320,140 Z" fill="#a34848"/>
-          <text x="320" y="100" fill="#e4e9d8" font-size="11" font-family="sans-serif" text-anchor="middle">N</text>
-          <text x="320" y="200" fill="#e0b070" font-size="12" font-weight="bold" font-family="sans-serif" text-anchor="middle">Boussole</text>
-          <text x="380" y="220" fill="#7a8f5a" font-size="11" font-family="sans-serif">Trouver 2-3</text>
-          <text x="380" y="235" fill="#7a8f5a" font-size="11" font-family="sans-serif">points de repère</text>
-        </svg>`
-      },
-      {
-        id: 30, catId: 7, essential: false,
-        name_fr: "Faire du feu avec une batterie", name_en: "Start fire with a battery",
-        intro_fr: "Avec une pile 9V et de la laine d'acier, on peut allumer un feu en quelques secondes.",
-        intro_en: "With a 9V battery and steel wool, you can start a fire in seconds.",
-        steps_fr: ["Procurez-vous de la laine d'acier fine (grade 0000).","Préparez un nid d'amadou sec.","Posez la laine d'acier sur l'amadou.","Touchez la laine avec les 2 bornes de la pile 9V.","La laine s'enflamme instantanément.","Soufflez doucement pour alimenter la flamme.","Variante : paille de fer + pile AA (plus lent)."],
-        steps_en: ["Get fine steel wool (grade 0000).","Prepare a nest of dry tinder.","Place the steel wool on the tinder.","Touch the wool with both terminals of the 9V battery.","The wool ignites instantly.","Blow gently to feed the flame.","Variant: iron straw + AA battery (slower)."],
-        svg: null
-      },
-      // DOCS (catId 8)
-      {
-        id: 31, catId: 8, essential: true,
-        name_fr: "Kit documents d'urgence", name_en: "Emergency document kit",
-        intro_fr: "En cas d'évacuation, certains documents sont vitaux. Préparez une pochette étanche.",
-        intro_en: "In case of evacuation, some documents are vital. Prepare a waterproof pouch.",
-        steps_fr: ["Copies plastifiées : CNI, passeport, permis de conduire.","Actes de naissance et de mariage.","Carnet de vaccination.","Ordonnances médicales en cours.","Contrats d'assurance habitation et santé.","Coordonnées bancaires + un peu de liquide.","Une clé USB avec scans de tous ces documents."],
-        steps_en: ["Laminated copies: ID, passport, driver's license.","Birth and marriage certificates.","Vaccination record.","Current medical prescriptions.","Home and health insurance contracts.","Bank details + some cash.","A USB key with scans of all these documents."],
-        svg: null
-      },
-      {
-        id: 32, catId: 8, essential: false,
-        name_fr: "Sauvegardes numériques", name_en: "Digital backups",
-        intro_fr: "Vos données (photos, documents) peuvent être perdues en quelques secondes. Sauvegardez.",
-        intro_en: "Your data (photos, documents) can be lost in seconds. Back up.",
-        steps_fr: ["Règle 3-2-1 : 3 copies, 2 supports, 1 hors site.","Disque dur externe chiffré (SSD).","Cloud (si internet disponible).","Clé USB dans le sac d'évacuation.","Vérifiez vos sauvegardes tous les 6 mois.","Documentez les mots de passe importants (gestionnaire)."],
-        steps_en: ["3-2-1 rule: 3 copies, 2 media, 1 off-site.","Encrypted external drive (SSD).","Cloud (if internet available).","USB key in the bug-out bag.","Check backups every 6 months.","Document important passwords (manager)."],
-        svg: null
-      },
-      // FUN / MORAL (catId 9)
-      {
-        id: 33, catId: 9, essential: true,
-        name_fr: "Gérer le stress en urgence", name_en: "Manage stress in emergency",
-        intro_fr: "Le stress peut paralyser ou faire prendre de mauvaises décisions. Apprenez à le gérer.",
-        intro_en: "Stress can paralyze or lead to bad decisions. Learn to manage it.",
-        steps_fr: ["Respirez : inspirez 4 sec, bloquez 4 sec, expirez 6 sec.","Nommez ce que vous voyez (ancrage sensoriel).","Décomposez le problème : quelle est la PROCHAINE action ?","Agissez, même petit : l'action réduit la peur.","Parlez à voix haute (même seul).","Après l'urgence : dormez, mangez, parlez-en."],
-        steps_en: ["Breathe: inhale 4 sec, hold 4 sec, exhale 6 sec.","Name what you see (sensory grounding).","Break down the problem: what is the NEXT action?","Act, even small: action reduces fear.","Speak out loud (even alone).","After emergency: sleep, eat, talk about it."],
-        svg: null
-      },
-      {
-        id: 34, catId: 9, essential: false,
-        name_fr: "Maintenir le moral du groupe", name_en: "Maintain group morale",
-        intro_fr: "En situation prolongée, le moral du groupe est aussi important que les ressources physiques.",
-        intro_en: "In prolonged situations, group morale is as important as physical resources.",
-        steps_fr: ["Établissez une routine (repas, veille, sommeil).","Donnez un rôle à chacun (utile, valorisant).","Célébrez les petites victoires.","Organisez des moments de détente (jeux, musique).","Parlez ouvertement des peurs, sans juger.","Un leader calme et posé inspire la stabilité."],
-        steps_en: ["Establish a routine (meals, watch, sleep).","Give each person a role (useful, rewarding).","Celebrate small victories.","Organize relaxation moments (games, music).","Talk openly about fears, without judgment.","A calm, composed leader inspires stability."],
-        svg: null
       }
     ];
 
