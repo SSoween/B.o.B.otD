@@ -571,7 +571,7 @@
     <div class="emergency-card" style="border-top-color: var(--color-danger)">
       <h3 data-i18n="nuclear_rule7_title">La Règle des 7 (Règle 7/10)</h3>
       <p style="font-size: 0.9rem; margin-bottom: 1rem;" data-i18n="nuclear_rule7_intro">
-        La radioactivité des retombées chute très rapidement. Tous les 7 heures, elle diminue de 90%.
+        La radioactivité des retombées décroît très rapidement. À chaque fois que l'intervalle de temps est multiplié par 7, la radioactivité est divisée par 10.
       </p>
       
       <div style="background: var(--color-muted-bg); border-radius: var(--radius-section); padding: 1rem; margin-bottom: 1rem;">
@@ -581,24 +581,24 @@
             <td style="padding: 6px 0; text-align: right; font-weight: 700; color: var(--color-danger);">100%</td>
           </tr>
           <tr style="border-bottom: 1px solid var(--color-muted-border);">
-            <td style="padding: 6px 0; font-weight: 700;" data-i18n="nuclear_t_7h">7 heures après</td>
+            <td style="padding: 6px 0; font-weight: 700;" data-i18n="nuclear_t_7h">7 heures après (7 × 1h)</td>
             <td style="padding: 6px 0; text-align: right; font-weight: 700; color: var(--color-major);">10%</td>
           </tr>
           <tr style="border-bottom: 1px solid var(--color-muted-border);">
-            <td style="padding: 6px 0; font-weight: 700;" data-i18n="nuclear_t_49h">49 heures (2 jours)</td>
+            <td style="padding: 6px 0; font-weight: 700;" data-i18n="nuclear_t_49h">49 heures après (7 × 7h)</td>
             <td style="padding: 6px 0; text-align: right; font-weight: 700; color: var(--color-minor);">1%</td>
           </tr>
           <tr>
-            <td style="padding: 6px 0; font-weight: 700;" data-i18n="nuclear_t_343h">343 heures (2 semaines)</td>
+            <td style="padding: 6px 0; font-weight: 700;" data-i18n="nuclear_t_343h">343 heures après (7 × 49h)</td>
             <td style="padding: 6px 0; text-align: right; font-weight: 700; color: var(--color-minor);">0,1%</td>
           </tr>
         </table>
       </div>
 
       <ul class="icon-list">
-        <li><i class="bi bi-1-circle-fill"></i><span data-i18n="nuclear_rule7_1">Après 7h, le danger a déjà chuté de 90%</li>
-        <li><i class="bi bi-2-circle-fill"></i><span data-i18n="nuclear_rule7_2">Après 49h, il ne reste que 1% du danger initial</li>
-        <li><i class="bi bi-3-circle-fill"></i><span data-i18n="nuclear_rule7_3">Rester 48h à l'abri est le meilleur investissement pour votre survie</li>
+        <li><i class="bi bi-1-circle-fill"></i><span data-i18n="nuclear_rule7_1">7h après : le niveau de radiation est divisé par 10 (10% du niveau initial)</li>
+        <li><i class="bi bi-2-circle-fill"></i><span data-i18n="nuclear_rule7_2">49h après : il est divisé par 100 (1% du niveau initial)</li>
+        <li><i class="bi bi-3-circle-fill"></i><span data-i18n="nuclear_rule7_3">343h (2 semaines) après : il est divisé par 1000 (0,1%)</li>
       </ul>
     </div>
 
@@ -655,7 +655,7 @@
       <ul class="icon-list">
         <li><i class="bi bi-1-circle-fill"></i><span data-i18n="nuclear_geiger_1">Mesurez en intérieur, au sous-sol, loin des murs extérieurs</li>
         <li><i class="bi bi-2-circle-fill"></i><span data-i18n="nuclear_geiger_2">Notez la valeur toutes les heures pour suivre la décroissance</li>
-        <li><i class="bi bi-3-circle-fill"></i><span data-i18n="nuclear_geiger_3">Si le taux chute de 90% (7h) puis 99% (49h), la règle des 7 est vérifiée</li>
+        <li><i class="bi bi-3-circle-fill"></i><span data-i18n="nuclear_geiger_3">Si le taux est divisé par 10 (7h) puis par 100 (49h), la règle des 7 est vérifiée</li>
         <li><i class="bi bi-4-circle-fill"></i><span data-i18n="nuclear_geiger_4">NE SORTEZ que lorsque les autorités le confirment, pas seulement sur vos mesures</li>
       </ul>
     </div>
@@ -741,12 +741,15 @@
       <h3 data-i18n="plan_last_min">Les 5 dernières minutes</h3>
       <p style="font-size: 0.9rem; color: #705e46;" data-i18n="plan_desc">À saisir juste avant de franchir la porte.</p>
       <ul class="icon-list mt-3" style="font-weight: 600;">
-        <li><label><input type="checkbox" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_id">Portefeuilles & ID</span></label></li>
-        <li><label><input type="checkbox" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_phone">Téléphones & câbles chargeurs</span></label></li>
-        <li><label><input type="checkbox" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_keys">Trousseau de clés complet</span></label></li>
-        <li><label><input type="checkbox" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_meds">Médicaments prescrits en cours</span></label></li>
-        <li><label><input type="checkbox" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_data">Disques durs (SSD)</span></label></li>
+        <li><label><input type="checkbox" class="fast-evac-check" data-evac="id" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_id">Portefeuilles & ID</span></label></li>
+        <li><label><input type="checkbox" class="fast-evac-check" data-evac="phone" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_phone">Téléphones & câbles chargeurs</span></label></li>
+        <li><label><input type="checkbox" class="fast-evac-check" data-evac="keys" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_keys">Trousseau de clés complet</span></label></li>
+        <li><label><input type="checkbox" class="fast-evac-check" data-evac="meds" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_meds">Médicaments prescrits en cours</span></label></li>
+        <li><label><input type="checkbox" class="fast-evac-check" data-evac="data" style="margin-right:10px; transform: scale(1.2);"> <span data-i18n="plan_data">Disques durs (SSD)</span></label></li>
       </ul>
+      <button onclick="resetFastEvac()" class="custom-btn secondary mt-3" style="font-size: 0.9rem; padding: 0.5rem;">
+        <i class="bi bi-arrow-counterclockwise"></i> <span data-i18n="btn_reset_fast_evac">Réinitialiser la checklist</span>
+      </button>
     </div>
   </section>
 
@@ -798,16 +801,16 @@
         title_plan: "Plan & Comms", plan_rally_title: "Points de Ralliement", plan_rp1: "Point Secondaire (Rive-Sud / Laval)", plan_rp2: "Point de Chute Final (Cardaillac, France)", plan_radio_title: "Fréquences Radio", plan_callsign: "Indicatif Radio Amateur", plan_fam_freq: "Fréquence Famille (UHF - GMRS/FRS)", plan_em_freq: "Appel d'urgence (VHF Simplex)", plan_rep_freq: "Relais Local Principal (Montréal)", plan_hf_freq: "Réseau Survie Longue Distance (HF 20m)", btn_save_plan: "Sauvegarder le Plan",
         title_map: "Carte d'Évacuation", map_desc: "Schéma d'évacuation vélo (Rayon 50km).",
         title_nuclear: "Accident Nucléaire", nuclear_banner_title: "Rentrez. Restez. Écoutez.", nuclear_banner_sub: "Les 3 règles d'or en cas de retombées",
-        nuclear_rule7_title: "La Règle des 7 (Règle 7/10)", nuclear_rule7_intro: "La radioactivité des retombées chute très rapidement. Tous les 7 heures, elle diminue de 90%.",
-        nuclear_t_1h: "1 heure après", nuclear_t_7h: "7 heures après", nuclear_t_49h: "49 heures (2 jours)", nuclear_t_343h: "343 heures (2 semaines)",
-        nuclear_rule7_1: "Après 7h, le danger a déjà chuté de 90%", nuclear_rule7_2: "Après 49h, il ne reste que 1% du danger initial", nuclear_rule7_3: "Rester 48h à l'abri est le meilleur investissement pour votre survie",
+        nuclear_rule7_intro: "La radioactivité des retombées décroît très rapidement. À chaque fois que l'intervalle de temps est multiplié par 7, la radioactivité est divisée par 10.",
+        nuclear_t_1h: "1 heure après", nuclear_t_7h: "7 heures après (7 × 1h)", nuclear_t_49h: "49 heures après (7 × 7h)", nuclear_t_343h: "343 heures après (7 × 49h)",
+        nuclear_rule7_1: "7h après : le niveau de radiation est divisé par 10 (10% du niveau initial)", nuclear_rule7_2: "49h après : il est divisé par 100 (1% du niveau initial)", nuclear_rule7_3: "343h (2 semaines) après : il est divisé par 1000 (0,1%)",
         nuclear_getinside_title: "1. RENTREZ (Get Inside)", nuclear_getinside_1: "Rejoignez immédiatement un bâtiment en dur (béton, brique)", nuclear_getinside_2: "Le sous-sol ou une pièce centrale sans fenêtre est idéal", nuclear_getinside_3: "Fermez portes et fenêtres, coupez ventilation et climatisation", nuclear_getinside_4: "NE RESTEZ PAS dans une voiture (protection quasi nulle)", nuclear_getinside_5: "Ne sortez PAS chercher les enfants à l'école : ils sont pris en charge sur place",
         nuclear_stayinside_title: "2. RESTEZ (Stay Inside)", nuclear_stayinside_1: "Restez confiné au minimum 24h, idéalement 48h", nuclear_stayinside_2: "Le pic de danger est dans les premières 24 heures", nuclear_stayinside_3: "Si vous étiez dehors : retirez vos vêtements, mettez-les dans un sac fermé", nuclear_stayinside_4: "Lavez-vous à l'eau et au savon (cheveux inclus, tête en arrière)", nuclear_stayinside_5: "Ne consommez PAS de produits frais locaux (lait, légumes, eau du robinet)", nuclear_stayinside_6: "Utilisez l'eau en bouteille et les conserves scellées",
         nuclear_tuned_title: "3. ÉCOUTEZ (Stay Tuned)", nuclear_tuned_1: "Allumez une radio à piles (ou radio FM/AM du téléphone avec écouteurs)", nuclear_tuned_2: "Écoutez les consignes officielles : évacuation ou maintien du confinement", nuclear_tuned_3: "N'appelez PAS pour ne pas saturer les réseaux (utilisez SMS)", nuclear_tuned_4: "Fréquences d'urgence : 146.520 MHz (VHF), 446.000 MHz (PMR446)",
         nuclear_iodine_title: "Iode stable : uniquement sur ordre", nuclear_iodine_1: "NE PRENEZ PAS d'iode de vous-même", nuclear_iodine_2: "Attendez l'instruction des autorités (préfet, radio, sirènes)", nuclear_iodine_3: "L'iode protège UNIQUEMENT la thyroïde contre l'iode radioactif", nuclear_iodine_4: "Doit être pris avant exposition ou dans les 8h suivant la contamination",
         nuclear_geiger_title: "Avec un compteur Geiger", nuclear_geiger_1: "Mesurez en intérieur, au sous-sol, loin des murs extérieurs", nuclear_geiger_2: "Notez la valeur toutes les heures pour suivre la décroissance", nuclear_geiger_3: "Si le taux chute de 90% (7h) puis 99% (49h), la règle des 7 est vérifiée", nuclear_geiger_4: "NE SORTEZ que lorsque les autorités le confirment, pas seulement sur vos mesures",
         game_prep_test: "Test de Préparation (Évolutif)", game_prep_desc: "Évaluez vos réflexes face à des situations d'intensité croissante.", btn_start_sim: "Lancer la simulation", btn_continue: "Continuer",
-        title_fast_evac: "Départ Immédiat", plan_last_min: "Les 5 dernières minutes", plan_desc: "À saisir juste avant de franchir la porte.", plan_id: "Portefeuilles & ID", plan_phone: "Téléphones & câbles chargeurs", plan_keys: "Trousseau de clés complet", plan_meds: "Médicaments prescrits en cours", plan_data: "Disques durs (SSD)",
+            title_fast_evac: "Départ Immédiat", plan_last_min: "Les 5 dernières minutes", plan_desc: "À saisir juste avant de franchir la porte.", plan_id: "Portefeuilles & ID", plan_phone: "Téléphones & câbles chargeurs", plan_keys: "Trousseau de clés complet", plan_meds: "Médicaments prescrits en cours", plan_data: "Disques durs (SSD)", btn_reset_fast_evac: "Réinitialiser la checklist",
         title_install: "Installer l'App", install_qr_title: "Scan QR Code", install_qr_wait: "[ Espace QR Code ]<br>En attente du lien", install_ios_title: "Sur iPhone (Safari)", install_ios_1: "Appuyez sur le bouton <strong>Partager</strong> en bas.", install_ios_2: "Choisissez <strong>\"Sur l'écran d'accueil\"</strong>.", install_and_title: "Sur Android (Chrome)", install_and_1: "Appuyez sur le <strong>menu à trois points</strong>.", install_and_2: "Sélectionnez <strong>\"Installer l'application\"</strong>.",
         last_val: "Dernière validation : ",
         filter_all: "Toutes", filter_fav: "Favoris", filter_essential: "Essentiels",
@@ -831,16 +834,16 @@
         title_plan: "Plan & Comms", plan_rally_title: "Rally Points", plan_rp1: "Secondary Point (South Shore / Laval)", plan_rp2: "Final Bug-Out Point (Cardaillac, France)", plan_radio_title: "Radio Frequencies", plan_callsign: "Ham Radio Callsign", plan_fam_freq: "Family Frequency (UHF - GMRS/FRS)", plan_em_freq: "Emergency Call (VHF Simplex)", plan_rep_freq: "Main Local Repeater (Montreal)", plan_hf_freq: "Long Distance Survival Net (HF 20m)", btn_save_plan: "Save Plan",
         title_map: "Evacuation Map", map_desc: "Bike evacuation schematic (50km radius).",
         title_nuclear: "Nuclear Accident", nuclear_banner_title: "Get Inside. Stay Inside. Stay Tuned.", nuclear_banner_sub: "The 3 golden rules for fallout",
-        nuclear_rule7_title: "The Rule of 7 (7/10 Rule)", nuclear_rule7_intro: "Fallout radioactivity drops very quickly. Every 7 hours, it decreases by 90%.",
-        nuclear_t_1h: "1 hour after", nuclear_t_7h: "7 hours after", nuclear_t_49h: "49 hours (2 days)", nuclear_t_343h: "343 hours (2 weeks)",
-        nuclear_rule7_1: "After 7h, danger has already dropped 90%", nuclear_rule7_2: "After 49h, only 1% of initial danger remains", nuclear_rule7_3: "Staying 48h sheltered is the best investment for your survival",
+        nuclear_rule7_intro: "Fallout radioactivity decays very quickly. Each time the time interval is multiplied by 7, radioactivity is divided by 10.",
+        nuclear_t_1h: "1 hour after", nuclear_t_7h: "7 hours after (7 × 1h)", nuclear_t_49h: "49 hours after (7 × 7h)", nuclear_t_343h: "343 hours after (7 × 49h)",
+        nuclear_rule7_1: "7h after: radiation level is divided by 10 (10% of initial)", nuclear_rule7_2: "49h after: divided by 100 (1% of initial)", nuclear_rule7_3: "343h (2 weeks) after: divided by 1000 (0.1%)",
         nuclear_getinside_title: "1. GET INSIDE", nuclear_getinside_1: "Immediately enter a solid building (concrete, brick)", nuclear_getinside_2: "Basement or central room without windows is ideal", nuclear_getinside_3: "Close doors and windows, turn off ventilation and AC", nuclear_getinside_4: "Do NOT stay in a car (almost no protection)", nuclear_getinside_5: "Do NOT go get children at school: they are taken care of on site",
         nuclear_stayinside_title: "2. STAY INSIDE", nuclear_stayinside_1: "Stay confined for at least 24h, ideally 48h", nuclear_stayinside_2: "Peak danger is in the first 24 hours", nuclear_stayinside_3: "If you were outside: remove clothes, put them in a closed bag", nuclear_stayinside_4: "Wash with soap and water (including hair, head back)", nuclear_stayinside_5: "Do NOT consume local fresh products (milk, vegetables, tap water)", nuclear_stayinside_6: "Use bottled water and sealed canned goods",
         nuclear_tuned_title: "3. STAY TUNED", nuclear_tuned_1: "Turn on a battery radio (or phone FM/AM radio with headphones)", nuclear_tuned_2: "Listen to official instructions: evacuation or continued confinement", nuclear_tuned_3: "Do NOT call to avoid overloading networks (use SMS)", nuclear_tuned_4: "Emergency frequencies: 146.520 MHz (VHF), 446.000 MHz (PMR446)",
         nuclear_iodine_title: "Stable iodine: only on order", nuclear_iodine_1: "Do NOT take iodine on your own", nuclear_iodine_2: "Wait for authorities' instruction (prefect, radio, sirens)", nuclear_iodine_3: "Iodine protects ONLY the thyroid against radioactive iodine", nuclear_iodine_4: "Must be taken before exposure or within 8h of contamination",
         nuclear_geiger_title: "With a Geiger counter", nuclear_geiger_1: "Measure indoors, in the basement, away from outer walls", nuclear_geiger_2: "Record the value hourly to track decay", nuclear_geiger_3: "If rate drops 90% (7h) then 99% (49h), the rule of 7 is verified", nuclear_geiger_4: "ONLY go out when authorities confirm, not just based on your measurements",
         game_prep_test: "Preparedness Test", game_prep_desc: "Evaluate your reflexes facing situations of increasing intensity.", btn_start_sim: "Start Simulation", btn_continue: "Continue",
-        title_fast_evac: "Immediate Departure", plan_last_min: "The last 5 minutes", plan_desc: "Grab right before walking out the door.", plan_id: "Wallets & ID", plan_phone: "Phones & charger cables", plan_keys: "Complete set of keys", plan_meds: "Current prescribed medications", plan_data: "Backup drives (SSD)",
+        title_fast_evac: "Immediate Departure", plan_last_min: "The last 5 minutes", plan_desc: "Grab right before walking out the door.", plan_id: "Wallets & ID", plan_phone: "Phones & charger cables", plan_keys: "Complete set of keys", plan_meds: "Current prescribed medications", plan_data: "Backup drives (SSD)", btn_reset_fast_evac: "Reset checklist",
         title_install: "Install App", install_qr_title: "Scan QR Code", install_qr_wait: "[ QR Code Space ]<br>Waiting for link", install_ios_title: "On iPhone (Safari)", install_ios_1: "Tap the <strong>Share</strong> button at the bottom.", install_ios_2: "Choose <strong>\"Add to Home Screen\"</strong>.", install_and_title: "On Android (Chrome)", install_and_1: "Tap the <strong>three-dot menu</strong>.", install_and_2: "Select <strong>\"Install app\"</strong>.",
         last_val: "Last validated on: ",
         filter_all: "All", filter_fav: "Favorites", filter_essential: "Essentials",
@@ -1406,6 +1409,34 @@
       doc.save(`BOB_Emergency_Plan.pdf`);
     }
 
+    /* ================== DEPART IMMEDIAT PERSISTANT ================== */
+    function loadFastEvac() {
+      const data = JSON.parse(localStorage.getItem('bob_fast_evac') || '{}');
+      document.querySelectorAll('.fast-evac-check').forEach(chk => {
+        chk.checked = !!data[chk.dataset.evac];
+      });
+    }
+
+    function saveFastEvac() {
+      const data = {};
+      document.querySelectorAll('.fast-evac-check').forEach(chk => {
+        data[chk.dataset.evac] = chk.checked;
+      });
+      localStorage.setItem('bob_fast_evac', JSON.stringify(data));
+    }
+
+    function resetFastEvac() {
+      localStorage.removeItem('bob_fast_evac');
+      document.querySelectorAll('.fast-evac-check').forEach(chk => { chk.checked = false; });
+    }
+
+    function attachFastEvacListeners() {
+      document.querySelectorAll('.fast-evac-check').forEach(chk => {
+        chk.addEventListener('change', saveFastEvac);
+      });
+    }
+
+
     window.addEventListener('DOMContentLoaded', () => {
       history.replaceState({ page: 'index' }, '', '#index');
       applyStaticI18n();
@@ -1415,6 +1446,8 @@
       applyTechnicsFilters();
       loadPlan();
       updateXPUI();
+      loadFastEvac();
+      attachFastEvacListeners();
     });
   </script>
 
