@@ -336,7 +336,6 @@
       <div class="menu-section-label" data-i18n="menu_prep">Préparation</div>
       <button class="menu-row" onclick="navFromMenu('index')"><i class="bi bi-house-door-fill" style="background:#5b8291"></i> <span data-i18n="menu_home">Accueil</span></button>
       <button class="menu-row" onclick="navFromMenu('inventory')"><i class="bi bi-backpack4-fill" style="background:#8b5a2b"></i> <span data-i18n="menu_inventory">Mon Sac d'Évacuation</span></button>
-      <button class="menu-row" onclick="navFromMenu('plan')"><i class="bi bi-clipboard2-pulse-fill" style="background:#3f5938"></i> <span data-i18n="menu_plan">Plan d'Urgence</span></button>
       <button class="menu-row" onclick="navFromMenu('comms')"><i class="bi bi-broadcast" style="background:#5b8291"></i> <span data-i18n="menu_comms">Comms Radio</span></button>
       
       <div class="menu-section-label" data-i18n="menu_action">Action</div>
@@ -433,41 +432,6 @@
     </div>
   </section>
 
-  <!-- ================= PLAN D'URGENCE ================= -->
-  <section id="page-plan" class="hidden container py-4">
-    <h2><i class="bi bi-clipboard2-pulse-fill" style="margin-right: 8px;"></i><span data-i18n="title_plan">Plan d'Urgence</span></h2>
-    
-    <div class="emergency-card" style="border-top-color: var(--cat-5-solid)">
-      <h3 data-i18n="plan_rally_title">Points de Ralliement</h3>
-      <label class="form-label-custom" data-i18n="plan_rp1">Point Secondaire (Rive-Sud / Laval)</label>
-      <input type="text" id="plan-rp1" class="form-control-custom" placeholder="Ex: Maison des grands-parents">
-      
-      <label class="form-label-custom" data-i18n="plan_rp2">Point de Chute Final (Cardaillac, France)</label>
-      <input type="text" id="plan-rp2" class="form-control-custom" placeholder="Adresse ou coordonnées GPS">
-    </div>
-
-    <div class="emergency-card" style="border-top-color: var(--cat-6-solid)">
-      <h3 data-i18n="plan_radio_title">Fréquences Radio</h3>
-      
-      <label class="form-label-custom" data-i18n="plan_callsign">Indicatif Radio Amateur</label>
-      <input type="text" id="plan-callsign" class="form-control-custom" value="F4LRX" placeholder="F4LRX">
-      
-      <label class="form-label-custom" data-i18n="plan_fam_freq">Fréquence Famille (UHF - GMRS/FRS)</label>
-      <input type="text" id="plan-fam-freq" class="form-control-custom" placeholder="Ex: Canal 2 (462.5875 MHz)">
-      
-      <label class="form-label-custom" data-i18n="plan_em_freq">Appel d'urgence (VHF Simplex)</label>
-      <input type="text" id="plan-em-freq" class="form-control-custom" value="146.520 MHz" readonly>
-      
-      <label class="form-label-custom" data-i18n="plan_rep_freq">Relais Local Principal (Montréal)</label>
-      <input type="text" id="plan-rep-freq" class="form-control-custom" placeholder="Ex: VE2RMP 146.700 MHz (Tone 118.8)">
-      
-      <label class="form-label-custom" data-i18n="plan_hf_freq">Réseau Survie Longue Distance (HF 20m)</label>
-      <input type="text" id="plan-hf-freq" class="form-control-custom" value="14.300 MHz (Intercontinental Net)">
-    </div>
-
-    <button onclick="savePlan()" class="custom-btn primary"><i class="bi bi-save2-fill"></i> <span data-i18n="btn_save_plan">Sauvegarder le Plan</span></button>
-  </section>
-
   <!-- ================= COMMS RADIO ================= -->
   <section id="page-comms" class="hidden container py-4">
     <h2><i class="bi bi-broadcast" style="margin-right: 8px;"></i><span data-i18n="title_comms">Comms Radio</span></h2>
@@ -552,6 +516,33 @@
           </p>
         </div>
       </div>
+
+      <!-- Mon plan perso — repliable -->
+      <div class="comms-band">
+        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="band-ic" style="background: var(--cat-7-solid)"><i class="bi bi-geo-alt-fill"></i></span>
+          <span class="band-title">
+            <span data-i18n="comms_personal_plan">Mon plan perso</span>
+            <span class="band-sub" data-i18n="comms_personal_plan_sub">Points de ralliement et relais local</span>
+          </span>
+          <i class="bi bi-chevron-down cat-chevron"></i>
+        </button>
+        <div class="comms-band-body">
+          <label class="form-label-custom" data-i18n="plan_rp1">Point de ralliement</label>
+          <input type="text" id="personal-rp1" class="form-control-custom" placeholder="Ex: Maison des grands-parents">
+
+          <label class="form-label-custom" data-i18n="plan_rp2">Point final</label>
+          <input type="text" id="personal-rp2" class="form-control-custom" placeholder="Ex: Cardaillac, France">
+
+          <label class="form-label-custom" data-i18n="plan_rep_freq">Relais local</label>
+          <input type="text" id="personal-rep" class="form-control-custom" placeholder="Ex: VE2RMP 146.700 MHz">
+
+          <button onclick="savePersonalPlan()" class="custom-btn primary" style="margin-top: 0.5rem;">
+            <i class="bi bi-save2-fill"></i>
+            <span data-i18n="comms_personal_save">Sauvegarder mon plan</span>
+          </button>
+        </div>
+      </div>      
 
       <button onclick="generateFamilyCardPDF()" class="custom-btn primary" style="margin-top: 1rem;">
         <i class="bi bi-file-earmark-pdf-fill"></i>
@@ -1195,7 +1186,7 @@
 
     const DICTIONARY = {
       fr: {
-        menu_title: "Menu Principal", menu_prep: "Préparation", menu_home: "Accueil", menu_inventory: "Mon Sac d'Évacuation", menu_plan: "Plan d'Urgence",
+        menu_title: "Menu Principal", menu_prep: "Préparation", menu_home: "Accueil", menu_inventory: "Mon Sac d'Évacuation", 
         menu_action: "Action", menu_map: "Carte d'Évacuation", menu_fast_evac: "Départ Immédiat", menu_manual: "Manuel de Survie",
         menu_extreme: "Situations Extrêmes", menu_nuclear: "Accident Nucléaire",
         menu_training: "Entraînement", menu_game: "Training Game",
@@ -1203,13 +1194,11 @@
         menu_related: "Apps Associées", menu_firstaiders: "FirstAiders (Secourisme)",
         btn_fast_evac: "Checklist Départ Immédiat", home_main_title: "SAC D'URGENCE", home_subtitle: "Se préparer simplifie la vie",
         home_bag: "Mon Sac d'Évacuation", home_bag_sub: "Checklist & Quantités", home_manual: "Manuel de Survie", home_manual_sub: "Techniques & Matériel",
-        home_game: "Training Game", home_game_sub: "Scénarios d'urgence", home_logistics: "Logistique & Références",
-        home_plan: "Plan d'Urgence", home_map: "Carte d'Évacuation", home_map_sub: "Axes de sortie", home_pdf: "Générer PDF", home_install: "Installer l'App",
+        home_game: "Training Game", home_game_sub: "Scénarios d'urgence", home_logistics: "Logistique & Références", home_map: "Carte d'Évacuation", home_map_sub: "Axes de sortie", home_pdf: "Générer PDF", home_install: "Installer l'App",
         home_comms: "Comms Radio", home_comms_sub: "Famille & Urgences",
         title_inventory: "Inventaire du Sac", desc_inventory: "Cochez les éléments intégrés dans le sac et ajustez les quantités.", btn_save_inventory: "Sauvegarder l'inventaire",
         inv_add_custom: "Ajouter un item spécifique", cat_water: "Eau / Nourriture", cat_clothes: "Vêtements", cat_shelter: "Abris", cat_health: "Santé", cat_fire: "Feu", cat_comms: "Comms / Elec", cat_tools: "Outils", cat_docs: "CNI / Papiers", cat_fun: "Fun / Moral", btn_add: "Ajouter",
         title_technics: "Manuel de Survie", search_technics: "Rechercher une technique...", tech_steps_title: "Procédure",
-        title_plan: "Plan d'Urgence", plan_rally_title: "Points de Ralliement", plan_rp1: "Point Secondaire (Rive-Sud / Laval)", plan_rp2: "Point de Chute Final (Cardaillac, France)", plan_radio_title: "Fréquences Radio", plan_callsign: "Indicatif Radio Amateur", plan_fam_freq: "Fréquence Famille (UHF - GMRS/FRS)", plan_em_freq: "Appel d'urgence (VHF Simplex)", plan_rep_freq: "Relais Local Principal (Montréal)", plan_hf_freq: "Réseau Survie Longue Distance (HF 20m)", btn_save_plan: "Sauvegarder le Plan",
         title_map: "Carte d'Évacuation", map_desc: "Schéma d'évacuation vélo (Rayon 50km).",
         menu_comms: "Comms Radio",
         title_comms: "Comms Radio",
@@ -1218,6 +1207,9 @@
         comms_primary: "Fréquence principale", comms_secondary: "Fréquence secondaire", comms_backup: "Fréquence de repli", comms_channel: "Canal",
         comms_ham_backup: "Repli Radioamateur (F4LRX)", comms_ham_band: "VHF 2m simplex", comms_ham_license: "Licence requise",
         comms_schedule_sub: "H+00, H+05, H+10 et H+30, H+35, H+40", comms_script_sub: "Phrase à utiliser",
+        comms_personal_plan: "Mon plan perso", comms_personal_plan_sub: "Points de ralliement et relais local",
+        comms_personal_save: "Sauvegarder mon plan",
+        plan_rp1: "Point de ralliement", plan_rp2: "Point final", plan_rep_freq: "Relais local",
         comms_schedule: "Horaire d'écoute",
         comms_schedule_1: "H+00 et H+30 : appel sur 462.5875 (5 min)",
         comms_schedule_2: "H+05 et H+35 : si pas de réponse, appel sur 467.5875 (5 min)",
@@ -1291,7 +1283,7 @@
         tech_no_results: "Aucune technique trouvée."
       },
       en: {
-        menu_title: "Main Menu", menu_prep: "Preparation", menu_home: "Home", menu_inventory: "My Bug-Out Bag", menu_plan: "Emergency Plan",
+        menu_title: "Main Menu", menu_prep: "Preparation", menu_home: "Home", menu_inventory: "My Bug-Out Bag", 
         menu_action: "Action", menu_map: "Evacuation Map", menu_fast_evac: "Immediate Departure", menu_manual: "Survival Manual",
         menu_extreme: "Extreme Situations", menu_nuclear: "Nuclear Accident",
         menu_training: "Training", menu_game: "Training Game",
@@ -1299,13 +1291,11 @@
         menu_related: "Related Apps", menu_firstaiders: "FirstAiders (First Aid)",
         btn_fast_evac: "Immediate Departure Checklist", home_main_title: "EMERGENCY BAG", home_subtitle: "Be prepared, simply",
         home_bag: "My Bug-Out Bag", home_bag_sub: "Checklist & Quantities", home_manual: "Survival Manual", home_manual_sub: "Techniques & Gear",
-        home_game: "Training Game", home_game_sub: "Emergency Scenarios", home_logistics: "Logistics & References",
-        home_plan: "Emergency Plan", home_map: "Evacuation Map", home_map_sub: "Exit routes", home_pdf: "Generate PDF", home_install: "Install App",
+        home_game: "Training Game", home_game_sub: "Emergency Scenarios", home_logistics: "Logistics & References", home_map: "Evacuation Map", home_map_sub: "Exit routes", home_pdf: "Generate PDF", home_install: "Install App",
         home_comms: "Radio Comms", home_comms_sub: "Family & Emergency",
         title_inventory: "Bag Inventory", desc_inventory: "Check the items packed in the bag and adjust quantities.", btn_save_inventory: "Save Inventory",
         inv_add_custom: "Add custom item", cat_water: "Water / Food", cat_clothes: "Clothes", cat_shelter: "Shelter", cat_health: "Health", cat_fire: "Fire", cat_comms: "Comms / Elec", cat_tools: "Tools", cat_docs: "ID / Docs", cat_fun: "Fun / Morale", btn_add: "Add",
         title_technics: "Survival Manual", search_technics: "Search a technique...", tech_steps_title: "Procedure",
-        title_plan: "Emergency Plan", plan_rally_title: "Rally Points", plan_rp1: "Secondary Point (South Shore / Laval)", plan_rp2: "Final Bug-Out Point (Cardaillac, France)", plan_radio_title: "Radio Frequencies", plan_callsign: "Ham Radio Callsign", plan_fam_freq: "Family Frequency (UHF - GMRS/FRS)", plan_em_freq: "Emergency Call (VHF Simplex)", plan_rep_freq: "Main Local Repeater (Montreal)", plan_hf_freq: "Long Distance Survival Net (HF 20m)", btn_save_plan: "Save Plan",
         title_map: "Evacuation Map", map_desc: "Bike evacuation schematic (50km radius).",
         menu_comms: "Radio Comms",
         title_comms: "Radio Comms",
@@ -1314,6 +1304,9 @@
         comms_primary: "Primary frequency", comms_secondary: "Secondary frequency", comms_backup: "Backup frequency", comms_channel: "Channel",
         comms_ham_backup: "Ham Backup (F4LRX)", comms_ham_band: "VHF 2m simplex", comms_ham_license: "License required",
         comms_schedule_sub: "H+00, H+05, H+10 and H+30, H+35, H+40", comms_script_sub: "Phrase to use",
+        comms_personal_plan: "My personal plan", comms_personal_plan_sub: "Rally points and local repeater",
+        comms_personal_save: "Save my plan",
+        plan_rp1: "Rally point", plan_rp2: "Final point", plan_rep_freq: "Local repeater",
         comms_schedule: "Listening schedule",
         comms_schedule_1: "H+00 & H+30: call on 462.5875 (5 min)",
         comms_schedule_2: "H+05 & H+35: call on 467.5875 (5 min)",
@@ -1449,26 +1442,6 @@
       localStorage.setItem('bob_theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
       updateThemeText();
     });
-
-    function loadPlan() {
-      const planData = JSON.parse(localStorage.getItem('bob_plan') || '{}');
-      document.getElementById('plan-rp1').value = planData.rp1 || '';
-      document.getElementById('plan-rp2').value = planData.rp2 || '';
-      document.getElementById('plan-callsign').value = planData.callsign || 'F4LRX';
-      document.getElementById('plan-fam-freq').value = planData.famFreq || '';
-      document.getElementById('plan-rep-freq').value = planData.repFreq || '';
-    }
-    function savePlan() {
-      const planData = {
-        rp1: document.getElementById('plan-rp1').value.trim(),
-        rp2: document.getElementById('plan-rp2').value.trim(),
-        callsign: document.getElementById('plan-callsign').value.trim(),
-        famFreq: document.getElementById('plan-fam-freq').value.trim(),
-        repFreq: document.getElementById('plan-rep-freq').value.trim()
-      };
-      localStorage.setItem('bob_plan', JSON.stringify(planData));
-      alert(currentLang === 'en' ? "✅ Plan saved." : "✅ Plan sauvegardé.");
-    }
 
     const kitCategories = [
       { id: 1, name_fr: "Eau & Nourriture", name_en: "Water & Food", icon: "bi-droplet-fill" },
@@ -2289,14 +2262,20 @@
       doc.text(currentLang === 'en' ? "B.O.B. - EMERGENCY BAG" : "B.O.B. - SAC D'URGENCE", 10, y);
       y += 15;
 
-      const planData = JSON.parse(localStorage.getItem('bob_plan') || '{}');
+      const personalPlan = JSON.parse(localStorage.getItem('bob_personal_plan') || '{}');
+      const pdfRp1 = currentLang === 'en' ? 'Rally Point:' : 'Point de ralliement:';
+      const pdfFinal = currentLang === 'en' ? 'Final Point:' : 'Point final:';
+      const pdfCall = currentLang === 'en' ? 'Callsign:' : 'Indicatif:';
+      const pdfFam = currentLang === 'en' ? 'Family Freq:' : 'Fréquence famille:';
+      const pdfRep = currentLang === 'en' ? 'Repeater:' : 'Relais local:';
+      const pdfCustomize = currentLang === 'en' ? '[Customize]' : '[À personnaliser]';
       doc.setFontSize(12);
-      doc.text(`Rally Point 1: ${planData.rp1 || '---'}`, 10, y); y += 7;
-      doc.text(`Final Point: ${planData.rp2 || '---'}`, 10, y); y += 12;
+      doc.text(`${pdfRp1} ${personalPlan.rp1 || pdfCustomize}`, 10, y); y += 7;
+      doc.text(`${pdfFinal} ${personalPlan.rp2 || pdfCustomize}`, 10, y); y += 12;
       
-      doc.text(`Callsign: ${planData.callsign || 'F4LRX'}`, 10, y); y += 7;
-      doc.text(`Family Freq: ${planData.famFreq || '---'}`, 10, y); y += 7;
-      doc.text(`Repeater Freq: ${planData.repFreq || '---'}`, 10, y); y += 15;
+      doc.text(`${pdfCall} F4LRX`, 10, y); y += 7;
+      doc.text(`${pdfFam} 462.5875 MHz`, 10, y); y += 7;
+      doc.text(`${pdfRep} ${personalPlan.rep || pdfCustomize}`, 10, y); y += 15;
 
       doc.setFontSize(14);
       doc.text(currentLang === 'en' ? "MISSING INVENTORY ITEMS:" : "INVENTAIRE MANQUANT :", 10, y); y += 10;
@@ -2344,6 +2323,28 @@
         chk.addEventListener('change', saveFastEvac);
       });
     }
+
+    /* ================== MON PLAN PERSO ================== */
+    function loadPersonalPlan() {
+      const data = JSON.parse(localStorage.getItem('bob_personal_plan') || '{}');
+      const rp1 = document.getElementById('personal-rp1');
+      const rp2 = document.getElementById('personal-rp2');
+      const rep = document.getElementById('personal-rep');
+      if (rp1) rp1.value = data.rp1 || '';
+      if (rp2) rp2.value = data.rp2 || '';
+      if (rep) rep.value = data.rep || '';
+    }
+
+    function savePersonalPlan() {
+      const data = {
+        rp1: document.getElementById('personal-rp1').value.trim(),
+        rp2: document.getElementById('personal-rp2').value.trim(),
+        rep: document.getElementById('personal-rep').value.trim()
+      };
+      localStorage.setItem('bob_personal_plan', JSON.stringify(data));
+      alert(currentLang === 'en' ? "✅ Plan saved." : "✅ Plan sauvegardé.");
+    }
+
 
     /* ================== COMMS ================== */
     function setCommsTab(tab) {
@@ -2465,10 +2466,10 @@
       updateThemeText();
       renderInventory();
       applyTechnicsFilters();
-      loadPlan();
       updateXPUI();
       loadFastEvac();
       attachFastEvacListeners();
+      loadPersonalPlan();
     });
   </script>
 
