@@ -495,35 +495,65 @@
       </div>
 
       <div class="freq-card backup">
-        <h4 data-i18n="comms_backup">Fréquence de repli</h4>
-        <div class="freq-value">462.6125<span class="freq-unit">MHz</span></div>
+        <h4 data-i18n="comms_secondary">Fréquence secondaire</h4>
+        <div class="freq-value">467.5875<span class="freq-unit">MHz</span></div>
         <div class="freq-meta">
-          <strong data-i18n="comms_channel">Canal</strong> 3 FRS &nbsp;·&nbsp; 
+          <strong data-i18n="comms_channel">Canal</strong> 2 FRS +5 MHz &nbsp;·&nbsp; 
           <strong>CTCSS</strong> 100.0 Hz
         </div>
       </div>
 
-      <div class="emergency-card" style="border-top-color: var(--cat-5-solid);">
-        <h3 data-i18n="comms_schedule">Horaire d'écoute</h3>
-        <ul class="icon-list">
-          <li><i class="bi bi-clock-fill"></i><span data-i18n="comms_schedule_1">H+00 et H+30 : appel sur la fréquence principale (5 min)</li>
-          <li><i class="bi bi-arrow-repeat"></i><span data-i18n="comms_schedule_2">H+05 et H+35 : si pas de réponse, basculer sur la fréquence de repli (5 min)</li>
-          <li><i class="bi bi-ear-fill"></i><span data-i18n="comms_schedule_3">Reste du temps : écoute passive sur la fréquence principale</li>
-        </ul>
-        <div class="comms-hint" style="margin-top: 1rem;">
-          <i class="bi bi-lightbulb-fill"></i>
-          <span data-i18n="comms_schedule_example">Exemple : si séparés à 14h00, tout le monde appelle/appelle à 14h00, puis 14h05 sur le repli, puis 14h30, etc.</span>
+      <div class="freq-card" style="border-left-color: var(--color-danger);">
+        <h4 data-i18n="comms_ham_backup">Repli Radioamateur (F4LRX)</h4>
+        <div class="freq-value">146.520<span class="freq-unit">MHz</span></div>
+        <div class="freq-meta">
+          <strong data-i18n="comms_ham_band">VHF 2m simplex</strong> &nbsp;·&nbsp; 
+          <span data-i18n="comms_ham_license">Licence requise</span>
         </div>
       </div>
 
-      <div class="emergency-card" style="border-top-color: var(--cat-6-solid);">
-        <h3 data-i18n="comms_script">Script d'appel</h3>
-        <p class="bg-soft" style="font-size: 1.05rem; font-style: italic; text-align: center; margin: 0;" data-i18n="comms_script_text">
-          « Ici [Prénom], appel familial. [Prénom] à l'écoute. »
-        </p>
+      <!-- Horaire d'écoute — repliable -->
+      <div class="comms-band" style="margin-top: 1rem;">
+        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="band-ic" style="background: var(--cat-5-solid)"><i class="bi bi-clock-fill"></i></span>
+          <span class="band-title">
+            <span data-i18n="comms_schedule">Horaire d'écoute</span>
+            <span class="band-sub" data-i18n="comms_schedule_sub">H+00, H+05, H+10 et H+30, H+35, H+40</span>
+          </span>
+          <i class="bi bi-chevron-down cat-chevron"></i>
+        </button>
+        <div class="comms-band-body">
+          <ul class="icon-list">
+            <li><i class="bi bi-1-circle-fill"></i><span data-i18n="comms_schedule_1">H+00 et H+30 : appel sur 462.5875 (5 min)</span></li>
+            <li><i class="bi bi-2-circle-fill"></i><span data-i18n="comms_schedule_2">H+05 et H+35 : si pas de réponse, appel sur 467.5875 (5 min)</span></li>
+            <li><i class="bi bi-3-circle-fill"></i><span data-i18n="comms_schedule_3">H+10 et H+40 : [F4LRX seul] écoute sur 146.520</span></li>
+            <li><i class="bi bi-ear-fill"></i><span data-i18n="comms_schedule_4">Reste du temps : écoute passive sur 462.5875</span></li>
+          </ul>
+          <div class="comms-hint" style="margin-top: 1rem;">
+            <i class="bi bi-lightbulb-fill"></i>
+            <span data-i18n="comms_schedule_example">Exemple : si séparés à 14h00, tout le monde appelle sur 462 à 14h00, puis 467 à 14h05, puis retour à 14h30.</span>
+          </div>
+        </div>
       </div>
 
-      <button onclick="generateFamilyCardPDF()" class="custom-btn primary">
+      <!-- Script d'appel — repliable -->
+      <div class="comms-band">
+        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="band-ic" style="background: var(--cat-6-solid)"><i class="bi bi-mic-fill"></i></span>
+          <span class="band-title">
+            <span data-i18n="comms_script">Script d'appel</span>
+            <span class="band-sub" data-i18n="comms_script_sub">Phrase à utiliser</span>
+          </span>
+          <i class="bi bi-chevron-down cat-chevron"></i>
+        </button>
+        <div class="comms-band-body">
+          <p class="bg-soft" style="font-size: 1.05rem; font-style: italic; text-align: center; margin: 0;" data-i18n="comms_script_text">
+            « Ici [Prénom], appel familial. [Prénom] à l'écoute. »
+          </p>
+        </div>
+      </div>
+
+      <button onclick="generateFamilyCardPDF()" class="custom-btn primary" style="margin-top: 1rem;">
         <i class="bi bi-file-earmark-pdf-fill"></i>
         <span data-i18n="comms_pdf_btn">Générer la carte famille (PDF)</span>
       </button>
@@ -736,7 +766,7 @@
           <thead><tr><th data-i18n="comms_mem">Mém.</th><th data-i18n="comms_freq">Fréquence</th><th data-i18n="comms_usage">Usage</th></tr></thead>
           <tbody>
             <tr><td>1</td><td>462.5875</td><td data-i18n="comms_radio_family">Plan famille (CTCSS 100.0)</td></tr>
-            <tr><td>2</td><td>462.6125</td><td data-i18n="comms_radio_backup">Repli famille (CTCSS 100.0)</td></tr>
+            <tr><td>2</td><td>467.5875</td><td data-i18n="comms_radio_secondary">Secondaire famille (CTCSS 100.0)</td></tr>
             <tr><td>3</td><td>146.520</td><td data-i18n="comms_radio_call">Appel radioamateur</td></tr>
             <tr><td>4</td><td>162.550</td><td data-i18n="comms_radio_weather">Météo Canada</td></tr>
             <tr><td>5</td><td>149.080</td><td data-i18n="comms_radio_sar">SAR national</td></tr>
@@ -754,7 +784,7 @@
         <table class="freq-table">
           <thead><tr><th data-i18n="comms_zone">Zone</th><th data-i18n="comms_freq">Fréquences</th><th data-i18n="comms_usage">Usage</th></tr></thead>
           <tbody>
-            <tr><td>1</td><td>462.5875 / 462.6125</td><td data-i18n="comms_radio_family2">Famille (identiques UV5R)</td></tr>
+            <tr><td>1</td><td>462.5875 / 467.5875</td><td data-i18n="comms_radio_family2">Famille (identiques UV5R)</td></tr>
             <tr><td>2</td><td>146.520 / 446.000</td><td data-i18n="comms_radio_call2">Appel radioamateur</td></tr>
             <tr><td>3</td><td>162.400-550</td><td data-i18n="comms_radio_weather2">Météo Canada</td></tr>
             <tr><td>4</td><td>14.300 / 7.240</td><td data-i18n="comms_radio_hf2">HF (écoute)</td></tr>
@@ -1185,12 +1215,15 @@
         title_comms: "Comms Radio",
         comms_tab_family: "Plan Famille", comms_tab_emergency: "Urgences", comms_tab_radios: "Mes Radios",
         comms_family_intro: "Ces fréquences sont sans licence au Canada. Programmez-les en mémoire 1 et 2 sur tous les talkies-walkies.",
-        comms_primary: "Fréquence principale", comms_backup: "Fréquence de repli", comms_channel: "Canal",
+        comms_primary: "Fréquence principale", comms_secondary: "Fréquence secondaire", comms_backup: "Fréquence de repli", comms_channel: "Canal",
+        comms_ham_backup: "Repli Radioamateur (F4LRX)", comms_ham_band: "VHF 2m simplex", comms_ham_license: "Licence requise",
+        comms_schedule_sub: "H+00, H+05, H+10 et H+30, H+35, H+40", comms_script_sub: "Phrase à utiliser",
         comms_schedule: "Horaire d'écoute",
-        comms_schedule_1: "H+00 et H+30 : appel sur la fréquence principale (5 min)",
-        comms_schedule_2: "H+05 et H+35 : si pas de réponse, basculer sur la fréquence de repli (5 min)",
-        comms_schedule_3: "Reste du temps : écoute passive sur la fréquence principale",
-        comms_schedule_example: "Exemple : si séparés à 14h00, tout le monde appelle/appelle à 14h00, puis 14h05 sur le repli, puis 14h30, etc.",
+        comms_schedule_1: "H+00 et H+30 : appel sur 462.5875 (5 min)",
+        comms_schedule_2: "H+05 et H+35 : si pas de réponse, appel sur 467.5875 (5 min)",
+        comms_schedule_3: "H+10 et H+40 : [F4LRX seul] écoute sur 146.520",
+        comms_schedule_4: "Reste du temps : écoute passive sur 462.5875",
+        comms_schedule_example: "Exemple : si séparés à 14h00, tout le monde appelle sur 462 à 14h00, puis 467 à 14h05, puis retour à 14h30.",
         comms_script: "Script d'appel",
         comms_script_text: "« Ici [Prénom], appel familial. [Prénom] à l'écoute. »",
         comms_pdf_btn: "Générer la carte famille (PDF)",
@@ -1228,7 +1261,7 @@
         comms_radio_x6100_role: "HF/VHF/UHF — Radio polyvalente",
         comms_radio_hackrf_role: "SDR — Écoute uniquement",
         comms_radio_xhdata_role: "Récepteur FM/AM/SW — Veille",
-        comms_radio_family: "Plan famille (CTCSS 100.0)", comms_radio_backup: "Repli famille (CTCSS 100.0)",
+        comms_radio_family: "Plan famille (CTCSS 100.0)", comms_radio_secondary: "Secondaire famille (CTCSS 100.0)", comms_radio_backup: "Repli famille (CTCSS 100.0)",
         comms_radio_call: "Appel radioamateur", comms_radio_weather: "Météo Canada", comms_radio_sar: "SAR national",
         comms_radio_uv5r_config: "Config CTCSS : Menu 13 (R-CTCSS) et Menu 11 (T-CTCSS) → 100.0 Hz",
         comms_radio_family2: "Famille (identiques UV5R)", comms_radio_call2: "Appel radioamateur",
@@ -1278,12 +1311,15 @@
         title_comms: "Radio Comms",
         comms_tab_family: "Family Plan", comms_tab_emergency: "Emergency", comms_tab_radios: "My Radios",
         comms_family_intro: "These frequencies are license-free in Canada. Program them in memory 1 and 2 on all walkie-talkies.",
-        comms_primary: "Primary frequency", comms_backup: "Backup frequency", comms_channel: "Channel",
+        comms_primary: "Primary frequency", comms_secondary: "Secondary frequency", comms_backup: "Backup frequency", comms_channel: "Channel",
+        comms_ham_backup: "Ham Backup (F4LRX)", comms_ham_band: "VHF 2m simplex", comms_ham_license: "License required",
+        comms_schedule_sub: "H+00, H+05, H+10 and H+30, H+35, H+40", comms_script_sub: "Phrase to use",
         comms_schedule: "Listening schedule",
-        comms_schedule_1: "H+00 and H+30: call on PRIMARY frequency (5 min)",
-        comms_schedule_2: "H+05 and H+35: no answer? switch to BACKUP (5 min)",
-        comms_schedule_3: "Rest of the time: passive listening on PRIMARY",
-        comms_schedule_example: "Example: if separated at 14:00, everyone calls at 14:00, then 14:05 on backup, then 14:30, etc.",
+        comms_schedule_1: "H+00 & H+30: call on 462.5875 (5 min)",
+        comms_schedule_2: "H+05 & H+35: call on 467.5875 (5 min)",
+        comms_schedule_3: "H+10 & H+40: F4LRX listens on 146.520",
+        comms_schedule_4: "Rest of the time: passive listening on 462.5875",
+        comms_schedule_example: "Example: if separated at 14:00, everyone calls 462 at 14:00, then 467 at 14:05, then back at 14:30.",
         comms_script: "Call script",
         comms_script_text: "\"This is [Name], family call. [Name] listening.\"",
         comms_pdf_btn: "Generate family card (PDF)",
@@ -1321,7 +1357,7 @@
         comms_radio_x6100_role: "HF/VHF/UHF — Versatile radio",
         comms_radio_hackrf_role: "SDR — Listening only",
         comms_radio_xhdata_role: "FM/AM/SW receiver — Monitoring",
-        comms_radio_family: "Family plan (CTCSS 100.0)", comms_radio_backup: "Family backup (CTCSS 100.0)",
+        comms_radio_family: "Family plan (CTCSS 100.0)", comms_radio_secondary: "Family secondary (CTCSS 100.0)", comms_radio_backup: "Family backup (CTCSS 100.0)",
         comms_radio_call: "Ham calling", comms_radio_weather: "Canada Weather", comms_radio_sar: "National SAR",
         comms_radio_uv5r_config: "CTCSS config: Menu 13 (R-CTCSS) and Menu 11 (T-CTCSS) → 100.0 Hz",
         comms_radio_family2: "Family (same as UV5R)", comms_radio_call2: "Ham calling",
@@ -2370,13 +2406,15 @@
       doc.setFont(undefined, 'normal');
       doc.setFontSize(9);
       const schedule = currentLang === 'en' ? [
-        'H+00 & H+30 : call on PRIMARY (5 min)',
-        'H+05 & H+35 : no answer? switch to BACKUP (5 min)',
-        'Rest of the time : passive listening on PRIMARY'
+        'H+00 & H+30 : call on 462.5875 (5 min)',
+        'H+05 & H+35 : call on 467.5875 (5 min)',
+        'H+10 & H+40 : F4LRX listens on 146.520',
+        'Rest of the time : passive listening on 462.5875'
       ] : [
-        'H+00 et H+30 : appel sur PRINCIPALE (5 min)',
-        'H+05 et H+35 : pas de réponse ? basculer sur REPLI (5 min)',
-        'Reste du temps : écoute passive sur PRINCIPALE'
+        'H+00 et H+30 : appel sur 462.5875 (5 min)',
+        'H+05 et H+35 : appel sur 467.5875 (5 min)',
+        'H+10 et H+40 : F4LRX écoute sur 146.520',
+        'Reste du temps : écoute passive sur 462.5875'
       ];
       schedule.forEach(line => {
         doc.text('• ' + line, M, y);
@@ -2397,6 +2435,19 @@
         : '« Ici [Prénom], appel famille. [Prénom] à l\'écoute. »';
       doc.text(scriptText, W / 2, y + 4, { align: 'center' });
       y += 20;
+
+      // Ham backup frequency
+      doc.setFont(undefined, 'bold');
+      doc.setFontSize(9);
+      doc.text(currentLang === 'en' ? 'HAM BACKUP (F4LRX ONLY)' : 'REPLI RADIOAMATEUR (F4LRX SEUL)', M, y);
+      y += 6;
+      doc.setFontSize(16);
+      doc.text('146.520 MHz', M, y);
+      y += 6;
+      doc.setFontSize(9);
+      doc.setFont(undefined, 'normal');
+      doc.text(currentLang === 'en' ? 'VHF 2m simplex  ·  License required' : 'VHF 2m simplex  ·  Licence requise', M, y);
+      y += 8;
 
       doc.setFont(undefined, 'normal');
       doc.setFontSize(7);
