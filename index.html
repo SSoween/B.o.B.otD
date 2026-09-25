@@ -553,6 +553,119 @@
     <!-- ===== ONGLET 2 : URGENCES ===== -->
     <div id="comms-tab-emergency" class="comms-tab-content hidden">
 
+      <!-- HF 80m -->
+      <div class="comms-band">
+        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="band-ic" style="background: var(--cat-7-solid)"><i class="bi bi-cloud-moon-fill"></i></span>
+          <span class="band-title"><span data-i18n="comms_band_hf80">HF 80m (3.5 MHz) — Nuit profonde</span><span class="band-sub" data-i18n="comms_band_hf80_sub">NVIS · Communications nationales 0-600 km</span></span>
+          <i class="bi bi-chevron-down cat-chevron"></i>
+        </button>
+        <div class="comms-band-body">
+          <table class="freq-table">
+            <thead><tr><th data-i18n="comms_freq">Fréquence</th><th data-i18n="comms_usage">Usage</th></tr></thead>
+            <tbody>
+              <tr><td>3.760 LSB</td><td data-i18n="comms_f_3760">Urgence Région 2</td></tr>
+              <tr><td>3.800-4.000 LSB</td><td data-i18n="comms_f_80ssb">Segment SSB Région 2</td></tr>
+            </tbody>
+          </table>
+          <div class="comms-hint">
+            <i class="bi bi-globe"></i>
+            <span data-i18n="comms_hint_80m">80m est idéale pour les communications nationales la nuit (propagation NVIS, 0-600 km).</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HF 40m -->
+      <div class="comms-band">
+        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="band-ic" style="background: var(--cat-2-solid)"><i class="bi bi-moon-stars-fill"></i></span>
+          <span class="band-title"><span data-i18n="comms_band_hf40">HF 40m (7 MHz) — Nuit</span><span class="band-sub" data-i18n="comms_band_hf40_sub">Recommandé : coucher → lever du soleil</span></span>
+          <i class="bi bi-chevron-down cat-chevron"></i>
+        </button>
+        <div class="comms-band-body">
+          <table class="freq-table">
+            <thead><tr><th data-i18n="comms_freq">Fréquence</th><th data-i18n="comms_usage">Usage</th></tr></thead>
+            <tbody>
+              <tr><td>7.240 LSB</td><td data-i18n="comms_f_7240">Urgence Région 2 (Amériques)</td></tr>
+              <tr><td>7.125-7.300 LSB</td><td data-i18n="comms_f_40ssb">Segment SSB Région 2</td></tr>
+            </tbody>
+          </table>
+          <div class="comms-hint">
+            <i class="bi bi-globe"></i>
+            <span data-i18n="comms_hint_40m">40m ouvre en fin d'après-midi et reste ouverte jusqu'après le lever. Idéale pour le DX nocturne et le trafic régional.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HF 20m -->
+      <div class="comms-band">
+        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="band-ic" style="background: var(--cat-5-solid)"><i class="bi bi-sun-fill"></i></span>
+          <span class="band-title"><span data-i18n="comms_band_hf20">HF 20m (14 MHz) — Jour</span><span class="band-sub" data-i18n="comms_band_hf20_sub">Recommandé : aube → coucher du soleil</span></span>
+          <i class="bi bi-chevron-down cat-chevron"></i>
+        </button>
+        <div class="comms-band-body">
+          <table class="freq-table">
+            <thead><tr><th data-i18n="comms_freq">Fréquence</th><th data-i18n="comms_usage">Usage</th></tr></thead>
+            <tbody>
+              <tr><td>14.300 USB</td><td data-i18n="comms_f_14300">Réseau maritime & survie (Intercontinental Net)</td></tr>
+              <tr><td>14.230 USB</td><td data-i18n="comms_f_14230">SSTV (transmission d'images)</td></tr>
+            </tbody>
+          </table>
+          <div class="comms-hint">
+            <i class="bi bi-globe"></i>
+            <span data-i18n="comms_hint_20m">20m ouvre à l'aube et ferme après le coucher. Idéale pour le DX de jour.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HF 10m / 11m (CB) -->
+      <div class="comms-band">
+        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="band-ic" style="background: var(--cat-8-solid)"><i class="bi bi-radio"></i></span>
+          <span class="band-title"><span data-i18n="comms_band_cb">HF 10m / 11m (28-27 MHz)</span><span class="band-sub" data-i18n="comms_band_cb_sub">CB · Appel · Urgence · 10m radioamateur</span></span>
+          <i class="bi bi-chevron-down cat-chevron"></i>
+        </button>
+        <div class="comms-band-body">
+          <table class="freq-table">
+            <thead><tr><th data-i18n="comms_freq">Fréquence</th><th data-i18n="comms_usage">Usage</th></tr></thead>
+            <tbody>
+              <tr><td>27.065 (CB 9)</td><td data-i18n="comms_f_cb9">Canal de détresse/urgence CB (international)</td></tr>
+              <tr><td>27.085 (CB 11)</td><td data-i18n="comms_f_cb11">Canal d'appel CB</td></tr>
+              <tr><td>29.600 FM</td><td data-i18n="comms_f_29600">Appel FM simplex 10m (mondial)</td></tr>
+              <tr><td>28.400-29.300</td><td data-i18n="comms_f_10m_ssb">Segment voix SSB 10m</td></tr>
+            </tbody>
+          </table>
+          <div class="comms-hint">
+            <i class="bi bi-info-circle-fill"></i>
+            <span data-i18n="comms_hint_cb">CB canal 9 : détresse. CB canal 11 : appel général. Pas de licence requise.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VHF 6m -->
+      <div class="comms-band">
+        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
+          <span class="band-ic" style="background: var(--cat-2-solid)"><i class="bi bi-broadcast-pin"></i></span>
+          <span class="band-title"><span data-i18n="comms_band_vhf6m">VHF 6m (50-54 MHz)</span><span class="band-sub" data-i18n="comms_band_vhf6m_sub">Portée étendue · Sporadique-E</span></span>
+          <i class="bi bi-chevron-down cat-chevron"></i>
+        </button>
+        <div class="comms-band-body">
+          <table class="freq-table">
+            <thead><tr><th data-i18n="comms_freq">Fréquence</th><th data-i18n="comms_usage">Usage</th></tr></thead>
+            <tbody>
+              <tr><td>50.110 USB</td><td data-i18n="comms_f_50110">Appel SSB international</td></tr>
+              <tr><td>51.000 FM</td><td data-i18n="comms_f_51000">Appel FM simplex</td></tr>
+              <tr><td>52.525 FM</td><td data-i18n="comms_f_52525">Fréquence d'appel FM historique</td></tr>
+            </tbody>
+          </table>
+          <div class="comms-hint">
+            <i class="bi bi-globe"></i>
+            <span data-i18n="comms_hint_6m">Bande 6m : excellente en été (propagation sporadique-E). Bon compromis portée/pénétration en situation d'urgence.</span>
+          </div>
+        </div>
+      </div>
+
       <!-- VHF 2m -->
       <div class="comms-band">
         <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
@@ -590,96 +703,6 @@
               <tr><td>446.006-446.093</td><td data-i18n="comms_f_pmr">PMR446 (Europe, 8 canaux)</td></tr>
             </tbody>
           </table>
-        </div>
-      </div>
-
-      <!-- HF 20m -->
-      <div class="comms-band">
-        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
-          <span class="band-ic" style="background: var(--cat-5-solid)"><i class="bi bi-sun-fill"></i></span>
-          <span class="band-title"><span data-i18n="comms_band_hf20">HF 20m (14 MHz) — Jour</span><span class="band-sub" data-i18n="comms_band_hf20_sub">Recommandé : aube → coucher du soleil</span></span>
-          <i class="bi bi-chevron-down cat-chevron"></i>
-        </button>
-        <div class="comms-band-body">
-          <table class="freq-table">
-            <thead><tr><th data-i18n="comms_freq">Fréquence</th><th data-i18n="comms_usage">Usage</th></tr></thead>
-            <tbody>
-              <tr><td>14.300 USB</td><td data-i18n="comms_f_14300">Réseau maritime & survie (Intercontinental Net)</td></tr>
-              <tr><td>14.230 USB</td><td data-i18n="comms_f_14230">SSTV (transmission d'images)</td></tr>
-            </tbody>
-          </table>
-          <div class="comms-hint">
-            <i class="bi bi-globe"></i>
-            <span data-i18n="comms_hint_20m">20m ouvre à l'aube et ferme après le coucher. Idéale pour le DX de jour.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- HF 40m -->
-      <div class="comms-band">
-        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
-          <span class="band-ic" style="background: var(--cat-2-solid)"><i class="bi bi-moon-stars-fill"></i></span>
-          <span class="band-title"><span data-i18n="comms_band_hf40">HF 40m (7 MHz) — Nuit</span><span class="band-sub" data-i18n="comms_band_hf40_sub">Recommandé : coucher → lever du soleil</span></span>
-          <i class="bi bi-chevron-down cat-chevron"></i>
-        </button>
-        <div class="comms-band-body">
-          <table class="freq-table">
-            <thead><tr><th data-i18n="comms_freq">Fréquence</th><th data-i18n="comms_usage">Usage</th></tr></thead>
-            <tbody>
-              <tr><td>7.240 LSB</td><td data-i18n="comms_f_7240">Urgence Région 2 (Amériques)</td></tr>
-              <tr><td>7.125-7.300 LSB</td><td data-i18n="comms_f_40ssb">Segment SSB Région 2</td></tr>
-            </tbody>
-          </table>
-          <div class="comms-hint">
-            <i class="bi bi-globe"></i>
-            <span data-i18n="comms_hint_40m">40m ouvre en fin d'après-midi et reste ouverte jusqu'après le lever. Idéale pour le DX nocturne et le trafic régional.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- HF 80m -->
-      <div class="comms-band">
-        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
-          <span class="band-ic" style="background: var(--cat-7-solid)"><i class="bi bi-cloud-moon-fill"></i></span>
-          <span class="band-title"><span data-i18n="comms_band_hf80">HF 80m (3.5 MHz) — Nuit profonde</span><span class="band-sub" data-i18n="comms_band_hf80_sub">NVIS · Communications nationales 0-600 km</span></span>
-          <i class="bi bi-chevron-down cat-chevron"></i>
-        </button>
-        <div class="comms-band-body">
-          <table class="freq-table">
-            <thead><tr><th data-i18n="comms_freq">Fréquence</th><th data-i18n="comms_usage">Usage</th></tr></thead>
-            <tbody>
-              <tr><td>3.760 LSB</td><td data-i18n="comms_f_3760">Urgence Région 2</td></tr>
-              <tr><td>3.800-4.000 LSB</td><td data-i18n="comms_f_80ssb">Segment SSB Région 2</td></tr>
-            </tbody>
-          </table>
-          <div class="comms-hint">
-            <i class="bi bi-globe"></i>
-            <span data-i18n="comms_hint_80m">80m est idéale pour les communications nationales la nuit (propagation NVIS, 0-600 km).</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- HF 10m / 11m (CB) -->
-      <div class="comms-band">
-        <button class="comms-band-head" onclick="this.parentElement.classList.toggle('open')">
-          <span class="band-ic" style="background: var(--cat-8-solid)"><i class="bi bi-radio"></i></span>
-          <span class="band-title"><span data-i18n="comms_band_cb">HF 10m / 11m (28-27 MHz)</span><span class="band-sub" data-i18n="comms_band_cb_sub">CB · Appel · Urgence · 10m radioamateur</span></span>
-          <i class="bi bi-chevron-down cat-chevron"></i>
-        </button>
-        <div class="comms-band-body">
-          <table class="freq-table">
-            <thead><tr><th data-i18n="comms_freq">Fréquence</th><th data-i18n="comms_usage">Usage</th></tr></thead>
-            <tbody>
-              <tr><td>27.065 (CB 9)</td><td data-i18n="comms_f_cb9">Canal de détresse/urgence CB (international)</td></tr>
-              <tr><td>27.085 (CB 11)</td><td data-i18n="comms_f_cb11">Canal d'appel CB</td></tr>
-              <tr><td>29.600 FM</td><td data-i18n="comms_f_29600">Appel FM simplex 10m (mondial)</td></tr>
-              <tr><td>28.400-29.300</td><td data-i18n="comms_f_10m_ssb">Segment voix SSB 10m</td></tr>
-            </tbody>
-          </table>
-          <div class="comms-hint">
-            <i class="bi bi-info-circle-fill"></i>
-            <span data-i18n="comms_hint_cb">CB canal 9 : détresse. CB canal 11 : appel général. Pas de licence requise.</span>
-          </div>
         </div>
       </div>
 
@@ -1225,6 +1248,9 @@
         comms_band_hf40: "HF 40m (7 MHz) — Nuit", comms_band_hf40_sub: "Recommandé : coucher → lever du soleil",
         comms_band_hf80: "HF 80m (3.5 MHz) — Nuit profonde", comms_band_hf80_sub: "NVIS · Communications nationales 0-600 km",
         comms_band_cb: "HF 10m / 11m (28-27 MHz)", comms_band_cb_sub: "CB · Appel · Urgence · 10m radioamateur",
+        comms_band_vhf6m: "VHF 6m (50-54 MHz)", comms_band_vhf6m_sub: "Portée étendue · Sporadique-E",
+        comms_f_50110: "Appel SSB international", comms_f_51000: "Appel FM simplex", comms_f_52525: "Fréquence d'appel FM historique",
+        comms_hint_6m: "Bande 6m : excellente en été (propagation sporadique-E). Bon compromis portée/pénétration en situation d'urgence.",
         comms_band_air: "Aéronautique", comms_band_air_sub: "Détresse aviation civile & militaire",
         comms_band_maritime: "Maritime HF", comms_band_maritime_sub: "Détresse en mer",
         comms_band_forest: "Fréquences Forestières", comms_band_forest_sub: "SOPFEU · Coordination · Écoute uniquement",
@@ -1322,6 +1348,9 @@
         comms_band_hf40: "HF 40m (7 MHz) — Night", comms_band_hf40_sub: "Recommended: sunset → sunrise",
         comms_band_hf80: "HF 80m (3.5 MHz) — Deep night", comms_band_hf80_sub: "NVIS · National comms 0-600 km",
         comms_band_cb: "HF 10m / 11m (28-27 MHz)", comms_band_cb_sub: "CB · Calling · Emergency · 10m ham",
+        comms_band_vhf6m: "VHF 6m (50-54 MHz)", comms_band_vhf6m_sub: "Extended range · Sporadic-E",
+        comms_f_50110: "International SSB calling", comms_f_51000: "FM simplex calling", comms_f_52525: "Historic FM calling frequency",
+        comms_hint_6m: "6m band: excellent in summer (sporadic-E propagation). Good range/penetration compromise in emergencies.",
         comms_band_air: "Aeronautical", comms_band_air_sub: "Civil & military distress",
         comms_band_maritime: "Maritime HF", comms_band_maritime_sub: "Distress at sea",
         comms_band_forest: "Forest Frequencies", comms_band_forest_sub: "SOPFEU · Coordination · Listen only",
