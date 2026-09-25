@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>B.O.B. of the Dead</title>
+<title>B.O.B.</title>
   
   <link href="vendor/bootstrap.min.css" rel="stylesheet">
   <link href="vendor/bootstrap-icons.css" rel="stylesheet">
@@ -74,7 +74,7 @@
     position: relative; min-height: 100vh; box-shadow: 0 0 60px rgba(0,0,0,0.06);
   }
 
-  .container { max-width: 100% !important; padding-bottom: 5.5rem; }
+  .container { max-width: 100% !important; padding-bottom: calc(7rem + env(safe-area-inset-bottom)) !important; }
   .hidden { display: none !important; }
   section { animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
 
@@ -242,6 +242,29 @@
   }
   .map-reset-btn:hover { background: #4a5d23; transform: scale(1.05); }
 
+  /* ===== FIX : padding top pour éviter chevauchement boutons fixes ===== */
+  section.container, section.home-pad { padding-top: 4rem !important; }
+
+  /* ===== FIX : fond opaque des boutons fixes ===== */
+  .menu-trigger, .back-btn-global {
+    background: rgba(240, 238, 233, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  }
+  body.dark-mode .menu-trigger, body.dark-mode .back-btn-global {
+    background: rgba(21, 23, 21, 0.92);
+  }
+
+  /* ===== FIX : étoile favori ne chevauche plus le menu ===== */
+  .tech-detail-header { padding-top: 3rem; }
+
+  /* ===== FIX : classe utilitaire fond beige/sombre ===== */
+  .bg-soft { background: var(--color-muted-bg); border-radius: var(--radius-section); padding: 1rem; }
+  body.dark-mode .bg-soft { background: #2b302c !important; color: #dcd7ce !important; }
+  body.dark-mode .bg-soft table td { border-bottom-color: #3a3f42 !important; }
+  body.dark-mode .bg-soft table tr { border-bottom-color: #3a3f42 !important; }
+
   /* Comms section */
   .comms-tabs { display: flex; gap: 0.4rem; margin-bottom: 1.2rem; background: var(--color-muted-bg); padding: 0.4rem; border-radius: var(--radius-pill); }
   .comms-tab { flex: 1; padding: 0.6rem 0.4rem; border: none; background: transparent; border-radius: var(--radius-pill); font-weight: 700; font-size: 0.82rem; color: var(--color-text-dark); cursor: pointer; transition: all 0.2s; }
@@ -352,8 +375,8 @@
 
   <!-- ================= ACCUEIL ================= -->
   <section id="page-index" class="home-pad">
-    <div class="main-title">B.O.B.<br>OF THE DEAD</div>
-    <div class="sub-title" data-i18n="home_subtitle">Survive the 72 Hours</div>
+    <div class="main-title">B.O.B.<br><span data-i18n="home_main_title">SAC D'URGENCE</span></div>
+    <div class="sub-title" data-i18n="home_subtitle">Se préparer simplifie la vie</div>
 
     <button class="hero-card" onclick="navigate('inventory')">
       <div class="badge-ic"><i class="bi bi-backpack4-fill"></i></div>
@@ -495,8 +518,8 @@
 
       <div class="emergency-card" style="border-top-color: var(--cat-6-solid);">
         <h3 data-i18n="comms_script">Script d'appel</h3>
-        <p style="font-size: 1.05rem; font-style: italic; text-align: center; padding: 1rem; background: var(--color-muted-bg); border-radius: var(--radius-section); margin: 0;" data-i18n="comms_script_text">
-          « Ici [Prénom], appel famille. [Prénom] à l'écoute. »
+        <p class="bg-soft" style="font-size: 1.05rem; font-style: italic; text-align: center; margin: 0;" data-i18n="comms_script_text">
+          « Ici [Prénom], appel familial. [Prénom] à l'écoute. »
         </p>
       </div>
 
@@ -931,7 +954,7 @@
         La radioactivité des retombées décroît très rapidement. À chaque fois que l'intervalle de temps est multiplié par 7, la radioactivité est divisée par 10.
       </p>
       
-      <div style="background: var(--color-muted-bg); border-radius: var(--radius-section); padding: 1rem; margin-bottom: 1rem;">
+      <div class="bg-soft" style="margin-bottom: 1rem;">
         <table style="width: 100%; font-size: 0.85rem; border-collapse: collapse;">
           <tr style="border-bottom: 1px solid var(--color-muted-border);">
             <td style="padding: 6px 0; font-weight: 700;" data-i18n="nuclear_t_1h">1 heure après</td>
@@ -1148,7 +1171,7 @@
         menu_training: "Entraînement", menu_game: "Training Game",
         menu_settings: "Préférences", menu_dark_mode: "Mode Nuit", menu_light_mode: "Mode Jour", menu_install: "Installer l'App", menu_pdf: "Générer le PDF",
         menu_related: "Apps Associées", menu_firstaiders: "FirstAiders (Secourisme)",
-        btn_fast_evac: "Checklist Départ Immédiat", home_subtitle: "Survive the 72 Hours",
+        btn_fast_evac: "Checklist Départ Immédiat", home_main_title: "SAC D'URGENCE", home_subtitle: "Se préparer simplifie la vie",
         home_bag: "Mon Sac d'Évacuation", home_bag_sub: "Checklist & Quantités", home_manual: "Manuel de Survie", home_manual_sub: "Techniques & Matériel",
         home_game: "Training Game", home_game_sub: "Scénarios d'urgence", home_logistics: "Logistique & Références",
         home_plan: "Plan d'Urgence", home_map: "Carte d'Évacuation", home_map_sub: "Axes de sortie", home_pdf: "Générer PDF", home_install: "Installer l'App",
@@ -1241,7 +1264,7 @@
         menu_training: "Training", menu_game: "Training Game",
         menu_settings: "Settings", menu_dark_mode: "Dark Mode", menu_light_mode: "Light Mode", menu_install: "Install App", menu_pdf: "Generate PDF",
         menu_related: "Related Apps", menu_firstaiders: "FirstAiders (First Aid)",
-        btn_fast_evac: "Immediate Departure Checklist", home_subtitle: "Survive the 72 Hours",
+        btn_fast_evac: "Immediate Departure Checklist", home_main_title: "EMERGENCY BAG", home_subtitle: "Be prepared, simply",
         home_bag: "My Bug-Out Bag", home_bag_sub: "Checklist & Quantities", home_manual: "Survival Manual", home_manual_sub: "Techniques & Gear",
         home_game: "Training Game", home_game_sub: "Emergency Scenarios", home_logistics: "Logistics & References",
         home_plan: "Emergency Plan", home_map: "Evacuation Map", home_map_sub: "Exit routes", home_pdf: "Generate PDF", home_install: "Install App",
@@ -2227,7 +2250,7 @@
       let y = 10;
       
       doc.setFontSize(18);
-      doc.text("B.O.B. EMERGENCY PLAN", 10, y);
+      doc.text(currentLang === 'en' ? "B.O.B. - EMERGENCY BAG" : "B.O.B. - SAC D'URGENCE", 10, y);
       y += 15;
 
       const planData = JSON.parse(localStorage.getItem('bob_plan') || '{}');
@@ -2308,7 +2331,7 @@
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(14);
       doc.setFont(undefined, 'bold');
-      doc.text(currentLang === 'en' ? 'FAMILY COMM PLAN' : 'PLAN FAMILLE RADIO', W / 2, 10, { align: 'center' });
+      doc.text(currentLang === 'en' ? 'B.O.B. - FAMILY COMM PLAN' : 'B.O.B. - PLAN FAMILLE RADIO', W / 2, 10, { align: 'center' });
       doc.setFontSize(9);
       doc.setFont(undefined, 'normal');
       doc.text('B.O.B. of the Dead', W / 2, 17, { align: 'center' });
